@@ -52,10 +52,10 @@ const Hero = () => {
             className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-6 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
             style={{ transitionDelay: "200ms" }}
           >
-            <span className="block shimmer-text">
+            <span className="block shimmer-text mb-2">
               Transforming Industries
             </span>
-            <span className="block mt-2">
+            <span className="block">
               Through <span className="text-neon-blue text-glow">Artificial Intelligence</span>
             </span>
           </h1>
@@ -103,7 +103,7 @@ const Hero = () => {
           style={{ transitionDelay: "1000ms" }}
         >
           {/* Card 1 */}
-          <div className="glass-card p-6 rounded-xl backdrop-blur-md hover:border-neon-orange/30 transition-all duration-300 hover:translate-y-[-5px]">
+          <div className="glass-card p-6 rounded-xl backdrop-blur-md border border-white/10 hover:border-neon-orange/30 transition-all duration-300 hover:translate-y-[-5px]">
             <div className="bg-neon-orange/10 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
               <Brain className="text-neon-orange" />
             </div>
@@ -112,7 +112,7 @@ const Hero = () => {
           </div>
           
           {/* Card 2 */}
-          <div className="glass-card p-6 rounded-xl backdrop-blur-md hover:border-neon-blue/30 transition-all duration-300 hover:translate-y-[-5px]">
+          <div className="glass-card p-6 rounded-xl backdrop-blur-md border border-white/10 hover:border-neon-blue/30 transition-all duration-300 hover:translate-y-[-5px]">
             <div className="bg-neon-blue/10 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
               <Cpu className="text-neon-blue" />
             </div>
@@ -121,7 +121,7 @@ const Hero = () => {
           </div>
           
           {/* Card 3 */}
-          <div className="glass-card p-6 rounded-xl backdrop-blur-md hover:border-neon-green/30 transition-all duration-300 hover:translate-y-[-5px]">
+          <div className="glass-card p-6 rounded-xl backdrop-blur-md border border-white/10 hover:border-neon-green/30 transition-all duration-300 hover:translate-y-[-5px]">
             <div className="bg-neon-green/10 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
               <Zap className="text-neon-green" />
             </div>
