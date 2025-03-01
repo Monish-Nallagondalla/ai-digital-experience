@@ -74,51 +74,48 @@ const Index = () => {
   const featuredServices = [
     {
       title: "AI Consultation & Strategy",
-      description: "Develop a tailored AI roadmap that aligns with your business objectives, identifying opportunities for innovation and competitive advantage.",
+      description: "Develop a tailored AI roadmap aligned with your business goals. Our experts identify opportunities for innovation, cost reduction, and competitive advantage through strategic AI implementation.",
       icon: <Check className="h-6 w-6 text-neon-orange" />,
       color: "orange"
     },
     {
       title: "AI Agent Development",
-      description: "Custom intelligent agents designed to automate complex tasks, enhance decision-making, and deliver personalized experiences for your customers.",
+      description: "Custom intelligent agents that transform how your business operates. From customer service to data analysis, our AI agents automate complex tasks while continuously learning and improving.",
       icon: <Users className="h-6 w-6 text-neon-blue" />,
       color: "blue"
     },
     {
       title: "Predictive Analytics",
-      description: "Transform your raw data into actionable insights and accurate forecasts to drive strategic business decisions and anticipate market trends.",
+      description: "Convert your data into actionable business intelligence. Our predictive models identify trends, forecast outcomes, and detect anomalies with precision, enabling proactive decision-making.",
       icon: <Star className="h-6 w-6 text-neon-green" />,
       color: "green"
     },
     {
       title: "AI-Powered Customer Support",
-      description: "Deploy intelligent chatbots and support systems that understand context, resolve issues efficiently, and continuously improve through learning.",
+      description: "Revolutionary customer experience through context-aware AI. Our systems understand customer intent, resolve issues autonomously, and seamlessly escalate to human agents when needed.",
       icon: <MessageSquare className="h-6 w-6 text-neon-orange" />,
       color: "orange"
     }
   ];
 
-  // Enhanced testimonials with more compelling content
+  // Enhanced testimonials without images for a cleaner look
   const testimonials = [
     {
-      quote: "ApplyAi.today revolutionized our customer service operations. Their AI solution reduced response times by 60% while simultaneously increasing our customer satisfaction score from 3.8 to 4.7 out of 5. The implementation was seamless and ROI was visible within the first quarter.",
+      quote: "ApplyAi.today's solutions reduced our response times by 60% while increasing customer satisfaction from 3.8 to 4.7 out of 5. The ROI was visible within the first quarter, transforming how we approach customer service.",
       author: "Jane Smith",
       position: "CTO, TechCorp Inc.",
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
       rating: 5
     },
     {
-      quote: "The predictive analytics system developed by ApplyAi.today helped us anticipate market trends with 87% accuracy, giving us a significant competitive advantage. We've now expanded our partnership to implement AI across our entire supply chain.",
+      quote: "The predictive analytics system developed by ApplyAi.today anticipates market trends with 87% accuracy, giving us a significant competitive edge. We've now expanded our AI implementation across our entire supply chain.",
       author: "Michael Johnson",
       position: "CEO, Innovate Solutions",
-      image: "https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
       rating: 5
     },
     {
-      quote: "Working with ApplyAi.today has transformed our business intelligence capabilities. Their team seamlessly integrated AI into our legacy systems, enabling us to process unstructured data that previously sat unused. This has opened entirely new revenue streams for our business.",
+      quote: "Working with ApplyAi.today transformed our business intelligence capabilities. Their team integrated AI into our legacy systems, unlocking insights from previously unused unstructured data and opening entirely new revenue streams.",
       author: "Sarah Williams",
       position: "COO, Global Enterprises",
-      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
       rating: 5
     }
   ];
@@ -169,7 +166,7 @@ const Index = () => {
           >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Transformative AI Solutions for Modern Businesses</h2>
             <p className="text-gray-300 text-lg">
-              Our comprehensive suite of AI-powered solutions is designed to address your specific business challenges, drive innovation, and create sustainable competitive advantages.
+              Our comprehensive suite of AI-powered solutions addresses your specific business challenges, drives innovation, and creates sustainable competitive advantages in today's rapidly evolving digital landscape.
             </p>
           </div>
           
@@ -211,14 +208,14 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Testimonials Section - Enhanced for better blending with improved background transition */}
+      {/* Testimonials Section - Complete redesign with seamless blending */}
       <section 
         ref={testimonialsRef}
-        className="py-24 bg-gradient-to-b from-black to-gray-900 relative overflow-hidden"
+        className="py-24 relative overflow-hidden bg-transparent"
       >
-        {/* Smoother gradient overlays for better blending */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-gray-900/40 opacity-100"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 via-transparent to-black/40 opacity-70"></div>
+        {/* Improved gradient overlays for perfect blending */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900/80 to-gray-900 opacity-100"></div>
+        <div className="absolute inset-0 bg-grid-pattern bg-[length:20px_20px] opacity-10"></div>
         
         {/* Enhanced floating orbs that follow cursor */}
         <div className="absolute top-20 right-[20%] w-80 h-80 rounded-full bg-neon-blue/5 blur-3xl animate-float"></div>
@@ -227,62 +224,50 @@ const Index = () => {
         
         <div className="container mx-auto px-4 relative z-10">
           <div 
-            className={`max-w-3xl mx-auto text-center mb-16 transition-all duration-700 ${isVisible.testimonials ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+            className={`max-w-3xl mx-auto text-center mb-12 transition-all duration-700 ${isVisible.testimonials ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Client Success Stories</h2>
             <p className="text-gray-300 text-lg">
-              See how our AI solutions have helped leading businesses transform their operations and achieve remarkable results
+              See how our AI solutions have transformed operations and delivered remarkable results for leading businesses
             </p>
           </div>
           
-          {/* Enhanced Testimonial Carousel with improved styling */}
+          {/* Redesigned Testimonial Carousel with no images and compact design */}
           <div 
-            className={`max-w-4xl mx-auto transition-all duration-700 ${isVisible.testimonials ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+            className={`max-w-3xl mx-auto transition-all duration-700 ${isVisible.testimonials ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
             style={{ transitionDelay: "200ms" }}
             onMouseEnter={() => setAutoplay(false)}
             onMouseLeave={() => setAutoplay(true)}
           >
             <div className="relative">
               {/* Testimonial Slides */}
-              <div className="relative overflow-hidden glass-card rounded-xl border border-white/10 backdrop-blur-md shadow-xl">
+              <div className="relative overflow-hidden glass-card rounded-xl border border-white/10 backdrop-blur-md">
                 {testimonials.map((testimonial, index) => (
                   <div 
                     key={index}
-                    className={`p-8 md:p-10 transition-all duration-500 ease-in-out flex flex-col md:flex-row gap-8 items-center ${
+                    className={`p-8 transition-all duration-500 ease-in-out ${
                       index === activeTestimonial 
                         ? 'opacity-100 translate-x-0' 
                         : 'opacity-0 translate-x-full absolute inset-0'
                     }`}
                   >
-                    {/* Client Image with enhanced styling */}
-                    <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-white/10 flex-shrink-0 relative shadow-xl">
-                      <img 
-                        src={testimonial.image} 
-                        alt={testimonial.author} 
-                        className="w-full h-full object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                    </div>
-                    
                     {/* Testimonial Content with improved typography */}
-                    <div className="flex-1">
-                      <div className="flex mb-4">
-                        {[...Array(testimonial.rating)].map((_, i) => (
-                          <Star key={i} className="h-5 w-5 text-neon-orange fill-neon-orange" />
-                        ))}
-                      </div>
-                      <p className="text-gray-200 italic text-lg mb-6 leading-relaxed">{testimonial.quote}</p>
-                      <div>
-                        <p className="font-bold text-white text-lg">{testimonial.author}</p>
-                        <p className="text-gray-400">{testimonial.position}</p>
-                      </div>
+                    <div className="flex mb-4 justify-center">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <Star key={i} className="h-5 w-5 text-neon-orange fill-neon-orange" />
+                      ))}
+                    </div>
+                    <p className="text-gray-200 italic text-lg mb-5 leading-relaxed text-center">{testimonial.quote}</p>
+                    <div className="text-center">
+                      <p className="font-bold text-white text-lg">{testimonial.author}</p>
+                      <p className="text-gray-400">{testimonial.position}</p>
                     </div>
                   </div>
                 ))}
               </div>
               
               {/* Enhanced Navigation Dots */}
-              <div className="flex justify-center mt-8 space-x-2">
+              <div className="flex justify-center mt-6 space-x-2">
                 {testimonials.map((_, index) => (
                   <button
                     key={index}

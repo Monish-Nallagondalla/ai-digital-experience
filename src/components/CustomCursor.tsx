@@ -28,15 +28,17 @@ const CustomCursor = () => {
       const newPosition = { x: e.clientX, y: e.clientY };
       setPosition(newPosition);
       
-      // Add current position to trail
-      setTrailPositions(prev => {
-        const newTrail = [...prev, newPosition];
-        // Keep only the last 5 positions for the trail
-        if (newTrail.length > 5) {
-          return newTrail.slice(newTrail.length - 5);
-        }
-        return newTrail;
-      });
+      // Add current position to trail with some delay
+      setTimeout(() => {
+        setTrailPositions(prev => {
+          const newTrail = [...prev, newPosition];
+          // Keep only the last 8 positions for the trail
+          if (newTrail.length > 8) {
+            return newTrail.slice(newTrail.length - 8);
+          }
+          return newTrail;
+        });
+      }, 10);
     };
 
     const onMouseDown = () => {
@@ -70,19 +72,22 @@ const CustomCursor = () => {
     };
   }, []);
 
+  // More dynamic cursor classes with animation effects
   const cursorDotClasses = `custom-cursor cursor-dot ${
     clicked ? "scale-50" : ""
-  } ${hidden ? "opacity-0" : "opacity-100"}`;
+  } ${hidden ? "opacity-0" : "opacity-100"} ${
+    linkHovered ? "bg-neon-orange" : ""
+  }`;
 
   const cursorOutlineClasses = `custom-cursor cursor-outline ${
     clicked ? "scale-75" : ""
-  } ${linkHovered ? "scale-150" : ""} ${
+  } ${linkHovered ? "scale-150 border-neon-orange" : ""} ${
     hidden ? "opacity-0" : "opacity-100"
   }`;
 
   return (
     <>
-      {/* Cursor trail */}
+      {/* Enhanced cursor trail with more particles */}
       {trailPositions.map((pos, index) => (
         <div
           key={index}
@@ -90,8 +95,10 @@ const CustomCursor = () => {
           style={{
             left: `${pos.x}px`,
             top: `${pos.y}px`,
-            opacity: (index + 1) / trailPositions.length * 0.3,
-            transform: `scale(${0.3 + (index / trailPositions.length) * 0.7})`,
+            opacity: (index + 1) / trailPositions.length * 0.4,
+            transform: `scale(${0.2 + (index / trailPositions.length) * 0.5})`,
+            backgroundColor: index % 3 === 0 ? 'rgba(255, 95, 31, 0.6)' : 
+                            index % 3 === 1 ? 'rgba(0, 255, 127, 0.6)' : 'rgba(0, 255, 255, 0.6)',
           }}
         />
       ))}

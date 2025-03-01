@@ -180,12 +180,22 @@ export default {
 				},
 				'cursor-pulse': {
 					'0%, 100%': {
-						transform: 'scale(1)',
+						transform: 'translate(-50%, -50%) scale(1)',
 						opacity: '0.8'
 					},
 					'50%': {
-						transform: 'scale(1.1)',
+						transform: 'translate(-50%, -50%) scale(1.1)',
 						opacity: '1'
+					}
+				},
+				'cursor-trail-fade': {
+					'0%': {
+						opacity: '0.6',
+						transform: 'translate(-50%, -50%) scale(0.5)'
+					},
+					'100%': {
+						opacity: '0',
+						transform: 'translate(-50%, -50%) scale(0.2)'
 					}
 				}
 			},
@@ -202,7 +212,8 @@ export default {
 				'float': 'float 6s ease-in-out infinite',
 				'gradient-x': 'gradient-x 5s ease infinite',
 				'text-shimmer': 'text-shimmer 4s linear infinite',
-				'cursor-pulse': 'cursor-pulse 2s infinite'
+				'cursor-pulse': 'cursor-pulse 2s infinite',
+				'cursor-trail-fade': 'cursor-trail-fade 1s forwards'
 			},
 			backgroundImage: {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
