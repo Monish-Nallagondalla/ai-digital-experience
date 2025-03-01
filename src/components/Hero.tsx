@@ -27,7 +27,7 @@ const Hero = () => {
   }, [typedText, fullText]);
 
   return (
-    <div className="relative overflow-hidden bg-black text-white min-h-screen grid-bg flex items-center">
+    <div className="relative overflow-hidden bg-black text-white min-h-screen grid-bg flex items-center justify-center">
       {/* Background Gradient */}
       <div className="absolute inset-0 bg-gradient-radial from-transparent via-black/50 to-black"></div>
       
@@ -40,7 +40,7 @@ const Hero = () => {
         <div className="max-w-4xl mx-auto text-center">
           {/* Badge */}
           <div 
-            className={`inline-block px-4 py-1.5 mb-6 bg-white/5 border border-white/10 rounded-full backdrop-blur-sm transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+            className={`inline-block px-4 py-1.5 mb-8 bg-white/5 border border-white/10 rounded-full backdrop-blur-sm transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
           >
             <p className="text-sm font-medium text-gray-300">
               <span className="text-neon-orange">Next-Generation</span> AI Solutions for Business Growth
@@ -49,10 +49,10 @@ const Hero = () => {
           
           {/* Main Heading */}
           <h1 
-            className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-8 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+            className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-10 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
             style={{ transitionDelay: "200ms" }}
           >
-            <span className="block shimmer-text mb-4">
+            <span className="block shimmer-text mb-6">
               Transforming Industries
             </span>
             <span className="block">
@@ -62,7 +62,7 @@ const Hero = () => {
           
           {/* Animated Tagline */}
           <div 
-            className={`h-12 mb-8 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+            className={`h-12 mb-10 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
             style={{ transitionDelay: "400ms" }}
           >
             <h2 className="text-xl md:text-2xl text-gray-300 relative">
@@ -73,7 +73,7 @@ const Hero = () => {
           
           {/* Description */}
           <p 
-            className={`text-gray-400 text-lg max-w-2xl mx-auto mb-10 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+            className={`text-gray-400 text-lg max-w-2xl mx-auto mb-12 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
             style={{ transitionDelay: "600ms" }}
           >
             We leverage cutting-edge AI technologies to create innovative solutions that help businesses automate processes, gain valuable insights, and achieve digital transformation.
@@ -84,12 +84,12 @@ const Hero = () => {
             className={`flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
             style={{ transitionDelay: "800ms" }}
           >
-            <Link to="/contact" className="neon-button-orange w-full sm:w-auto">
+            <Link to="/contact" className="neon-button-orange w-full sm:w-auto px-8 py-3">
               <span className="relative z-10 flex items-center justify-center">
                 Book a Consultation <ArrowRight className="ml-2 h-4 w-4" />
               </span>
             </Link>
-            <Link to="/services" className="neon-button-blue w-full sm:w-auto">
+            <Link to="/services" className="neon-button-blue w-full sm:w-auto px-8 py-3">
               <span className="relative z-10 flex items-center justify-center">
                 Explore Our Services
               </span>
@@ -99,11 +99,11 @@ const Hero = () => {
         
         {/* Feature Cards */}
         <div 
-          className={`grid grid-cols-1 md:grid-cols-3 gap-8 mt-20 max-w-5xl mx-auto transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+          className={`grid grid-cols-1 md:grid-cols-3 gap-8 mt-24 max-w-5xl mx-auto transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
           style={{ transitionDelay: "1000ms" }}
         >
           {/* Card 1 */}
-          <div className="glass-card p-8 rounded-xl backdrop-blur-md border border-white/10 hover:border-neon-orange/30 transition-all duration-300 hover:translate-y-[-5px] h-full">
+          <div className="glass-card p-8 rounded-xl backdrop-blur-md border border-white/10 hover:border-neon-orange/30 transition-all duration-300 hover:translate-y-[-5px] h-full flex flex-col">
             <div className="bg-neon-orange/10 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-5">
               <Brain className="text-neon-orange h-6 w-6" />
             </div>
@@ -112,7 +112,7 @@ const Hero = () => {
           </div>
           
           {/* Card 2 */}
-          <div className="glass-card p-8 rounded-xl backdrop-blur-md border border-white/10 hover:border-neon-blue/30 transition-all duration-300 hover:translate-y-[-5px] h-full">
+          <div className="glass-card p-8 rounded-xl backdrop-blur-md border border-white/10 hover:border-neon-blue/30 transition-all duration-300 hover:translate-y-[-5px] h-full flex flex-col">
             <div className="bg-neon-blue/10 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-5">
               <Cpu className="text-neon-blue h-6 w-6" />
             </div>
@@ -121,7 +121,7 @@ const Hero = () => {
           </div>
           
           {/* Card 3 */}
-          <div className="glass-card p-8 rounded-xl backdrop-blur-md border border-white/10 hover:border-neon-green/30 transition-all duration-300 hover:translate-y-[-5px] h-full">
+          <div className="glass-card p-8 rounded-xl backdrop-blur-md border border-white/10 hover:border-neon-green/30 transition-all duration-300 hover:translate-y-[-5px] h-full flex flex-col">
             <div className="bg-neon-green/10 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-5">
               <Zap className="text-neon-green h-6 w-6" />
             </div>

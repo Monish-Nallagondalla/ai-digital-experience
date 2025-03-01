@@ -111,13 +111,13 @@ const Index = () => {
       {/* Trusted By Section */}
       <section 
         ref={clientsRef}
-        className="py-16 bg-black grid-bg"
+        className="py-20 bg-black grid-bg"
       >
         <div className="container mx-auto px-4">
           <div 
-            className={`text-center mb-10 transition-all duration-700 ${isVisible.clients ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+            className={`text-center mb-12 transition-all duration-700 ${isVisible.clients ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
           >
-            <h2 className="text-2xl font-semibold text-white mb-2">Trusted by Industry Leaders</h2>
+            <h2 className="text-2xl font-semibold text-white mb-3">Trusted by Industry Leaders</h2>
             <p className="text-gray-400">Empowering businesses across various sectors with intelligent AI solutions</p>
           </div>
           
@@ -141,7 +141,7 @@ const Index = () => {
       {/* Services Section */}
       <section 
         ref={servicesRef}
-        className="py-20 bg-gradient-to-b from-black to-gray-900"
+        className="py-24 bg-gradient-to-b from-black to-gray-900"
       >
         <div className="container mx-auto px-4">
           <div 
@@ -160,7 +160,7 @@ const Index = () => {
             {featuredServices.map((service, index) => (
               <div 
                 key={index} 
-                className={`glass-card p-8 rounded-xl hover:border-neon-${service.color}/30 transition-all duration-300 hover:translate-y-[-5px]`}
+                className={`glass-card p-8 rounded-xl hover:border-neon-${service.color}/30 transition-all duration-300 hover:translate-y-[-5px] flex flex-col h-full`}
                 style={{ transitionDelay: `${200 + (index * 100)}ms` }}
               >
                 <div className={`bg-neon-${service.color}/10 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4`}>
@@ -170,7 +170,7 @@ const Index = () => {
                 <p className="text-gray-400 mb-5">{service.description}</p>
                 <Link 
                   to="/services" 
-                  className={`inline-flex items-center text-neon-${service.color} hover:text-neon-${service.color} transition-colors`}
+                  className={`inline-flex items-center text-neon-${service.color} hover:text-neon-${service.color} transition-colors mt-auto`}
                 >
                   Learn more <ChevronRight className="ml-1 h-4 w-4" />
                 </Link>
@@ -182,7 +182,7 @@ const Index = () => {
             className={`text-center transition-all duration-700 ${isVisible.services ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
             style={{ transitionDelay: "600ms" }}
           >
-            <Link to="/services" className="neon-button-green">
+            <Link to="/services" className="neon-button-green px-8 py-3">
               <span className="relative z-10 flex items-center justify-center">
                 View All Services <ArrowRight className="ml-2 h-4 w-4" />
               </span>
@@ -194,7 +194,7 @@ const Index = () => {
       {/* Testimonials Section */}
       <section 
         ref={testimonialsRef}
-        className="py-20 bg-black grid-bg"
+        className="py-24 bg-black grid-bg"
       >
         <div className="container mx-auto px-4">
           <div 
@@ -213,7 +213,7 @@ const Index = () => {
             {testimonials.map((testimonial, index) => (
               <div 
                 key={index} 
-                className="glass-card p-8 rounded-xl relative"
+                className="glass-card p-8 rounded-xl relative flex flex-col h-full"
                 style={{ transitionDelay: `${200 + (index * 100)}ms` }}
               >
                 <div className="absolute -top-4 -left-2 text-5xl text-neon-orange opacity-20">"</div>
@@ -225,7 +225,7 @@ const Index = () => {
                   </div>
                   <p className="text-gray-300 italic">{testimonial.quote}</p>
                 </div>
-                <div className="border-t border-gray-700 pt-4">
+                <div className="border-t border-gray-700 pt-4 mt-auto">
                   <p className="font-medium text-white">{testimonial.author}</p>
                   <p className="text-sm text-gray-400">{testimonial.position}</p>
                 </div>
@@ -238,7 +238,7 @@ const Index = () => {
       {/* Call To Action Section */}
       <section 
         ref={ctaRef}
-        className="py-20 bg-gradient-to-b from-gray-900 to-black relative overflow-hidden"
+        className="py-24 bg-gradient-to-b from-gray-900 to-black relative overflow-hidden"
       >
         {/* Background Elements */}
         <div className="absolute inset-0 opacity-20 overflow-hidden">
@@ -254,12 +254,12 @@ const Index = () => {
               Schedule a consultation with our AI experts today and discover how our solutions can drive innovation and growth for your business.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
-              <Link to="/contact" className="neon-button-orange">
+              <Link to="/contact" className="neon-button-orange px-8 py-3">
                 <span className="relative z-10 flex items-center justify-center">
                   Book a Consultation <ArrowRight className="ml-2 h-4 w-4" />
                 </span>
               </Link>
-              <Link to="/services" className="neon-button-blue">
+              <Link to="/services" className="neon-button-blue px-8 py-3">
                 <span className="relative z-10 flex items-center justify-center">
                   Explore Our Services
                 </span>
