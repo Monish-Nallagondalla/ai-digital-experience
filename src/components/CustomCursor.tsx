@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 
 const CustomCursor = () => {
@@ -6,6 +5,7 @@ const CustomCursor = () => {
   const [clicked, setClicked] = useState(false);
   const [linkHovered, setLinkHovered] = useState(false);
   const [hidden, setHidden] = useState(true);
+  const [trailPositions, setTrailPositions] = useState<Array<{x: number, y: number}>>([]);
 
   useEffect(() => {
     const addEventListeners = () => {
@@ -25,7 +25,18 @@ const CustomCursor = () => {
     };
 
     const onMouseMove = (e: MouseEvent) => {
-      setPosition({ x: e.clientX, y: e.clientY });
+      const newPosition = { x: e.clientX, y: e.clientY };
+      setPosition(newPosition);
+      
+      // Add current position to trail
+      setTrailPositions(prev => {
+        const newTrail = [...prev, newPosition];
+        // Keep only the last 5 positions for the trail
+        if (newTrail.length > 5) {
+          return newTrail.slice(newTrail.length - 5);
+        }
+        return newTrail;
+      });
     };
 
     const onMouseDown = () => {
@@ -71,6 +82,21 @@ const CustomCursor = () => {
 
   return (
     <>
+      {/* Cursor trail */}
+      {trailPositions.map((pos, index) => (
+        <div
+          key={index}
+          className="custom-cursor cursor-trail"
+          style={{
+            left: `${pos.x}px`,
+            top: `${pos.y}px`,
+            opacity: (index + 1) / trailPositions.length * 0.3,
+            transform: `scale(${0.3 + (index / trailPositions.length) * 0.7})`,
+          }}
+        />
+      ))}
+      
+      {/* Main cursor dot */}
       <div
         className={cursorDotClasses}
         style={{
@@ -78,6 +104,8 @@ const CustomCursor = () => {
           top: `${position.y}px`,
         }}
       />
+      
+      {/* Cursor outline */}
       <div
         className={cursorOutlineClasses}
         style={{

@@ -177,6 +177,16 @@ export default {
 					'100%': {
 						'background-position': '100% 50%'
 					}
+				},
+				'cursor-pulse': {
+					'0%, 100%': {
+						transform: 'scale(1)',
+						opacity: '0.8'
+					},
+					'50%': {
+						transform: 'scale(1.1)',
+						opacity: '1'
+					}
 				}
 			},
 			animation: {
@@ -191,7 +201,8 @@ export default {
 				'pulse-glow': 'pulse-glow 2s infinite',
 				'float': 'float 6s ease-in-out infinite',
 				'gradient-x': 'gradient-x 5s ease infinite',
-				'text-shimmer': 'text-shimmer 4s linear infinite'
+				'text-shimmer': 'text-shimmer 4s linear infinite',
+				'cursor-pulse': 'cursor-pulse 2s infinite'
 			},
 			backgroundImage: {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
