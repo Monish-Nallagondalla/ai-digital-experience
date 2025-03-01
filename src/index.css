@@ -44,7 +44,7 @@
     --sidebar-ring: 217.2 91.2% 59.8%;
     
     /* Refined cursor size */
-    --cursor-size: 10px;
+    --cursor-size: 12px;
   }
 }
 
@@ -56,7 +56,11 @@
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
-    cursor: none; /* Hide default cursor for custom cursor effect */
+    cursor: none !important; /* Hide default cursor for custom cursor effect */
+  }
+  
+  a, button, .interactive, input[type="submit"] {
+    cursor: none !important;
   }
   
   /* Enhanced custom cursor styles */
@@ -74,37 +78,41 @@
     background-color: white;
     border-radius: 50%;
     transform: translate(-50%, -50%);
-    transition: transform 0.2s ease-out, background-color 0.3s ease;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+    transition: transform 0.15s ease-out, background-color 0.3s ease;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
     animation: cursor-pulse 2s infinite;
   }
   
   .cursor-outline {
-    width: calc(var(--cursor-size) * 3);
-    height: calc(var(--cursor-size) * 3);
+    width: calc(var(--cursor-size) * 4);
+    height: calc(var(--cursor-size) * 4);
     background-color: transparent;
-    border: 1.5px solid rgba(255, 255, 255, 0.7);
+    border: 2px solid rgba(255, 255, 255, 0.8);
     border-radius: 50%;
     transform: translate(-50%, -50%);
     transition: width 0.3s ease, height 0.3s ease, transform 0.15s ease, background-color 0.3s ease, border-color 0.3s ease;
   }
   
   .cursor-trail {
-    width: calc(var(--cursor-size) * 1.2);
-    height: calc(var(--cursor-size) * 1.2);
-    background-color: rgba(255, 255, 255, 0.6);
+    width: calc(var(--cursor-size) * 1.5);
+    height: calc(var(--cursor-size) * 1.5);
+    background-color: rgba(255, 255, 255, 0.7);
     border-radius: 50%;
     transform: translate(-50%, -50%);
     transition: opacity 0.2s ease;
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
   }
   
   /* Enhanced cursor hover effects */
   a:hover ~ .cursor-outline,
   button:hover ~ .cursor-outline,
-  .interactive:hover ~ .cursor-outline {
-    width: calc(var(--cursor-size) * 5);
-    height: calc(var(--cursor-size) * 5);
+  .interactive:hover ~ .cursor-outline,
+  input[type="submit"]:hover ~ .cursor-outline,
+  .neon-button-orange:hover ~ .cursor-outline,
+  .neon-button-blue:hover ~ .cursor-outline,
+  .neon-button-green:hover ~ .cursor-outline {
+    width: calc(var(--cursor-size) * 6);
+    height: calc(var(--cursor-size) * 6);
     background-color: rgba(255, 95, 31, 0.15);
     border-color: rgba(255, 95, 31, 0.8);
     animation: pulse-glow 1.5s infinite;
@@ -112,19 +120,37 @@
   
   a:hover ~ .cursor-dot,
   button:hover ~ .cursor-dot,
-  .interactive:hover ~ .cursor-dot {
+  .interactive:hover ~ .cursor-dot,
+  input[type="submit"]:hover ~ .cursor-dot,
+  .neon-button-orange:hover ~ .cursor-dot,
+  .neon-button-blue:hover ~ .cursor-dot,
+  .neon-button-green:hover ~ .cursor-dot {
     background-color: rgba(255, 95, 31, 1);
-    transform: translate(-50%, -50%) scale(1.2);
+    transform: translate(-50%, -50%) scale(1.5);
+    box-shadow: 0 0 20px rgba(255, 95, 31, 0.8);
   }
 
   /* Add animation for cursor pulse */
   @keyframes cursor-pulse {
     0%, 100% {
-      box-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
     }
     50% {
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.9);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.9);
     }
+  }
+  
+  /* Smooth shimmer text animation for "Transforming Industries" */
+  .shimmer-text {
+    background-size: 300% 100% !important;
+    animation: text-shimmer 6s linear infinite !important;
+    transition: background-position 0.5s ease-in-out !important;
+  }
+  
+  @keyframes text-shimmer {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
 }
 

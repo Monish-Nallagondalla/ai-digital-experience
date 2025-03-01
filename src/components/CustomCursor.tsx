@@ -32,9 +32,9 @@ const CustomCursor = () => {
       setTimeout(() => {
         setTrailPositions(prev => {
           const newTrail = [...prev, newPosition];
-          // Keep only the last 8 positions for the trail
-          if (newTrail.length > 8) {
-            return newTrail.slice(newTrail.length - 8);
+          // Keep only the last 12 positions for the trail
+          if (newTrail.length > 12) {
+            return newTrail.slice(newTrail.length - 12);
           }
           return newTrail;
         });
@@ -58,11 +58,18 @@ const CustomCursor = () => {
     };
 
     const handleLinkHoverEvents = () => {
-      document.querySelectorAll("a, button, .interactive").forEach((el) => {
+      // More specific selectors to capture all interactive elements
+      document.querySelectorAll("a, button, .interactive, input[type='submit'], .neon-button-orange, .neon-button-blue, .neon-button-green").forEach((el) => {
         el.addEventListener("mouseenter", () => setLinkHovered(true));
         el.addEventListener("mouseleave", () => setLinkHovered(false));
       });
     };
+
+    // Make sure default cursor is hidden on all elements
+    document.body.style.cursor = "none";
+    document.querySelectorAll("a, button, input, .interactive").forEach(el => {
+      (el as HTMLElement).style.cursor = "none";
+    });
 
     addEventListeners();
     handleLinkHoverEvents();
@@ -72,7 +79,7 @@ const CustomCursor = () => {
     };
   }, []);
 
-  // More dynamic cursor classes with animation effects
+  // Enhanced cursor animation styles
   const cursorDotClasses = `custom-cursor cursor-dot ${
     clicked ? "scale-50" : ""
   } ${hidden ? "opacity-0" : "opacity-100"} ${
@@ -87,7 +94,7 @@ const CustomCursor = () => {
 
   return (
     <>
-      {/* Enhanced cursor trail with more particles */}
+      {/* Enhanced cursor trail with more diverse particles */}
       {trailPositions.map((pos, index) => (
         <div
           key={index}
@@ -95,10 +102,12 @@ const CustomCursor = () => {
           style={{
             left: `${pos.x}px`,
             top: `${pos.y}px`,
-            opacity: (index + 1) / trailPositions.length * 0.4,
-            transform: `scale(${0.2 + (index / trailPositions.length) * 0.5})`,
-            backgroundColor: index % 3 === 0 ? 'rgba(255, 95, 31, 0.6)' : 
-                            index % 3 === 1 ? 'rgba(0, 255, 127, 0.6)' : 'rgba(0, 255, 255, 0.6)',
+            opacity: (index + 1) / trailPositions.length * 0.5,
+            transform: `scale(${0.1 + (index / trailPositions.length) * 0.6})`,
+            backgroundColor: index % 3 === 0 ? 'rgba(255, 95, 31, 0.7)' : 
+                            index % 3 === 1 ? 'rgba(0, 255, 127, 0.7)' : 'rgba(0, 255, 255, 0.7)',
+            filter: `blur(${Math.max(0, (trailPositions.length - index) / 3)}px)`,
+            transition: 'opacity 0.2s ease, transform 0.2s ease'
           }}
         />
       ))}

@@ -47,44 +47,46 @@ const Hero = () => {
       
       {/* Floating Elements that follow mouse movement slightly */}
       <div 
-        className="absolute w-64 h-64 rounded-full bg-neon-orange/5 blur-3xl"
+        className="absolute w-64 h-64 rounded-full bg-neon-orange/5 blur-3xl animate-float"
         style={{ 
           top: `calc(25% + ${mousePosition.y * 0.02}px)`, 
           left: `calc(25% + ${mousePosition.x * 0.02}px)` 
         }}
       ></div>
       <div 
-        className="absolute w-80 h-80 rounded-full bg-neon-blue/5 blur-3xl" 
+        className="absolute w-80 h-80 rounded-full bg-neon-blue/5 blur-3xl animate-float" 
         style={{ 
           bottom: `calc(33% + ${mousePosition.y * -0.01}px)`, 
-          right: `calc(25% + ${mousePosition.x * -0.01}px)` 
+          right: `calc(25% + ${mousePosition.x * -0.01}px)`,
+          animationDelay: "-3s"
         }}
       ></div>
       <div 
-        className="absolute w-72 h-72 rounded-full bg-neon-green/5 blur-3xl"
+        className="absolute w-72 h-72 rounded-full bg-neon-green/5 blur-3xl animate-float"
         style={{ 
           top: `calc(50% + ${mousePosition.y * 0.015}px)`, 
-          right: `calc(33% + ${mousePosition.x * 0.015}px)` 
+          right: `calc(33% + ${mousePosition.x * 0.015}px)`,
+          animationDelay: "-1.5s"
         }}
       ></div>
       
-      <div className="container mx-auto px-4 py-16 relative z-10">
+      <div className="container mx-auto px-4 py-24 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Badge */}
+          {/* Badge - Added more top spacing */}
           <div 
-            className={`inline-block px-4 py-1.5 mb-8 bg-white/5 border border-white/10 rounded-full backdrop-blur-sm transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+            className={`inline-block px-4 py-1.5 mt-12 mb-8 bg-white/5 border border-white/10 rounded-full backdrop-blur-sm transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
           >
             <p className="text-sm font-medium text-gray-300">
               <span className="text-neon-orange">Next-Generation</span> AI Solutions for Business Growth
             </p>
           </div>
           
-          {/* Main Heading - Fixed spacing and alignment */}
+          {/* Main Heading - Improved shimmer animation */}
           <h1 
             className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-10 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
             style={{ transitionDelay: "200ms" }}
           >
-            <div className="block shimmer-text mb-6">
+            <div className="block shimmer-text mb-6 bg-gradient-to-r from-neon-orange via-neon-blue to-neon-green bg-clip-text text-transparent">
               Transforming Industries
             </div>
             <div className="block">
@@ -103,12 +105,12 @@ const Hero = () => {
             </h2>
           </div>
           
-          {/* Description */}
+          {/* Enhanced Description */}
           <p 
             className={`text-gray-400 text-lg max-w-2xl mx-auto mb-12 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
             style={{ transitionDelay: "600ms" }}
           >
-            We leverage cutting-edge AI technologies to create innovative solutions that help businesses automate processes, gain valuable insights, and achieve digital transformation.
+            We leverage cutting-edge AI technologies to create innovative solutions that help businesses automate processes, gain valuable insights, and achieve digital transformation with measurable ROI.
           </p>
           
           {/* CTA Buttons with enhanced glow effect */}
@@ -140,7 +142,7 @@ const Hero = () => {
               <Brain className="text-neon-orange h-6 w-6" />
             </div>
             <h3 className="text-xl font-semibold mb-3">AI Strategy</h3>
-            <p className="text-gray-400">Develop a comprehensive AI roadmap tailored to your business needs and goals.</p>
+            <p className="text-gray-400">Develop a comprehensive AI roadmap tailored to your specific business challenges and growth objectives.</p>
           </div>
           
           {/* Card 2 */}
@@ -149,7 +151,7 @@ const Hero = () => {
               <Cpu className="text-neon-blue h-6 w-6" />
             </div>
             <h3 className="text-xl font-semibold mb-3">AI Development</h3>
-            <p className="text-gray-400">Create custom AI solutions that automate processes and drive efficiency.</p>
+            <p className="text-gray-400">Create custom AI solutions that automate complex processes, enhance decision-making, and drive measurable efficiency gains.</p>
           </div>
           
           {/* Card 3 */}
@@ -158,7 +160,7 @@ const Hero = () => {
               <Zap className="text-neon-green h-6 w-6" />
             </div>
             <h3 className="text-xl font-semibold mb-3">AI Integration</h3>
-            <p className="text-gray-400">Seamlessly integrate AI solutions into your existing technology infrastructure.</p>
+            <p className="text-gray-400">Seamlessly integrate AI solutions into your existing technology infrastructure with minimal disruption and maximum impact.</p>
           </div>
         </div>
       </div>

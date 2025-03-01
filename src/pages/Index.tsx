@@ -208,13 +208,13 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Testimonials Section - Complete redesign with seamless blending */}
+      {/* Improved Testimonials Section with perfect blending to CTA section */}
       <section 
         ref={testimonialsRef}
         className="py-24 relative overflow-hidden bg-transparent"
       >
-        {/* Improved gradient overlays for perfect blending */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900/80 to-gray-900 opacity-100"></div>
+        {/* Enhanced gradient overlays for perfect blending */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900/70 to-gray-900/50 opacity-100"></div>
         <div className="absolute inset-0 bg-grid-pattern bg-[length:20px_20px] opacity-10"></div>
         
         {/* Enhanced floating orbs that follow cursor */}
@@ -228,13 +228,13 @@ const Index = () => {
           >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Client Success Stories</h2>
             <p className="text-gray-300 text-lg">
-              See how our AI solutions have transformed operations and delivered remarkable results for leading businesses
+              See how our AI solutions have transformed operations and delivered measurable results for leading businesses
             </p>
           </div>
           
           {/* Redesigned Testimonial Carousel with no images and compact design */}
           <div 
-            className={`max-w-3xl mx-auto transition-all duration-700 ${isVisible.testimonials ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+            className={`max-w-2xl mx-auto transition-all duration-700 ${isVisible.testimonials ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
             style={{ transitionDelay: "200ms" }}
             onMouseEnter={() => setAutoplay(false)}
             onMouseLeave={() => setAutoplay(true)}
@@ -245,36 +245,36 @@ const Index = () => {
                 {testimonials.map((testimonial, index) => (
                   <div 
                     key={index}
-                    className={`p-8 transition-all duration-500 ease-in-out ${
+                    className={`p-6 transition-all duration-500 ease-in-out ${
                       index === activeTestimonial 
                         ? 'opacity-100 translate-x-0' 
                         : 'opacity-0 translate-x-full absolute inset-0'
                     }`}
                   >
                     {/* Testimonial Content with improved typography */}
-                    <div className="flex mb-4 justify-center">
+                    <div className="flex mb-3 justify-center">
                       {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="h-5 w-5 text-neon-orange fill-neon-orange" />
+                        <Star key={i} className="h-4 w-4 text-neon-orange fill-neon-orange" />
                       ))}
                     </div>
-                    <p className="text-gray-200 italic text-lg mb-5 leading-relaxed text-center">{testimonial.quote}</p>
+                    <p className="text-gray-200 italic text-base mb-4 leading-relaxed text-center">{testimonial.quote}</p>
                     <div className="text-center">
                       <p className="font-bold text-white text-lg">{testimonial.author}</p>
-                      <p className="text-gray-400">{testimonial.position}</p>
+                      <p className="text-gray-400 text-sm">{testimonial.position}</p>
                     </div>
                   </div>
                 ))}
               </div>
               
               {/* Enhanced Navigation Dots */}
-              <div className="flex justify-center mt-6 space-x-2">
+              <div className="flex justify-center mt-4 space-x-2">
                 {testimonials.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => setActiveTestimonial(index)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
                       index === activeTestimonial 
-                        ? 'bg-neon-orange w-8' 
+                        ? 'bg-neon-orange w-6' 
                         : 'bg-gray-600 hover:bg-gray-400'
                     }`}
                     aria-label={`Go to testimonial ${index + 1}`}
@@ -284,20 +284,20 @@ const Index = () => {
               
               {/* Previous/Next Buttons with enhanced styling */}
               <button
-                className="absolute top-1/2 left-4 -translate-y-1/2 w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white hover:bg-black/50 transition-all duration-300 shadow-lg"
+                className="absolute top-1/2 left-2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/30 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white hover:bg-black/50 transition-all duration-300 shadow-lg"
                 onClick={() => setActiveTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length)}
                 aria-label="Previous testimonial"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                 </svg>
               </button>
               <button
-                className="absolute top-1/2 right-4 -translate-y-1/2 w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white hover:bg-black/50 transition-all duration-300 shadow-lg"
+                className="absolute top-1/2 right-2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/30 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white hover:bg-black/50 transition-all duration-300 shadow-lg"
                 onClick={() => setActiveTestimonial((prev) => (prev + 1) % testimonials.length)}
                 aria-label="Next testimonial"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </button>
@@ -306,12 +306,14 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Call To Action Section - Enhanced with more compelling content */}
+      {/* Call To Action Section - Perfect blending with testimonials */}
       <section 
         ref={ctaRef}
-        className="py-24 bg-gradient-to-b from-gray-900 to-black relative overflow-hidden"
+        className="py-24 relative overflow-hidden"
       >
-        {/* Background Elements */}
+        {/* Background Elements for seamless blending */}
+        <div className="absolute inset-0 bg-gradient-to-b from-gray-900/50 via-gray-900/80 to-black opacity-100"></div>
+        <div className="absolute inset-0 bg-grid-pattern bg-[length:20px_20px] opacity-10"></div>
         <div className="absolute inset-0 opacity-20 overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-full bg-glow-conic filter blur-3xl opacity-20 animate-gradient-x"></div>
         </div>
