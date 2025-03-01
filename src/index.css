@@ -43,6 +43,9 @@
     --sidebar-accent-foreground: 240 5.9% 90%;
     --sidebar-border: 220 13% 25%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+    
+    /* Custom cursor size */
+    --cursor-size: 20px;
   }
 }
 
@@ -54,6 +57,42 @@
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
+    cursor: none; /* Hide default cursor for custom cursor effect */
+  }
+  
+  /* Custom cursor styles */
+  .custom-cursor {
+    position: fixed;
+    width: var(--cursor-size);
+    height: var(--cursor-size);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+    transition: transform 0.2s ease;
+  }
+  
+  .cursor-dot {
+    background-color: white;
+    transform: translate(-50%, -50%);
+  }
+  
+  .cursor-outline {
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    width: calc(var(--cursor-size) * 2);
+    height: calc(var(--cursor-size) * 2);
+    transform: translate(calc(-50% + var(--cursor-size) / 2), calc(-50% + var(--cursor-size) / 2));
+    transition: transform 0.15s ease, width 0.3s ease, height 0.3s ease;
+  }
+  
+  /* Cursor hover effect */
+  a:hover ~ .cursor-outline,
+  button:hover ~ .cursor-outline,
+  .interactive:hover ~ .cursor-outline {
+    width: calc(var(--cursor-size) * 3);
+    height: calc(var(--cursor-size) * 3);
+    background-color: rgba(255, 95, 31, 0.1);
   }
 }
 

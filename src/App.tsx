@@ -14,6 +14,7 @@ import Blog from "./pages/Blog";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import NotFound from "./pages/NotFound";
+import CustomCursor from "./components/CustomCursor";
 
 const queryClient = new QueryClient();
 
@@ -36,6 +37,7 @@ const App = () => (
       <BrowserRouter>
         <ScrollToTop />
         <div className="flex flex-col min-h-screen">
+          <CustomCursor />
           <Navbar />
           <main className="flex-grow">
             <Routes>
