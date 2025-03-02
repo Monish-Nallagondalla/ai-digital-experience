@@ -4,7 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Services from "./pages/Services";
@@ -23,12 +23,31 @@ import CookiePolicy from "./pages/CookiePolicy";
 const queryClient = new QueryClient();
 
 // ScrollToTop component to ensure page starts at the top when navigating
+// Also handles fixed navbar on scroll
 const ScrollToTop = () => {
   const { pathname } = useLocation();
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
+
+  // Handle navbar fixed positioning on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      if (scrollPosition > 50) {
+        setScrolled(true);
+        document.querySelector('nav')?.classList.add('fixed-nav');
+      } else {
+        setScrolled(false);
+        document.querySelector('nav')?.classList.remove('fixed-nav');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return null;
 };
