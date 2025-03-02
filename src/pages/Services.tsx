@@ -1,251 +1,361 @@
 
-import React, { useState, useEffect, useRef } from "react";
-import ServiceCard from "../components/ServiceCard";
-import { Code, Brain, GraduationCap, LineChart, Globe, Database, BarChart3, Layers, Share2, Lock, FileText, Radio, Smartphone, Zap, CloudCog, Bot, ChevronRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import ServiceCard from '../components/ServiceCard';
+import { Separator } from '@/components/ui/separator';
 
 const Services = () => {
-  const [visibleItems, setVisibleItems] = useState<number[]>([]);
-  const [activeCategory, setActiveCategory] = useState<string>("all");
-  const observerRef = useRef<IntersectionObserver | null>(null);
-  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
-  const categoriesRef = useRef<HTMLDivElement>(null);
-
-  // Enhanced service descriptions with use cases
   const services = [
     {
-      title: "AI Strategy & Consultation",
-      description: "Develop a tailored AI roadmap aligned with your business goals, identifying opportunities for innovation and competitive advantage.",
-      icon: <Brain className="w-6 h-6 text-neon-orange" />,
-      color: "orange",
-      category: "strategy",
-      useCase: "A retail chain increased sales by 28% after implementing our AI-powered customer analytics and preference prediction strategy."
+      id: 1,
+      title: "AI Strategy Consulting",
+      description: "We help businesses develop comprehensive AI strategies aligned with their goals and objectives.",
+      examples: [
+        {
+          sector: "Healthcare",
+          description: "Strategic roadmap for implementing AI diagnostics systems to improve patient outcomes."
+        },
+        {
+          sector: "Finance",
+          description: "AI integration strategy to enhance fraud detection and automated customer service solutions."
+        },
+        {
+          sector: "Retail",
+          description: "Customer experience transformation using AI-driven personalization and demand forecasting."
+        }
+      ]
     },
     {
-      title: "Natural Language Processing",
-      description: "Extract insights from text data, automate content creation, and enhance customer interactions through advanced NLP solutions.",
-      icon: <FileText className="w-6 h-6 text-neon-blue" />,
-      color: "blue",
-      category: "development",
-      useCase: "A financial services company reduced document processing time by 83% using our NLP-powered contract analysis system."
+      id: 2,
+      title: "Custom AI Application Development",
+      description: "We build tailored AI applications to address your specific business challenges and opportunities.",
+      examples: [
+        {
+          sector: "Manufacturing",
+          description: "Predictive maintenance systems that reduce downtime and optimize production schedules."
+        },
+        {
+          sector: "Real Estate",
+          description: "AI-powered property valuation and market analysis tools for better investment decisions."
+        },
+        {
+          sector: "Agriculture",
+          description: "Crop disease detection and yield optimization applications using computer vision."
+        }
+      ]
     },
     {
-      title: "Computer Vision Systems",
-      description: "Implement visual intelligence for quality control, security monitoring, and automated image analysis across your operations.",
-      icon: <Radio className="w-6 h-6 text-neon-green" />,
-      color: "green",
-      category: "development",
-      useCase: "A manufacturing client achieved 99.8% defect detection accuracy with our computer vision quality control system."
+      id: 3,
+      title: "Natural Language Processing Solutions",
+      description: "We implement NLP solutions that enable your systems to understand, interpret, and generate human language.",
+      examples: [
+        {
+          sector: "Legal",
+          description: "Automated contract analysis and clause extraction to streamline document review."
+        },
+        {
+          sector: "Media",
+          description: "Content recommendation and sentiment analysis to improve audience engagement."
+        },
+        {
+          sector: "Education",
+          description: "Intelligent tutoring systems that adapt to individual student learning patterns."
+        }
+      ]
     },
     {
-      title: "Business Intelligence & Analytics",
-      description: "Transform raw data into actionable business intelligence with interactive dashboards and predictive insights.",
-      icon: <BarChart3 className="w-6 h-6 text-neon-orange" />,
-      color: "orange",
-      category: "analytics",
-      useCase: "A healthcare provider reduced patient wait times by 45% after implementing our predictive analytics solution."
+      id: 4,
+      title: "Computer Vision Implementation",
+      description: "We develop systems that can interpret and understand visual information from the world, enabling new applications and automations.",
+      examples: [
+        {
+          sector: "Retail",
+          description: "Cashierless checkout systems and shelf monitoring for inventory management."
+        },
+        {
+          sector: "Security",
+          description: "Advanced surveillance systems with anomaly detection and person identification."
+        },
+        {
+          sector: "Healthcare",
+          description: "Medical imaging analysis for early disease detection and diagnosis assistance."
+        }
+      ]
     },
     {
-      title: "AI Implementation Roadmapping",
-      description: "Strategic guidance on implementing AI across your organization with clear milestones, risk assessment, and ROI projections.",
-      icon: <LineChart className="w-6 h-6 text-neon-blue" />,
-      color: "blue",
-      category: "strategy",
-      useCase: "An e-commerce platform increased conversion rates by 32% following our AI transformation roadmap."
+      id: 5,
+      title: "Predictive Analytics Implementation",
+      description: "We build predictive models that help you anticipate trends, behaviors, and outcomes to make proactive decisions.",
+      examples: [
+        {
+          sector: "Insurance",
+          description: "Risk assessment models that improve underwriting accuracy and efficiency."
+        },
+        {
+          sector: "Telecommunications",
+          description: "Customer churn prediction to enhance retention strategies and service offerings."
+        },
+        {
+          sector: "Energy",
+          description: "Demand forecasting and grid optimization to reduce costs and improve reliability."
+        }
+      ]
     },
     {
-      title: "Conversational AI & Chatbots",
-      description: "Intelligent conversational interfaces that understand context, learn from interactions, and deliver exceptional customer support.",
-      icon: <Smartphone className="w-6 h-6 text-neon-green" />,
-      color: "green",
-      category: "development",
-      useCase: "A telecommunications company reduced support costs by 40% while improving customer satisfaction scores with our conversational AI."
+      id: 6,
+      title: "Machine Learning Operations (MLOps)",
+      description: "We establish robust MLOps practices to streamline the deployment, monitoring, and management of ML models.",
+      examples: [
+        {
+          sector: "E-commerce",
+          description: "Automated recommendation engine deployment and performance monitoring."
+        },
+        {
+          sector: "Financial Services",
+          description: "Credit scoring model operations with compliance monitoring and version control."
+        },
+        {
+          sector: "Transportation",
+          description: "Route optimization systems with continuous learning and adaptation capabilities."
+        }
+      ]
     },
     {
-      title: "Deep Learning Solutions",
-      description: "Custom neural networks for solving complex problems, pattern recognition, and autonomous decision-making systems.",
-      icon: <Layers className="w-6 h-6 text-neon-orange" />,
-      color: "orange",
-      category: "development",
-      useCase: "An energy company reduced maintenance costs by 35% using our deep learning predictive maintenance system."
+      id: 7,
+      title: "AI-Powered Process Automation",
+      description: "We automate complex business processes using AI to increase efficiency and reduce operational costs.",
+      examples: [
+        {
+          sector: "Logistics",
+          description: "Intelligent warehouse management and delivery route optimization."
+        },
+        {
+          sector: "HR",
+          description: "Resume screening and candidate matching for improved recruitment efficiency."
+        },
+        {
+          sector: "Customer Service",
+          description: "Advanced chatbots and ticket routing systems to enhance support quality."
+        }
+      ]
     },
     {
-      title: "Predictive Analytics",
-      description: "Forecast trends, behaviors, and outcomes with precision using advanced predictive models and machine learning algorithms.",
-      icon: <Code className="w-6 h-6 text-neon-blue" />,
-      color: "blue",
-      category: "analytics",
-      useCase: "A retail client increased inventory efficiency by 27% with our predictive demand forecasting system."
+      id: 8,
+      title: "Data Engineering & Infrastructure",
+      description: "We design and implement scalable data pipelines and infrastructure to support your AI initiatives.",
+      examples: [
+        {
+          sector: "Digital Marketing",
+          description: "Real-time analytics platforms for campaign performance optimization."
+        },
+        {
+          sector: "Gaming",
+          description: "Player behavior tracking and analysis systems to enhance game design."
+        },
+        {
+          sector: "Healthcare",
+          description: "Secure patient data platforms that enable AI-driven medical research."
+        }
+      ]
     },
     {
-      title: "AI Education & Training",
-      description: "Customized AI training programs to upskill your team, accelerate adoption, and maximize return on AI investments.",
-      icon: <GraduationCap className="w-6 h-6 text-neon-green" />,
-      color: "green",
-      category: "education",
-      useCase: "A financial services team developed internal AI applications just 8 weeks after completing our comprehensive training program."
+      id: 9,
+      title: "AI Model Training & Fine-tuning",
+      description: "We train and fine-tune AI models on your specific data to achieve optimal performance for your use cases.",
+      examples: [
+        {
+          sector: "Content Creation",
+          description: "Custom language models trained on brand voice for consistent content generation."
+        },
+        {
+          sector: "Manufacturing",
+          description: "Computer vision models fine-tuned to detect product defects specific to your production line."
+        },
+        {
+          sector: "Research",
+          description: "Specialized machine learning models for scientific data analysis and discovery."
+        }
+      ]
     },
     {
-      title: "Computer Vision for Quality Control",
-      description: "Visual recognition systems that identify defects, ensure consistency, and automate quality assurance processes.",
-      icon: <Zap className="w-6 h-6 text-neon-orange" />,
-      color: "orange",
-      category: "development",
-      useCase: "A food production company reduced quality control costs by 52% while improving accuracy with our vision system."
+      id: 10,
+      title: "Data Science Consulting",
+      description: "We provide expert data science consulting to help you extract actionable insights from your data.",
+      examples: [
+        {
+          sector: "Pharmaceuticals",
+          description: "Clinical trial data analysis to accelerate drug development and improve outcomes."
+        },
+        {
+          sector: "Retail",
+          description: "Customer behavior analysis to optimize store layouts and product placement."
+        },
+        {
+          sector: "Finance",
+          description: "Market trend analysis and trading strategy optimization using advanced statistics."
+        }
+      ]
     },
     {
-      title: "Cloud AI Integration",
-      description: "Seamlessly integrate AI capabilities with your cloud infrastructure for scalable, flexible, and cost-effective intelligence.",
-      icon: <CloudCog className="w-6 h-6 text-neon-blue" />,
-      color: "blue",
-      category: "development",
-      useCase: "A SaaS provider reduced infrastructure costs by 38% after our cloud AI optimization services."
-    },
-    {
-      title: "Personalization Engines",
-      description: "Tailored recommendation systems that learn user preferences and deliver personalized experiences that drive engagement.",
-      icon: <Share2 className="w-6 h-6 text-neon-green" />,
-      color: "green",
-      category: "analytics",
-      useCase: "A media platform increased user session time by 41% after implementing our personalization engine."
-    },
-    {
+      id: 11,
       title: "AI Ethics & Governance",
-      description: "Ensure your AI systems are secure, fair, ethical, and compliant with relevant regulations and industry standards.",
-      icon: <Lock className="w-6 h-6 text-neon-orange" />,
-      color: "orange",
-      category: "strategy",
-      useCase: "A healthcare AI implementation passed regulatory review in half the expected time with our governance framework."
+      description: "We help establish ethical AI frameworks and governance structures to ensure responsible AI adoption.",
+      examples: [
+        {
+          sector: "Banking",
+          description: "Fairness auditing for loan approval algorithms to prevent discriminatory outcomes."
+        },
+        {
+          sector: "Healthcare",
+          description: "Privacy-preserving AI systems that maintain patient confidentiality while improving care."
+        },
+        {
+          sector: "Public Sector",
+          description: "Transparent decision-making systems with built-in accountability mechanisms."
+        }
+      ]
     },
     {
-      title: "Multilingual AI Solutions",
-      description: "Cross-cultural and multilingual AI applications that serve diverse markets and break down language barriers.",
-      icon: <Globe className="w-6 h-6 text-neon-blue" />,
-      color: "blue",
-      category: "development",
-      useCase: "An international retailer increased global customer satisfaction by 36% with our multilingual customer service AI."
+      id: 12,
+      title: "AI-Enhanced Customer Experience",
+      description: "We implement AI solutions that transform customer interactions and experiences across all touchpoints.",
+      examples: [
+        {
+          sector: "Hospitality",
+          description: "Personalized guest experience systems that anticipate needs and preferences."
+        },
+        {
+          sector: "Banking",
+          description: "Intelligent financial assistants that provide personalized advice and recommendations."
+        },
+        {
+          sector: "Retail",
+          description: "Omnichannel personalization engines that create consistent shopping experiences."
+        }
+      ]
     },
     {
-      title: "Big Data Processing",
-      description: "Handle and analyze massive datasets with specialized AI algorithms designed for scale, speed, and accuracy.",
-      icon: <Database className="w-6 h-6 text-neon-green" />,
-      color: "green",
-      category: "analytics",
-      useCase: "A logistics company optimized routing efficiency by 23% using our big data processing platform."
+      id: 13,
+      title: "AI Integration Services",
+      description: "We seamlessly integrate AI capabilities into your existing systems and applications to enhance their functionality.",
+      examples: [
+        {
+          sector: "Enterprise Software",
+          description: "AI-enhanced ERP systems that optimize resource allocation and planning."
+        },
+        {
+          sector: "CRM",
+          description: "Intelligent lead scoring and opportunity prioritization to improve sales efficiency."
+        },
+        {
+          sector: "Supply Chain",
+          description: "AI-powered inventory management and demand forecasting integration."
+        }
+      ]
     },
     {
-      title: "AI Agents & Automation",
-      description: "Autonomous AI agents that perform complex tasks, adapt to changing conditions, and continuously improve performance.",
-      icon: <Bot className="w-6 h-6 text-neon-orange" />,
-      color: "orange",
-      category: "development",
-      useCase: "A customer service department automated 78% of routine inquiries with our adaptive AI agent system."
+      id: 14,
+      title: "AI Education & Training",
+      description: "We provide customized AI education and training programs to build AI capabilities within your organization.",
+      examples: [
+        {
+          sector: "Corporate",
+          description: "Executive AI literacy programs to enable strategic decision-making about AI investments."
+        },
+        {
+          sector: "Software Development",
+          description: "Hands-on workshops for developers to implement machine learning in applications."
+        },
+        {
+          sector: "Data Teams",
+          description: "Advanced AI technique training for data scientists to enhance analytical capabilities."
+        }
+      ]
+    },
+    {
+      id: 15,
+      title: "AI-Driven Business Intelligence",
+      description: "We develop intelligent business intelligence solutions that provide deeper insights and automate analysis.",
+      examples: [
+        {
+          sector: "Marketing",
+          description: "Campaign attribution and ROI analysis with predictive customer journey mapping."
+        },
+        {
+          sector: "Operations",
+          description: "Process efficiency analysis with automated bottleneck identification and resolution."
+        },
+        {
+          sector: "Executive Decision-Making",
+          description: "AI-powered dashboards that highlight critical business insights and opportunities."
+        }
+      ]
+    },
+    {
+      id: 16,
+      title: "Generative AI Solutions",
+      description: "We implement cutting-edge generative AI technologies to create new content, designs, and solutions.",
+      examples: [
+        {
+          sector: "Creative Industries",
+          description: "AI-assisted design tools that accelerate creative workflows and explore new possibilities."
+        },
+        {
+          sector: "Product Development",
+          description: "Generative design systems for faster prototyping and innovation."
+        },
+        {
+          sector: "Content Marketing",
+          description: "Automated content generation platforms that maintain brand voice and quality."
+        }
+      ]
+    },
+    {
+      id: 17,
+      title: "Comprehensive Tech Solutions with AI",
+      description: "We can do everything in the tech space with the use of AI, transforming your business operations and capabilities.",
+      examples: [
+        {
+          sector: "Startups",
+          description: "End-to-end tech stack development with integrated AI capabilities from day one."
+        },
+        {
+          sector: "Enterprise Transformation",
+          description: "Complete digital transformation powered by AI across all business functions."
+        },
+        {
+          sector: "Industry Disruption",
+          description: "Revolutionary business model implementation using cutting-edge AI technologies."
+        }
+      ]
     }
   ];
 
-  const categories = [
-    { id: "all", name: "All Services" },
-    { id: "strategy", name: "AI Strategy" },
-    { id: "development", name: "AI Development" },
-    { id: "analytics", name: "Analytics & Intelligence" },
-    { id: "education", name: "Training & Education" }
-  ];
-
-  // Filter services based on selected category
-  const filteredServices = activeCategory === "all" 
-    ? services 
-    : services.filter(service => service.category === activeCategory);
-
-  useEffect(() => {
-    cardsRef.current = cardsRef.current.slice(0, filteredServices.length);
-
-    observerRef.current = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const index = cardsRef.current.findIndex(
-              ref => ref === entry.target
-            );
-            if (index !== -1 && !visibleItems.includes(index)) {
-              setVisibleItems(prev => [...prev, index]);
-            }
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    cardsRef.current.forEach(ref => {
-      if (ref) observerRef.current?.observe(ref);
-    });
-
-    return () => {
-      if (observerRef.current) {
-        observerRef.current.disconnect();
-      }
-    };
-  }, [cardsRef.current.length, filteredServices.length]); // eslint-disable-line react-hooks/exhaustive-deps
-
   return (
-    <div className="container mx-auto py-16 px-4">
-      <div className="text-center mb-12">
+    <div className="container mx-auto px-4 py-16 max-w-6xl">
+      <div className="text-center mb-16">
         <h1 className="text-4xl font-bold mb-6">Our AI Services</h1>
-        <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-          We offer a comprehensive range of AI solutions tailored to transform your business, 
-          drive innovation, and deliver measurable ROI across operations
+        <p className="text-xl text-muted-foreground mx-auto max-w-3xl">
+          We offer a comprehensive range of AI services designed to help businesses like yours leverage the power of artificial intelligence. Here's what we can do for you:
         </p>
       </div>
 
-      {/* Category Filter Tabs */}
-      <div ref={categoriesRef} className="flex flex-wrap justify-center gap-3 mb-12">
-        {categories.map((category) => (
-          <button
-            key={category.id}
-            onClick={() => {
-              setActiveCategory(category.id);
-              // Reset visible items when changing category
-              setVisibleItems([]);
-            }}
-            className={`px-4 py-2 rounded-full transition-all duration-300 ${
-              activeCategory === category.id
-                ? 'bg-white/10 text-white font-medium border border-white/20'
-                : 'bg-transparent text-gray-400 hover:text-white hover:bg-white/5'
-            }`}
-          >
-            {category.name}
-          </button>
-        ))}
-      </div>
-
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {filteredServices.map((service, index) => (
-          <div
-            key={index}
-            ref={el => (cardsRef.current[index] = el)}
-            className="group"
-          >
-            <div className={`glass-card p-8 rounded-xl hover:border-neon-${service.color}/30 transition-all duration-500 hover:translate-y-[-5px] h-full flex flex-col ${visibleItems.includes(index) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} 
-              style={{ transitionDelay: `${index * 100}ms` }}
-            >
-              <div className={`bg-neon-${service.color}/10 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4 group-hover:bg-neon-${service.color}/20 transition-all duration-300`}>
-                {service.icon}
-              </div>
-              <h3 className="text-xl font-semibold text-white mb-3">{service.title}</h3>
-              <p className="text-gray-300 mb-4">{service.description}</p>
-              
-              {/* Use Case Example */}
-              <div className="mt-auto">
-                <div className="mb-4 p-3 bg-white/5 rounded-lg border border-white/10">
-                  <h4 className="text-sm font-semibold text-white mb-1">Case Example:</h4>
-                  <p className="text-gray-400 text-sm">{service.useCase}</p>
-                </div>
-                
-                <Link 
-                  to={`/contact?service=${encodeURIComponent(service.title)}`}
-                  className={`inline-flex items-center text-neon-${service.color} hover:text-neon-${service.color} transition-colors group`}
-                >
-                  Request a Consultation <ChevronRight className="ml-1 h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
-                </Link>
+        {services.map((service) => (
+          <div key={service.id} className="flex flex-col h-full">
+            <ServiceCard
+              title={service.title}
+              description={service.description}
+            />
+            <div className="mt-4 space-y-4 flex-grow bg-card rounded-lg p-4 shadow-sm">
+              <h3 className="font-medium text-lg">Example Applications:</h3>
+              <div className="space-y-4">
+                {service.examples.map((example, index) => (
+                  <div key={index} className="space-y-1">
+                    <div className="font-medium text-primary">{example.sector}</div>
+                    <p className="text-sm text-muted-foreground">{example.description}</p>
+                    {index < service.examples.length - 1 && <Separator className="my-2" />}
+                  </div>
+                ))}
               </div>
             </div>
           </div>
