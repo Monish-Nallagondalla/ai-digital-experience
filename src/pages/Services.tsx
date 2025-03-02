@@ -1,4 +1,3 @@
-
 import React from 'react';
 import ServiceCard from '../components/ServiceCard';
 import { Separator } from '@/components/ui/separator';
@@ -347,7 +346,7 @@ const Services = () => {
       title: "Comprehensive Tech Solutions with AI",
       description: "We can do everything in the tech space with the use of AI, transforming your business operations and capabilities.",
       icon: <Brain className="h-6 w-6" />,
-      color: "blue" as const,
+      color: "blue" as "orange" | "blue" | "green",
       examples: [
         {
           sector: "Startups",
