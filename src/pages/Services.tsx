@@ -2,6 +2,7 @@
 import React from 'react';
 import ServiceCard from '../components/ServiceCard';
 import { Separator } from '@/components/ui/separator';
+import { Check, Brain, Cpu, Bot, LineChart, Code, Workflow, Database, Cog, Calculator, Shield, Users, LayoutGrid, BookOpen, BarChart3, Sparkles } from 'lucide-react';
 
 const Services = () => {
   const services = [
@@ -9,6 +10,8 @@ const Services = () => {
       id: 1,
       title: "AI Strategy Consulting",
       description: "We help businesses develop comprehensive AI strategies aligned with their goals and objectives.",
+      icon: <Brain className="h-6 w-6" />,
+      color: "orange",
       examples: [
         {
           sector: "Healthcare",
@@ -28,6 +31,8 @@ const Services = () => {
       id: 2,
       title: "Custom AI Application Development",
       description: "We build tailored AI applications to address your specific business challenges and opportunities.",
+      icon: <Code className="h-6 w-6" />,
+      color: "blue",
       examples: [
         {
           sector: "Manufacturing",
@@ -47,6 +52,8 @@ const Services = () => {
       id: 3,
       title: "Natural Language Processing Solutions",
       description: "We implement NLP solutions that enable your systems to understand, interpret, and generate human language.",
+      icon: <Bot className="h-6 w-6" />,
+      color: "green",
       examples: [
         {
           sector: "Legal",
@@ -66,6 +73,8 @@ const Services = () => {
       id: 4,
       title: "Computer Vision Implementation",
       description: "We develop systems that can interpret and understand visual information from the world, enabling new applications and automations.",
+      icon: <Cpu className="h-6 w-6" />,
+      color: "orange",
       examples: [
         {
           sector: "Retail",
@@ -85,6 +94,8 @@ const Services = () => {
       id: 5,
       title: "Predictive Analytics Implementation",
       description: "We build predictive models that help you anticipate trends, behaviors, and outcomes to make proactive decisions.",
+      icon: <LineChart className="h-6 w-6" />,
+      color: "blue",
       examples: [
         {
           sector: "Insurance",
@@ -104,6 +115,8 @@ const Services = () => {
       id: 6,
       title: "Machine Learning Operations (MLOps)",
       description: "We establish robust MLOps practices to streamline the deployment, monitoring, and management of ML models.",
+      icon: <Cog className="h-6 w-6" />,
+      color: "green",
       examples: [
         {
           sector: "E-commerce",
@@ -123,6 +136,8 @@ const Services = () => {
       id: 7,
       title: "AI-Powered Process Automation",
       description: "We automate complex business processes using AI to increase efficiency and reduce operational costs.",
+      icon: <Workflow className="h-6 w-6" />,
+      color: "orange",
       examples: [
         {
           sector: "Logistics",
@@ -142,6 +157,8 @@ const Services = () => {
       id: 8,
       title: "Data Engineering & Infrastructure",
       description: "We design and implement scalable data pipelines and infrastructure to support your AI initiatives.",
+      icon: <Database className="h-6 w-6" />,
+      color: "blue",
       examples: [
         {
           sector: "Digital Marketing",
@@ -161,6 +178,8 @@ const Services = () => {
       id: 9,
       title: "AI Model Training & Fine-tuning",
       description: "We train and fine-tune AI models on your specific data to achieve optimal performance for your use cases.",
+      icon: <Bot className="h-6 w-6" />,
+      color: "green",
       examples: [
         {
           sector: "Content Creation",
@@ -180,6 +199,8 @@ const Services = () => {
       id: 10,
       title: "Data Science Consulting",
       description: "We provide expert data science consulting to help you extract actionable insights from your data.",
+      icon: <Calculator className="h-6 w-6" />,
+      color: "orange",
       examples: [
         {
           sector: "Pharmaceuticals",
@@ -199,6 +220,8 @@ const Services = () => {
       id: 11,
       title: "AI Ethics & Governance",
       description: "We help establish ethical AI frameworks and governance structures to ensure responsible AI adoption.",
+      icon: <Shield className="h-6 w-6" />,
+      color: "blue",
       examples: [
         {
           sector: "Banking",
@@ -218,6 +241,8 @@ const Services = () => {
       id: 12,
       title: "AI-Enhanced Customer Experience",
       description: "We implement AI solutions that transform customer interactions and experiences across all touchpoints.",
+      icon: <Users className="h-6 w-6" />,
+      color: "green",
       examples: [
         {
           sector: "Hospitality",
@@ -237,6 +262,8 @@ const Services = () => {
       id: 13,
       title: "AI Integration Services",
       description: "We seamlessly integrate AI capabilities into your existing systems and applications to enhance their functionality.",
+      icon: <LayoutGrid className="h-6 w-6" />,
+      color: "orange",
       examples: [
         {
           sector: "Enterprise Software",
@@ -256,6 +283,8 @@ const Services = () => {
       id: 14,
       title: "AI Education & Training",
       description: "We provide customized AI education and training programs to build AI capabilities within your organization.",
+      icon: <BookOpen className="h-6 w-6" />,
+      color: "blue",
       examples: [
         {
           sector: "Corporate",
@@ -275,6 +304,8 @@ const Services = () => {
       id: 15,
       title: "AI-Driven Business Intelligence",
       description: "We develop intelligent business intelligence solutions that provide deeper insights and automate analysis.",
+      icon: <BarChart3 className="h-6 w-6" />,
+      color: "green",
       examples: [
         {
           sector: "Marketing",
@@ -294,6 +325,8 @@ const Services = () => {
       id: 16,
       title: "Generative AI Solutions",
       description: "We implement cutting-edge generative AI technologies to create new content, designs, and solutions.",
+      icon: <Sparkles className="h-6 w-6" />,
+      color: "orange",
       examples: [
         {
           sector: "Creative Industries",
@@ -313,6 +346,8 @@ const Services = () => {
       id: 17,
       title: "Comprehensive Tech Solutions with AI",
       description: "We can do everything in the tech space with the use of AI, transforming your business operations and capabilities.",
+      icon: <Brain className="h-6 w-6" />,
+      color: "blue",
       examples: [
         {
           sector: "Startups",
@@ -340,11 +375,15 @@ const Services = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {services.map((service) => (
+        {services.map((service, index) => (
           <div key={service.id} className="flex flex-col h-full">
             <ServiceCard
               title={service.title}
               description={service.description}
+              icon={service.icon}
+              color={service.color}
+              index={index}
+              isVisible={true}
             />
             <div className="mt-4 space-y-4 flex-grow bg-card rounded-lg p-4 shadow-sm">
               <h3 className="font-medium text-lg">Example Applications:</h3>

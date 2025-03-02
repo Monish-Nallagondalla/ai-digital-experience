@@ -19,7 +19,7 @@ const Footer = () => {
               </h2>
             </Link>
             <p className="text-gray-400 mb-6">
-              Empowering businesses with cutting-edge AI solutions to drive innovation and growth.
+              Empowering businesses with cutting-edge AI solutions to drive innovation and growth. Apply AI, Amplify Results.Today
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-400 hover:text-neon-orange transition-colors" aria-label="Facebook">
@@ -81,17 +81,17 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact Info */}
+          {/* Contact Info - Updated with Bangalore-specific information */}
           <div>
             <h3 className="text-white text-lg font-semibold mb-6">Contact Us</h3>
             <ul className="space-y-4">
               <li className="flex items-start">
                 <MapPin className="h-5 w-5 text-neon-orange mr-3 mt-0.5" />
-                <span className="text-gray-400">123 AI Street, Tech Valley, CA 94103, USA</span>
+                <span className="text-gray-400">42, Whitefield Main Road, EPIP Zone, Whitefield, Bangalore, Karnataka 560066, India</span>
               </li>
               <li className="flex items-center">
                 <Phone className="h-5 w-5 text-neon-blue mr-3" />
-                <span className="text-gray-400">+1 (555) 123-4567</span>
+                <span className="text-gray-400">+91 80-4123-4567</span>
               </li>
               <li className="flex items-center">
                 <Mail className="h-5 w-5 text-neon-green mr-3" />

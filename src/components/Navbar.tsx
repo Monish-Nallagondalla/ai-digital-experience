@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 
@@ -7,6 +7,8 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const [magneticPosition, setMagneticPosition] = useState({ x: 0, y: 0 });
+  const buttonRef = useRef<HTMLAnchorElement>(null);
 
   // Handle scroll effect
   useEffect(() => {
@@ -27,6 +29,19 @@ const Navbar = () => {
     setIsMenuOpen(false);
   }, [location]);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+    }
+  }, [isMenuOpen]);
+
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "Services", path: "/services" },
@@ -35,6 +50,35 @@ const Navbar = () => {
     { name: "Blog", path: "/blog" },
     { name: "Contact", path: "/contact" },
   ];
+
+  // Magnetic button effect
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!buttonRef.current) return;
+    
+    const rect = buttonRef.current.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    
+    const distanceX = e.clientX - centerX;
+    const distanceY = e.clientY - centerY;
+    
+    // Calculate strength based on distance from center (max 15px movement)
+    const strength = 15;
+    const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+    const maxDistance = rect.width / 2;
+    
+    if (distance < maxDistance) {
+      const x = (distanceX / maxDistance) * strength;
+      const y = (distanceY / maxDistance) * strength;
+      setMagneticPosition({ x, y });
+    } else {
+      setMagneticPosition({ x: 0, y: 0 });
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setMagneticPosition({ x: 0, y: 0 });
+  };
 
   return (
     <header
@@ -80,11 +124,20 @@ const Navbar = () => {
             ))}
           </nav>
 
-          {/* CTA Button (Desktop) */}
-          <div className="hidden md:block">
+          {/* CTA Button (Desktop) with Magnetic Effect */}
+          <div 
+            className="hidden md:block"
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+          >
             <Link
+              ref={buttonRef}
               to="/contact"
               className="neon-button-orange"
+              style={{ 
+                transform: `translate(${magneticPosition.x}px, ${magneticPosition.y}px)`,
+                transition: 'transform 0.2s cubic-bezier(0.23, 1, 0.32, 1)'
+              }}
             >
               <span className="relative z-10">Get Started</span>
             </Link>
@@ -104,7 +157,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Navigation */}
+      {/* Mobile Navigation - Fixed position to prevent scrolling */}
       <div
         className={`fixed inset-0 z-40 bg-black/95 backdrop-blur-md flex flex-col justify-center items-center transition-all duration-300 transform ${
           isMenuOpen
@@ -122,6 +175,7 @@ const Navbar = () => {
                   ? "text-neon-blue"
                   : "text-gray-300 hover:text-white"
               }`}
+              onClick={() => setIsMenuOpen(false)}
             >
               {link.name}
               <span
@@ -136,6 +190,7 @@ const Navbar = () => {
           <Link
             to="/contact"
             className="neon-button-orange mt-6"
+            onClick={() => setIsMenuOpen(false)}
           >
             <span className="relative z-10">Get Started</span>
           </Link>

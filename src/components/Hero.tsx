@@ -6,9 +6,10 @@ import { ArrowRight, Brain, Cpu, Zap } from "lucide-react";
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [typedText, setTypedText] = useState("");
-  const fullText = "Empowering Businesses Through AI Innovation";
+  const fullText = "Apply AI, Amplify Results.Today";
   const [typingComplete, setTypingComplete] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [magneticPosition, setMagneticPosition] = useState({ x: 0, y: 0 });
 
   // Animation for fade-in
   useEffect(() => {
@@ -40,6 +41,26 @@ const Hero = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
+  // Magnetic button effect
+  const handleButtonMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const button = e.currentTarget;
+    const rect = button.getBoundingClientRect();
+    
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    
+    // Create a magnetic pull effect (max 15px movement)
+    const strength = 15;
+    const magneticX = (x / rect.width) * strength * 2;
+    const magneticY = (y / rect.height) * strength * 2;
+    
+    setMagneticPosition({ x: magneticX, y: magneticY });
+  };
+
+  const handleButtonMouseLeave = () => {
+    setMagneticPosition({ x: 0, y: 0 });
+  };
+
   return (
     <div className="relative overflow-hidden bg-black text-white min-h-screen grid-bg flex items-center justify-center">
       {/* Background Gradient */}
@@ -70,11 +91,11 @@ const Hero = () => {
         }}
       ></div>
       
-      <div className="container mx-auto px-4 py-12 relative z-10">
+      <div className="container mx-auto px-4 py-24 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           {/* Badge - Added more top spacing */}
           <div 
-            className={`inline-block px-4 py-1.5 mt-12 mb-8 bg-white/5 border border-white/10 rounded-full backdrop-blur-sm transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+            className={`inline-block px-4 py-1.5 mb-8 bg-white/5 border border-white/10 rounded-full backdrop-blur-sm transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
           >
             <p className="text-sm font-medium text-gray-300">
               <span className="text-neon-orange">Next-Generation</span> AI Solutions for Business Growth
@@ -105,27 +126,45 @@ const Hero = () => {
             </h2>
           </div>
           
-          {/* Enhanced Description */}
+          {/* Enhanced Description - Updated with what we can do perspective */}
           <p 
-            className={`text-gray-400 text-lg max-w-2xl mx-auto mb-12 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+            className={`text-gray-400 text-lg max-w-2xl mx-auto mb-14 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
             style={{ transitionDelay: "600ms" }}
           >
-            We leverage cutting-edge AI technologies to create innovative solutions that help businesses automate processes, gain valuable insights, and achieve digital transformation with measurable ROI.
+            We can help your business unlock the full potential of AI. From strategic consultation to implementation, we offer comprehensive AI solutions that drive innovation, efficiency, and growth with measurable ROI.
           </p>
           
-          {/* CTA Buttons with enhanced glow effect */}
+          {/* CTA Buttons with enhanced glow effect and magnetic effect */}
           <div 
-            className={`flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+            className={`flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
             style={{ transitionDelay: "800ms" }}
           >
-            <Link to="/contact" className="neon-button-orange w-full sm:w-auto px-8 py-3 shadow-neon-orange">
+            <Link 
+              to="/contact" 
+              className="neon-button-orange w-full sm:w-auto px-8 py-3 shadow-neon-orange"
+              onMouseMove={handleButtonMouseMove}
+              onMouseLeave={handleButtonMouseLeave}
+              style={{ 
+                transform: `translate(${magneticPosition.x}px, ${magneticPosition.y}px)`,
+                transition: 'transform 0.2s cubic-bezier(0.23, 1, 0.32, 1)'
+              }}
+            >
               <span className="relative z-10 flex items-center justify-center">
                 Book a Consultation <ArrowRight className="ml-2 h-4 w-4" />
               </span>
             </Link>
-            <Link to="/services" className="neon-button-blue w-full sm:w-auto px-8 py-3 shadow-neon-blue">
+            <Link 
+              to="/services" 
+              className="neon-button-blue w-full sm:w-auto px-8 py-3 shadow-neon-blue"
+              onMouseMove={handleButtonMouseMove}
+              onMouseLeave={handleButtonMouseLeave}
+              style={{ 
+                transform: `translate(${magneticPosition.x}px, ${magneticPosition.y}px)`,
+                transition: 'transform 0.2s cubic-bezier(0.23, 1, 0.32, 1)'
+              }}
+            >
               <span className="relative z-10 flex items-center justify-center">
-                Explore Our Services
+                Explore Our Solutions
               </span>
             </Link>
           </div>
@@ -133,7 +172,7 @@ const Hero = () => {
         
         {/* Feature Cards with better spacing and hover effects */}
         <div 
-          className={`grid grid-cols-1 md:grid-cols-3 gap-8 mt-24 max-w-5xl mx-auto transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+          className={`grid grid-cols-1 md:grid-cols-3 gap-8 mt-28 max-w-5xl mx-auto transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
           style={{ transitionDelay: "1000ms" }}
         >
           {/* Card 1 */}
@@ -142,7 +181,7 @@ const Hero = () => {
               <Brain className="text-neon-orange h-6 w-6" />
             </div>
             <h3 className="text-xl font-semibold mb-3">AI Strategy</h3>
-            <p className="text-gray-400">Develop a comprehensive AI roadmap tailored to your specific business challenges and growth objectives.</p>
+            <p className="text-gray-400">We can develop a comprehensive AI roadmap tailored to your specific business challenges and growth objectives.</p>
           </div>
           
           {/* Card 2 */}
@@ -151,7 +190,7 @@ const Hero = () => {
               <Cpu className="text-neon-blue h-6 w-6" />
             </div>
             <h3 className="text-xl font-semibold mb-3">AI Development</h3>
-            <p className="text-gray-400">Create custom AI solutions that automate complex processes, enhance decision-making, and drive measurable efficiency gains.</p>
+            <p className="text-gray-400">We can create custom AI solutions that automate complex processes, enhance decision-making, and drive measurable efficiency gains.</p>
           </div>
           
           {/* Card 3 */}
@@ -160,7 +199,7 @@ const Hero = () => {
               <Zap className="text-neon-green h-6 w-6" />
             </div>
             <h3 className="text-xl font-semibold mb-3">AI Integration</h3>
-            <p className="text-gray-400">Seamlessly integrate AI solutions into your existing technology infrastructure with minimal disruption and maximum impact.</p>
+            <p className="text-gray-400">We can seamlessly integrate AI solutions into your existing technology infrastructure with minimal disruption and maximum impact.</p>
           </div>
         </div>
       </div>
