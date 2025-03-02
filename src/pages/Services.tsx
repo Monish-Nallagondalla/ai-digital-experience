@@ -347,7 +347,7 @@ const Services = () => {
       title: "Comprehensive Tech Solutions with AI",
       description: "We can do everything in the tech space with the use of AI, transforming your business operations and capabilities.",
       icon: <Brain className="h-6 w-6" />,
-      color: "blue" as "orange" | "blue" | "green", // Explicitly type as one of the allowed values
+      color: "blue" as const,
       examples: [
         {
           sector: "Startups",
