@@ -1,3 +1,4 @@
+
 import { useEffect, useState, useRef } from "react";
 
 const CustomCursor = () => {
@@ -11,6 +12,7 @@ const CustomCursor = () => {
   const cursorDotRef = useRef<HTMLDivElement>(null);
   const cursorOutlineRef = useRef<HTMLDivElement>(null);
   const lastUpdateTime = useRef<number>(0);
+  const orbitalParticlesRef = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
     const addEventListeners = () => {
@@ -31,7 +33,7 @@ const CustomCursor = () => {
 
     const onMouseMove = (e: MouseEvent) => {
       const now = performance.now();
-      if (now - lastUpdateTime.current < 10) return;
+      if (now - lastUpdateTime.current < 8) return; // Higher refresh rate for smoother cursor
       lastUpdateTime.current = now;
       
       const newPosition = { x: e.clientX, y: e.clientY };
@@ -47,15 +49,26 @@ const CustomCursor = () => {
         cursorOutlineRef.current.style.top = `${e.clientY}px`;
       }
       
+      // Update orbital positions
+      orbitalParticlesRef.current.forEach((particle, index) => {
+        if (particle) {
+          const angle = (index / orbitalParticlesRef.current.length) * Math.PI * 2;
+          const distance = 15; // Orbital radius
+          particle.style.left = `${e.clientX}px`;
+          particle.style.top = `${e.clientY}px`;
+          particle.style.animationDelay = `${-index * 0.2}s`;
+        }
+      });
+      
       setTimeout(() => {
         setTrailPositions(prev => {
           const newTrail = [...prev, newPosition];
-          if (newTrail.length > 15) {
-            return newTrail.slice(newTrail.length - 15);
+          if (newTrail.length > 20) { // More trail particles
+            return newTrail.slice(newTrail.length - 20);
           }
           return newTrail;
         });
-      }, 8);
+      }, 5); // Faster trail update
     };
 
     const onMouseDown = () => {
@@ -76,7 +89,7 @@ const CustomCursor = () => {
 
     const handleElementHoverEvents = () => {
       const linkElements = document.querySelectorAll("a, .interactive");
-      const buttonElements = document.querySelectorAll("button, .neon-button-orange, .neon-button-blue, .neon-button-green, input[type='submit']");
+      const buttonElements = document.querySelectorAll("button, .neon-button-orange, .neon-button-blue, .neon-button-green, .magnetic-button-enhanced, input[type='submit']");
       
       linkElements.forEach(el => {
         el.addEventListener("mouseenter", () => setLinkHovered(true));
@@ -102,6 +115,23 @@ const CustomCursor = () => {
     };
   }, []);
 
+  // Create refs for orbital particles
+  useEffect(() => {
+    orbitalParticlesRef.current = Array(4).fill(null).map(() => document.createElement('div'));
+    orbitalParticlesRef.current.forEach(particle => {
+      particle.className = 'custom-cursor cursor-orbital';
+      document.body.appendChild(particle);
+    });
+
+    return () => {
+      orbitalParticlesRef.current.forEach(particle => {
+        if (particle && document.body.contains(particle)) {
+          document.body.removeChild(particle);
+        }
+      });
+    };
+  }, []);
+
   const cursorDotClasses = `custom-cursor cursor-dot ${
     clicked ? "scale-50" : ""
   } ${hidden ? "opacity-0" : "opacity-100"} ${
@@ -123,12 +153,12 @@ const CustomCursor = () => {
           style={{
             left: `${pos.x}px`,
             top: `${pos.y}px`,
-            opacity: (index + 1) / trailPositions.length * 0.6,
-            transform: `scale(${0.1 + (index / trailPositions.length) * 0.7})`,
-            backgroundColor: index % 3 === 0 ? 'rgba(255, 95, 31, 0.8)' : 
-                            index % 3 === 1 ? 'rgba(0, 255, 127, 0.8)' : 'rgba(0, 255, 255, 0.8)',
-            filter: `blur(${Math.max(0, (trailPositions.length - index) / 4)}px)`,
-            transition: 'opacity 0.15s ease, transform 0.15s ease'
+            opacity: (index + 1) / trailPositions.length * 0.7,
+            transform: `scale(${0.1 + (index / trailPositions.length) * 0.8})`,
+            backgroundColor: index % 3 === 0 ? 'rgba(255, 95, 31, 0.85)' : 
+                            index % 3 === 1 ? 'rgba(0, 255, 127, 0.85)' : 'rgba(0, 255, 255, 0.85)',
+            filter: `blur(${Math.max(0, (trailPositions.length - index) / 5)}px)`,
+            transition: 'opacity 0.12s ease, transform 0.12s ease'
           }}
         />
       ))}
@@ -140,10 +170,10 @@ const CustomCursor = () => {
           left: `${position.x}px`,
           top: `${position.y}px`,
           boxShadow: buttonHovered 
-            ? '0 0 15px rgba(0, 255, 255, 0.9), 0 0 30px rgba(0, 255, 255, 0.4)' 
+            ? '0 0 20px rgba(0, 255, 255, 0.95), 0 0 40px rgba(0, 255, 255, 0.5)' 
             : linkHovered 
-              ? '0 0 15px rgba(255, 95, 31, 0.9), 0 0 30px rgba(255, 95, 31, 0.4)' 
-              : '0 0 12px rgba(255, 255, 255, 0.9), 0 0 24px rgba(255, 255, 255, 0.3)'
+              ? '0 0 20px rgba(255, 95, 31, 0.95), 0 0 40px rgba(255, 95, 31, 0.5)' 
+              : '0 0 15px rgba(255, 255, 255, 0.95), 0 0 30px rgba(255, 255, 255, 0.4)'
         }}
       />
       
@@ -154,14 +184,14 @@ const CustomCursor = () => {
           left: `${position.x}px`,
           top: `${position.y}px`,
           borderColor: buttonHovered 
-            ? 'rgba(0, 255, 255, 0.8)' 
+            ? 'rgba(0, 255, 255, 0.9)' 
             : linkHovered 
-              ? 'rgba(255, 95, 31, 0.8)' 
-              : 'rgba(255, 255, 255, 0.7)',
+              ? 'rgba(255, 95, 31, 0.9)' 
+              : 'rgba(255, 255, 255, 0.8)',
           boxShadow: buttonHovered 
-            ? '0 0 10px rgba(0, 255, 255, 0.5)' 
+            ? '0 0 15px rgba(0, 255, 255, 0.6)' 
             : linkHovered 
-              ? '0 0 10px rgba(255, 95, 31, 0.5)' 
+              ? '0 0 15px rgba(255, 95, 31, 0.6)' 
               : 'none'
         }}
       />
