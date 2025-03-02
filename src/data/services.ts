@@ -21,7 +21,7 @@ export const services: Service[] = [
     id: 1,
     title: "AI Strategy Consulting",
     description: "We help businesses develop comprehensive AI strategies aligned with their goals and objectives.",
-    icon: <Brain className="h-6 w-6" />,
+    icon: React.createElement(Brain, { className: "h-6 w-6" }),
     color: "orange",
     examples: [
       {
@@ -42,7 +42,7 @@ export const services: Service[] = [
     id: 2,
     title: "Custom AI Application Development",
     description: "We build tailored AI applications to address your specific business challenges and opportunities.",
-    icon: <Code className="h-6 w-6" />,
+    icon: React.createElement(Code, { className: "h-6 w-6" }),
     color: "blue",
     examples: [
       {
@@ -63,7 +63,7 @@ export const services: Service[] = [
     id: 3,
     title: "Natural Language Processing Solutions",
     description: "We implement NLP solutions that enable your systems to understand, interpret, and generate human language.",
-    icon: <Bot className="h-6 w-6" />,
+    icon: React.createElement(Bot, { className: "h-6 w-6" }),
     color: "green",
     examples: [
       {
@@ -84,7 +84,7 @@ export const services: Service[] = [
     id: 4,
     title: "Computer Vision Implementation",
     description: "We develop systems that can interpret and understand visual information from the world, enabling new applications and automations.",
-    icon: <Cpu className="h-6 w-6" />,
+    icon: React.createElement(Cpu, { className: "h-6 w-6" }),
     color: "orange",
     examples: [
       {
@@ -105,7 +105,7 @@ export const services: Service[] = [
     id: 5,
     title: "Predictive Analytics Implementation",
     description: "We build predictive models that help you anticipate trends, behaviors, and outcomes to make proactive decisions.",
-    icon: <LineChart className="h-6 w-6" />,
+    icon: React.createElement(LineChart, { className: "h-6 w-6" }),
     color: "blue",
     examples: [
       {
@@ -126,7 +126,7 @@ export const services: Service[] = [
     id: 6,
     title: "Machine Learning Operations (MLOps)",
     description: "We establish robust MLOps practices to streamline the deployment, monitoring, and management of ML models.",
-    icon: <Cog className="h-6 w-6" />,
+    icon: React.createElement(Cog, { className: "h-6 w-6" }),
     color: "green",
     examples: [
       {
@@ -147,7 +147,7 @@ export const services: Service[] = [
     id: 7,
     title: "AI-Powered Process Automation",
     description: "We automate complex business processes using AI to increase efficiency and reduce operational costs.",
-    icon: <Workflow className="h-6 w-6" />,
+    icon: React.createElement(Workflow, { className: "h-6 w-6" }),
     color: "orange",
     examples: [
       {
@@ -168,7 +168,7 @@ export const services: Service[] = [
     id: 8,
     title: "Data Engineering & Infrastructure",
     description: "We design and implement scalable data pipelines and infrastructure to support your AI initiatives.",
-    icon: <Database className="h-6 w-6" />,
+    icon: React.createElement(Database, { className: "h-6 w-6" }),
     color: "blue",
     examples: [
       {
@@ -189,7 +189,7 @@ export const services: Service[] = [
     id: 9,
     title: "AI Model Training & Fine-tuning",
     description: "We train and fine-tune AI models on your specific data to achieve optimal performance for your use cases.",
-    icon: <Bot className="h-6 w-6" />,
+    icon: React.createElement(Bot, { className: "h-6 w-6" }),
     color: "green",
     examples: [
       {
@@ -210,7 +210,7 @@ export const services: Service[] = [
     id: 10,
     title: "Data Science Consulting",
     description: "We provide expert data science consulting to help you extract actionable insights from your data.",
-    icon: <Calculator className="h-6 w-6" />,
+    icon: React.createElement(Calculator, { className: "h-6 w-6" }),
     color: "orange",
     examples: [
       {
@@ -231,7 +231,7 @@ export const services: Service[] = [
     id: 11,
     title: "AI Ethics & Governance",
     description: "We help establish ethical AI frameworks and governance structures to ensure responsible AI adoption.",
-    icon: <Shield className="h-6 w-6" />,
+    icon: React.createElement(Shield, { className: "h-6 w-6" }),
     color: "blue",
     examples: [
       {
@@ -252,7 +252,7 @@ export const services: Service[] = [
     id: 12,
     title: "AI-Enhanced Customer Experience",
     description: "We implement AI solutions that transform customer interactions and experiences across all touchpoints.",
-    icon: <Users className="h-6 w-6" />,
+    icon: React.createElement(Users, { className: "h-6 w-6" }),
     color: "green",
     examples: [
       {
@@ -273,7 +273,7 @@ export const services: Service[] = [
     id: 13,
     title: "AI Integration Services",
     description: "We seamlessly integrate AI capabilities into your existing systems and applications to enhance their functionality.",
-    icon: <LayoutGrid className="h-6 w-6" />,
+    icon: React.createElement(LayoutGrid, { className: "h-6 w-6" }),
     color: "orange",
     examples: [
       {
@@ -294,7 +294,7 @@ export const services: Service[] = [
     id: 14,
     title: "AI Education & Training",
     description: "We provide customized AI education and training programs to build AI capabilities within your organization.",
-    icon: <BookOpen className="h-6 w-6" />,
+    icon: React.createElement(BookOpen, { className: "h-6 w-6" }),
     color: "blue",
     examples: [
       {
@@ -315,7 +315,7 @@ export const services: Service[] = [
     id: 15,
     title: "AI-Driven Business Intelligence",
     description: "We develop intelligent business intelligence solutions that provide deeper insights and automate analysis.",
-    icon: <BarChart3 className="h-6 w-6" />,
+    icon: React.createElement(BarChart3, { className: "h-6 w-6" }),
     color: "green",
     examples: [
       {
@@ -336,7 +336,7 @@ export const services: Service[] = [
     id: 16,
     title: "Generative AI Solutions",
     description: "We implement cutting-edge generative AI technologies to create new content, designs, and solutions.",
-    icon: <Sparkles className="h-6 w-6" />,
+    icon: React.createElement(Sparkles, { className: "h-6 w-6" }),
     color: "orange",
     examples: [
       {
@@ -357,8 +357,8 @@ export const services: Service[] = [
     id: 17,
     title: "Comprehensive Tech Solutions with AI",
     description: "We can do everything in the tech space with the use of AI, transforming your business operations and capabilities.",
-    icon: <Brain className="h-6 w-6" />,
-    color: "blue" as "orange" | "blue" | "green",
+    icon: React.createElement(Brain, { className: "h-6 w-6" }),
+    color: "blue",
     examples: [
       {
         sector: "Startups",
