@@ -12,7 +12,7 @@ interface ServiceItemProps {
 const ServiceItem = ({ service, index }: ServiceItemProps) => {
   return (
     <div className="glass-card rounded-xl overflow-hidden flex flex-col h-full">
-      <div className="p-6 pb-2">
+      <div className="p-6 pb-0">
         <ServiceCard
           title={service.title}
           description={service.description}
@@ -22,7 +22,7 @@ const ServiceItem = ({ service, index }: ServiceItemProps) => {
           isVisible={true}
         />
       </div>
-      <div className="p-6 pt-0 flex-grow">
+      <div className="p-6 pt-2 flex-grow">
         <ServiceExamples examples={service.examples} />
       </div>
     </div>

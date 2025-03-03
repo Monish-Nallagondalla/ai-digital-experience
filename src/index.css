@@ -44,7 +44,7 @@
     --sidebar-border: 220 13% 25%;
     --sidebar-ring: 217.2 91.2% 59.8%;
     
-    --cursor-size: 8px; /* Reduced cursor size */
+    --cursor-size: 12px; /* Normal cursor size */
   }
 }
 
@@ -79,7 +79,6 @@
     transform: translate(-50%, -50%);
     transition: transform 0.08s ease-out, background-color 0.2s ease, box-shadow 0.2s ease;
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.75), 0 0 25px rgba(255, 255, 255, 0.25);
-    animation: cursor-pulse 2s infinite;
   }
   
   .cursor-outline {
@@ -93,13 +92,13 @@
   }
   
   .cursor-trail {
-    width: calc(var(--cursor-size) * 0.8); /* Significantly reduced trail size */
-    height: calc(var(--cursor-size) * 0.8); 
-    background-color: rgba(255, 255, 255, 0.4); /* Reduced opacity */
+    width: calc(var(--cursor-size) * 0.6);
+    height: calc(var(--cursor-size) * 0.6); 
+    background-color: rgba(255, 255, 255, 0.4);
     border-radius: 50%;
     transform: translate(-50%, -50%);
     transition: opacity 0.12s ease;
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.2); /* Reduced glow */
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
   }
   
   a:hover ~ .cursor-outline,
@@ -108,7 +107,6 @@
     height: calc(var(--cursor-size) * 5);
     background-color: rgba(255, 95, 31, 0.18);
     border-color: rgba(255, 95, 31, 0.9);
-    animation: pulse-glow 1s infinite;
   }
   
   button:hover ~ .cursor-outline,
@@ -120,7 +118,6 @@
     height: calc(var(--cursor-size) * 6);
     background-color: rgba(0, 255, 255, 0.18);
     border-color: rgba(0, 255, 255, 0.9);
-    animation: pulse-glow 1s infinite;
   }
   
   select:hover ~ .cursor-outline,
@@ -157,26 +154,6 @@
     box-shadow: 0 0 20px rgba(0, 255, 127, 0.9), 0 0 40px rgba(0, 255, 127, 0.4);
   }
 
-  @keyframes cursor-pulse {
-    0%, 100% {
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 255, 255, 0.4);
-    }
-    50% {
-      box-shadow: 0 0 25px rgba(255, 255, 255, 1), 0 0 50px rgba(255, 255, 255, 0.5);
-    }
-  }
-  
-  @keyframes pulse-glow {
-    0%, 100% {
-      border-color: rgba(255, 95, 31, 0.8);
-      box-shadow: 0 0 20px rgba(255, 95, 31, 0.5);
-    }
-    50% {
-      border-color: rgba(255, 95, 31, 1);
-      box-shadow: 0 0 40px rgba(255, 95, 31, 0.7);
-    }
-  }
-  
   .shimmer-text {
     background-size: 300% 100% !important;
     animation: text-shimmer 6s linear infinite !important;
@@ -223,8 +200,6 @@
     position: relative;
     overflow: hidden;
     z-index: 1;
-    transform-style: preserve-3d;
-    perspective: 800px;
   }
   
   .magnetic-button-enhanced::after {
@@ -369,10 +344,10 @@
 
 /* Enhanced grid visibility in dark areas */
 .bg-grid-pattern {
-  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.15) 1px, transparent 1px), 
-                    linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.2) 1px, transparent 1px), 
+                    linear-gradient(to bottom, rgba(255, 255, 255, 0.2) 1px, transparent 1px);
   background-size: 30px 30px;
-  opacity: 0.5 !important; /* Increased opacity for better visibility */
+  opacity: 0.7 !important; /* Increased opacity for better visibility */
 }
 
 /* Improve background blending in CTA section */
@@ -394,7 +369,7 @@
 
 @media (max-width: 768px) {
   :root {
-    --cursor-size: 6px;
+    --cursor-size: 8px;
   }
   
   .neon-button {

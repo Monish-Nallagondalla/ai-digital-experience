@@ -4,7 +4,6 @@ import ServicesHeader from '../components/ServicesHeader';
 import ServiceList from '../components/ServiceList';
 import { services } from '../data/services';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Separator } from '@/components/ui/separator';
 
 // Group services by category
 const serviceCategories = {
@@ -47,41 +46,41 @@ const Services = () => {
   return (
     <div ref={containerRef} className="relative overflow-hidden bg-black min-h-screen">
       {/* Enhanced Grid Background with increased visibility */}
-      <div className="absolute inset-0 bg-grid-pattern bg-[length:30px_30px] opacity-40"></div>
+      <div className="absolute inset-0 bg-grid-pattern bg-[length:30px_30px] opacity-50"></div>
       
       {/* Enhanced Gradient Overlay with smooth transitions */}
-      <div className="absolute inset-0 bg-gradient-radial from-black/70 via-black/90 to-black opacity-95"></div>
+      <div className="absolute inset-0 bg-gradient-radial from-black/60 via-black/80 to-black opacity-90"></div>
       
-      {/* Interactive Floating Elements that follow cursor */}
+      {/* Interactive Floating Elements */}
       <div 
         className="absolute w-96 h-96 rounded-full bg-neon-orange/10 blur-3xl"
         style={{ 
-          top: `calc(20% + ${mousePosition.y * 40}px)`, 
-          right: `calc(20% + ${mousePosition.x * -40}px)`,
-          transition: 'top 0.3s ease-out, right 0.3s ease-out'
+          top: `calc(20% + ${mousePosition.y * 30}px)`, 
+          right: `calc(20% + ${mousePosition.x * -30}px)`,
+          transition: 'top 0.5s ease-out, right 0.5s ease-out'
         }}
       ></div>
       <div 
         className="absolute w-80 h-80 rounded-full bg-neon-blue/10 blur-3xl" 
         style={{ 
-          bottom: `calc(30% + ${mousePosition.y * -40}px)`, 
-          left: `calc(25% + ${mousePosition.x * 40}px)`,
-          transition: 'bottom 0.3s ease-out, left 0.3s ease-out'
+          bottom: `calc(30% + ${mousePosition.y * -30}px)`, 
+          left: `calc(25% + ${mousePosition.x * 30}px)`,
+          transition: 'bottom 0.5s ease-out, left 0.5s ease-out'
         }}
       ></div>
       <div 
         className="absolute w-72 h-72 rounded-full bg-neon-green/10 blur-3xl"
         style={{ 
-          top: `calc(60% + ${mousePosition.y * 40}px)`, 
-          left: `calc(15% + ${mousePosition.x * -40}px)`,
-          transition: 'top 0.3s ease-out, left 0.3s ease-out'
+          top: `calc(60% + ${mousePosition.y * 30}px)`, 
+          left: `calc(15% + ${mousePosition.x * -30}px)`,
+          transition: 'top 0.5s ease-out, left 0.5s ease-out'
         }}
       ></div>
       
       <div className="container mx-auto px-4 py-16 max-w-6xl relative z-10">
         <ServicesHeader />
         
-        {/* Service Category Tabs - Enhanced with 3D glass effect */}
+        {/* Service Category Tabs with proper content */}
         <div className={`transition-all duration-700 mb-12 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <Tabs defaultValue="all" value={activeTab} onValueChange={setActiveTab} className="w-full">
             <div className="flex justify-center mb-8">
@@ -105,26 +104,11 @@ const Services = () => {
             </div>
             
             <TabsContent value="all" className="mt-0">
-              <div className="glass-card rounded-xl p-6 mb-8 border border-white/20 backdrop-blur-md animate-fade-in">
-                <h2 className="text-2xl font-semibold mb-2 text-white">All AI Services</h2>
-                <p className="text-gray-300">Explore our complete range of AI services designed to transform your business</p>
-                <Separator className="my-4 bg-white/20" />
-              </div>
               <ServiceList services={services} />
             </TabsContent>
             
             {Object.entries(serviceCategories).map(([category, categoryServices]) => (
               <TabsContent key={category} value={category} className="mt-0">
-                <div className="glass-card rounded-xl p-6 mb-8 border border-white/20 backdrop-blur-md animate-fade-in">
-                  <h2 className="text-2xl font-semibold mb-2 text-white">{category}</h2>
-                  <p className="text-gray-300">
-                    {category === "AI Strategy" && "Strategic AI planning and consultation to guide your digital transformation"}
-                    {category === "AI Development" && "Custom AI development solutions to solve your specific business challenges"}
-                    {category === "AI Integration" && "Seamless integration of AI technologies into your existing systems"}
-                    {category === "Specialized Solutions" && "Industry-specific AI applications tailored to your unique needs"}
-                  </p>
-                  <Separator className="my-4 bg-white/20" />
-                </div>
                 <ServiceList services={categoryServices} />
               </TabsContent>
             ))}

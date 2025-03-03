@@ -1,6 +1,6 @@
 
 import React, { useRef, useState } from 'react';
-import { Sparkles, Brain, ArrowRight } from 'lucide-react';
+import { Sparkles, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const ServicesHeader = () => {
@@ -8,7 +8,7 @@ const ServicesHeader = () => {
   const [magneticPosition, setMagneticPosition] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
 
-  // Enhanced magnetic button effect
+  // Enhanced magnetic button effect with stronger pull
   const handleButtonMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
     const button = e.currentTarget;
     const rect = button.getBoundingClientRect();
@@ -16,8 +16,8 @@ const ServicesHeader = () => {
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;
     
-    // Stronger magnetic pull effect (45px movement for enhanced effect)
-    const strength = 45;
+    // Stronger magnetic pull effect (50px movement for enhanced effect)
+    const strength = 50;
     const magneticX = (x / rect.width) * strength;
     const magneticY = (y / rect.height) * strength;
     

@@ -10,7 +10,7 @@ interface ServiceExamplesProps {
 
 const ServiceExamples = ({ examples }: ServiceExamplesProps) => {
   return (
-    <div className="mt-4 space-y-4 flex-grow">
+    <div className="mt-2 space-y-4 flex-grow">
       <h3 className="font-medium text-lg text-white/90">Example Applications:</h3>
       <div className="space-y-4 bg-white/5 rounded-lg p-4 backdrop-blur-sm border border-white/10">
         {examples.map((example, index) => (

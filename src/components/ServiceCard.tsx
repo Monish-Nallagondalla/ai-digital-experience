@@ -33,8 +33,8 @@ const ServiceCard = ({ icon, title, description, color, index, isVisible }: Serv
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;
     
-    // Enhanced magnetic pull effect (max 35px movement - increased from 25px)
-    const strength = 35;
+    // Enhanced magnetic pull effect (increased to 40px movement)
+    const strength = 40;
     const magneticX = (x / rect.width) * strength;
     const magneticY = (y / rect.height) * strength;
     
@@ -45,6 +45,9 @@ const ServiceCard = ({ icon, title, description, color, index, isVisible }: Serv
     setMagneticPosition({ x: 0, y: 0 });
     setIsHovered(false);
   };
+
+  // Special handling for role titles to avoid green background
+  const isSpecialRole = title === "Lead ML Engineer" || title === "AI Solutions Architect";
 
   return (
     <div 
@@ -58,8 +61,6 @@ const ServiceCard = ({ icon, title, description, color, index, isVisible }: Serv
       style={{ 
         transitionDelay: `${index * 100}ms`,
         transform: isHovered ? `translate3d(${magneticPosition.x}px, ${magneticPosition.y}px, 0) scale(1.02)` : 'translate3d(0, 0, 0)',
-        transformStyle: "preserve-3d", // Added for 3D effect
-        perspective: "1000px", // Added for 3D effect
         boxShadow: isHovered ? `0 10px 30px rgba(0, 0, 0, 0.3), 0 0 15px rgba(${color === 'orange' ? '255, 95, 31' : color === 'blue' ? '0, 255, 255' : '0, 255, 127'}, 0.3)` : ''
       }}
       onMouseMove={handleMouseMove}
@@ -68,7 +69,7 @@ const ServiceCard = ({ icon, title, description, color, index, isVisible }: Serv
     >
       <div className={cn(
         "p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4", 
-        `bg-${neonColor}/10 group-hover:bg-${neonColor}/25 transition-all duration-300`
+        isSpecialRole ? `text-${neonColor}` : `bg-${neonColor}/10 group-hover:bg-${neonColor}/25 transition-all duration-300`
       )}>
         {icon}
       </div>
