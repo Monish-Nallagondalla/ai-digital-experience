@@ -15,7 +15,7 @@ const ServicesHeader = () => {
       
       <div className="mx-auto max-w-3xl relative">
         <p className="text-xl text-muted-foreground mb-8">
-          We offer a comprehensive range of AI services designed to help businesses like yours leverage the power of artificial intelligence. Here's what we can do for you:
+          We offer a comprehensive range of AI services designed to help businesses like yours leverage the power of artificial intelligence. Explore our categories below to find the right solution for your needs.
         </p>
         
         <Link 

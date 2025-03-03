@@ -12,7 +12,6 @@ const CustomCursor = () => {
   const cursorDotRef = useRef<HTMLDivElement>(null);
   const cursorOutlineRef = useRef<HTMLDivElement>(null);
   const lastUpdateTime = useRef<number>(0);
-  const orbitalParticlesRef = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
     const addEventListeners = () => {
@@ -49,26 +48,16 @@ const CustomCursor = () => {
         cursorOutlineRef.current.style.top = `${e.clientY}px`;
       }
       
-      // Update orbital positions
-      orbitalParticlesRef.current.forEach((particle, index) => {
-        if (particle) {
-          const angle = (index / orbitalParticlesRef.current.length) * Math.PI * 2;
-          const distance = 15; // Orbital radius
-          particle.style.left = `${e.clientX}px`;
-          particle.style.top = `${e.clientY}px`;
-          particle.style.animationDelay = `${-index * 0.2}s`;
-        }
-      });
-      
+      // Update trail positions (fewer trails with longer delay for subtler effect)
       setTimeout(() => {
         setTrailPositions(prev => {
           const newTrail = [...prev, newPosition];
-          if (newTrail.length > 20) { // More trail particles
-            return newTrail.slice(newTrail.length - 20);
+          if (newTrail.length > 10) { // Reduced number of trail particles
+            return newTrail.slice(newTrail.length - 10);
           }
           return newTrail;
         });
-      }, 5); // Faster trail update
+      }, 15); // Slower trail update for more subtle effect
     };
 
     const onMouseDown = () => {
@@ -115,23 +104,6 @@ const CustomCursor = () => {
     };
   }, []);
 
-  // Create refs for orbital particles
-  useEffect(() => {
-    orbitalParticlesRef.current = Array(4).fill(null).map(() => document.createElement('div'));
-    orbitalParticlesRef.current.forEach(particle => {
-      particle.className = 'custom-cursor cursor-orbital';
-      document.body.appendChild(particle);
-    });
-
-    return () => {
-      orbitalParticlesRef.current.forEach(particle => {
-        if (particle && document.body.contains(particle)) {
-          document.body.removeChild(particle);
-        }
-      });
-    };
-  }, []);
-
   const cursorDotClasses = `custom-cursor cursor-dot ${
     clicked ? "scale-50" : ""
   } ${hidden ? "opacity-0" : "opacity-100"} ${
@@ -153,11 +125,11 @@ const CustomCursor = () => {
           style={{
             left: `${pos.x}px`,
             top: `${pos.y}px`,
-            opacity: (index + 1) / trailPositions.length * 0.7,
-            transform: `scale(${0.1 + (index / trailPositions.length) * 0.8})`,
-            backgroundColor: index % 3 === 0 ? 'rgba(255, 95, 31, 0.85)' : 
-                            index % 3 === 1 ? 'rgba(0, 255, 127, 0.85)' : 'rgba(0, 255, 255, 0.85)',
-            filter: `blur(${Math.max(0, (trailPositions.length - index) / 5)}px)`,
+            opacity: (index + 1) / trailPositions.length * 0.5, // Reduced opacity
+            transform: `scale(${0.1 + (index / trailPositions.length) * 0.6})`, // Smaller scale
+            backgroundColor: index % 3 === 0 ? 'rgba(255, 95, 31, 0.7)' : 
+                            index % 3 === 1 ? 'rgba(0, 255, 127, 0.7)' : 'rgba(0, 255, 255, 0.7)',
+            filter: `blur(${Math.max(0, (trailPositions.length - index) / 8)}px)`,
             transition: 'opacity 0.12s ease, transform 0.12s ease'
           }}
         />

@@ -33,8 +33,8 @@ const ServiceCard = ({ icon, title, description, color, index, isVisible }: Serv
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;
     
-    // Create a stronger magnetic pull effect (max 15px movement)
-    const strength = 15;
+    // Enhanced magnetic pull effect (max 25px movement)
+    const strength = 25;
     const magneticX = (x / rect.width) * strength;
     const magneticY = (y / rect.height) * strength;
     
