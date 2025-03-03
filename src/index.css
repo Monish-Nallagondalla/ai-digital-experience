@@ -44,7 +44,7 @@
     --sidebar-border: 220 13% 25%;
     --sidebar-ring: 217.2 91.2% 59.8%;
     
-    --cursor-size: 10px; /* Reduced cursor size */
+    --cursor-size: 8px; /* Reduced cursor size */
   }
 }
 
@@ -78,36 +78,34 @@
     border-radius: 50%;
     transform: translate(-50%, -50%);
     transition: transform 0.08s ease-out, background-color 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.95), 0 0 40px rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.75), 0 0 25px rgba(255, 255, 255, 0.25);
     animation: cursor-pulse 2s infinite;
   }
   
   .cursor-outline {
-    width: calc(var(--cursor-size) * 4);
-    height: calc(var(--cursor-size) * 4);
+    width: calc(var(--cursor-size) * 3.5);
+    height: calc(var(--cursor-size) * 3.5);
     background-color: transparent;
-    border: 2px solid rgba(255, 255, 255, 0.95);
+    border: 1.5px solid rgba(255, 255, 255, 0.85);
     border-radius: 50%;
     transform: translate(-50%, -50%);
     transition: width 0.2s ease, height 0.2s ease, transform 0.08s ease, border-color 0.2s ease, box-shadow 0.2s ease;
   }
   
   .cursor-trail {
-    width: calc(var(--cursor-size) * 1.2); /* Reduced trail size */
-    height: calc(var(--cursor-size) * 1.2); 
-    background-color: rgba(255, 255, 255, 0.6); /* Reduced opacity */
+    width: calc(var(--cursor-size) * 0.8); /* Significantly reduced trail size */
+    height: calc(var(--cursor-size) * 0.8); 
+    background-color: rgba(255, 255, 255, 0.4); /* Reduced opacity */
     border-radius: 50%;
     transform: translate(-50%, -50%);
     transition: opacity 0.12s ease;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.4); /* Reduced glow */
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.2); /* Reduced glow */
   }
-  
-  /* Removed orbital animation completely as requested */
   
   a:hover ~ .cursor-outline,
   .interactive:hover ~ .cursor-outline {
-    width: calc(var(--cursor-size) * 6);
-    height: calc(var(--cursor-size) * 6);
+    width: calc(var(--cursor-size) * 5);
+    height: calc(var(--cursor-size) * 5);
     background-color: rgba(255, 95, 31, 0.18);
     border-color: rgba(255, 95, 31, 0.9);
     animation: pulse-glow 1s infinite;
@@ -118,8 +116,8 @@
   .neon-button-orange:hover ~ .cursor-outline,
   .neon-button-blue:hover ~ .cursor-outline,
   .neon-button-green:hover ~ .cursor-outline {
-    width: calc(var(--cursor-size) * 7);
-    height: calc(var(--cursor-size) * 7);
+    width: calc(var(--cursor-size) * 6);
+    height: calc(var(--cursor-size) * 6);
     background-color: rgba(0, 255, 255, 0.18);
     border-color: rgba(0, 255, 255, 0.9);
     animation: pulse-glow 1s infinite;
@@ -371,10 +369,10 @@
 
 /* Enhanced grid visibility in dark areas */
 .bg-grid-pattern {
-  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px), 
-                    linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.15) 1px, transparent 1px), 
+                    linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 1px, transparent 1px);
   background-size: 30px 30px;
-  opacity: 0.35 !important; /* Increased opacity for better visibility */
+  opacity: 0.5 !important; /* Increased opacity for better visibility */
 }
 
 /* Improve background blending in CTA section */
@@ -396,7 +394,7 @@
 
 @media (max-width: 768px) {
   :root {
-    --cursor-size: 8px;
+    --cursor-size: 6px;
   }
   
   .neon-button {

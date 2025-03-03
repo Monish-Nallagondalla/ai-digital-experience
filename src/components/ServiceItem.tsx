@@ -11,16 +11,20 @@ interface ServiceItemProps {
 
 const ServiceItem = ({ service, index }: ServiceItemProps) => {
   return (
-    <div className="flex flex-col h-full">
-      <ServiceCard
-        title={service.title}
-        description={service.description}
-        icon={service.icon}
-        color={service.color}
-        index={index}
-        isVisible={true}
-      />
-      <ServiceExamples examples={service.examples} />
+    <div className="glass-card rounded-xl overflow-hidden flex flex-col h-full">
+      <div className="p-6 pb-2">
+        <ServiceCard
+          title={service.title}
+          description={service.description}
+          icon={service.icon}
+          color={service.color}
+          index={index}
+          isVisible={true}
+        />
+      </div>
+      <div className="p-6 pt-0 flex-grow">
+        <ServiceExamples examples={service.examples} />
+      </div>
     </div>
   );
 };

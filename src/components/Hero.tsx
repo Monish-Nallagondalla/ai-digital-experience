@@ -9,7 +9,6 @@ const Hero = () => {
   const fullText = "Apply AI, Amplify Results.Today";
   const [typingComplete, setTypingComplete] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [magneticPosition, setMagneticPosition] = useState({ x: 0, y: 0 });
   
   // CTA button refs for magnetic effect
   const primaryButtonRef = useRef<HTMLAnchorElement>(null);
@@ -17,6 +16,7 @@ const Hero = () => {
   
   // Heading ref for 3D effect
   const headingRef = useRef<HTMLHeadingElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   // Animation for fade-in
   useEffect(() => {
@@ -35,28 +35,38 @@ const Hero = () => {
     }
   }, [typedText, fullText]);
 
-  // Mouse move effect for floating elements and 3D headings
+  // Optimized mouse move effect for floating elements and 3D headings
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({
-        x: e.clientX,
-        y: e.clientY
+      // Use requestAnimationFrame for smoother performance
+      requestAnimationFrame(() => {
+        // Only calculate position if container is visible
+        if (containerRef.current) {
+          const rect = containerRef.current.getBoundingClientRect();
+          const mouseX = e.clientX - rect.left;
+          const mouseY = e.clientY - rect.top;
+          
+          // Calculate relative position (centered at 0,0)
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          
+          setMousePosition({
+            x: (mouseX - centerX) / centerX,
+            y: (mouseY - centerY) / centerY
+          });
+          
+          // 3D effect for heading with reduced calculation intensity
+          if (headingRef.current) {
+            const rotateX = (mouseY - centerY) / 30;
+            const rotateY = (mouseX - centerX) / 30;
+            
+            headingRef.current.style.transform = `perspective(1000px) rotateX(${-rotateX * 0.8}deg) rotateY(${rotateY * 0.8}deg)`;
+          }
+        }
       });
-      
-      // 3D effect for heading
-      if (headingRef.current) {
-        const rect = headingRef.current.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        
-        const moveX = (e.clientX - centerX) / 30;
-        const moveY = (e.clientY - centerY) / 30;
-        
-        headingRef.current.style.transform = `perspective(1000px) rotateX(${-moveY}deg) rotateY(${moveX}deg)`;
-      }
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
@@ -68,8 +78,8 @@ const Hero = () => {
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;
     
-    // Create a stronger magnetic pull effect (max 35px movement - increased from 25px)
-    const strength = 35;
+    // Stronger magnetic pull effect (max 40px movement)
+    const strength = 40;
     const magneticX = (x / rect.width) * strength;
     const magneticY = (y / rect.height) * strength;
     
@@ -82,35 +92,39 @@ const Hero = () => {
   };
 
   return (
-    <div className="relative overflow-hidden bg-black text-white min-h-screen grid-bg flex items-center justify-center">
-      {/* Enhanced Background Gradient - More vibrant and visible */}
+    <div ref={containerRef} className="relative overflow-hidden bg-black text-white min-h-screen grid-bg flex items-center justify-center">
+      {/* Enhanced Background Gradient with improved blending */}
       <div className="absolute inset-0 bg-gradient-radial from-black/60 via-black/80 to-black opacity-90"></div>
       
-      {/* Enhanced Grid Pattern - More visible */}
+      {/* Enhanced Grid Pattern with better visibility */}
       <div className="absolute inset-0 bg-grid-pattern opacity-30"></div>
       
-      {/* Floating Elements with enhanced glow effect */}
+      {/* Floating Elements with enhanced 3D movement */}
       <div 
-        className="absolute w-64 h-64 rounded-full bg-neon-orange/10 blur-3xl animate-float"
+        className="absolute w-64 h-64 rounded-full bg-neon-orange/10 blur-3xl"
         style={{ 
-          top: `calc(25% + ${mousePosition.y * 0.02}px)`, 
-          left: `calc(25% + ${mousePosition.x * 0.02}px)` 
+          top: `calc(25% + ${mousePosition.y * 15}px)`, 
+          left: `calc(25% + ${mousePosition.x * 15}px)`,
+          transform: `translateZ(${50 * Math.abs(mousePosition.x)}px)`,
+          transition: 'transform 0.1s ease-out'
         }}
       ></div>
       <div 
-        className="absolute w-80 h-80 rounded-full bg-neon-blue/10 blur-3xl animate-float" 
+        className="absolute w-80 h-80 rounded-full bg-neon-blue/10 blur-3xl" 
         style={{ 
-          bottom: `calc(33% + ${mousePosition.y * -0.01}px)`, 
-          right: `calc(25% + ${mousePosition.x * -0.01}px)`,
-          animationDelay: "-3s"
+          bottom: `calc(33% + ${mousePosition.y * -15}px)`, 
+          right: `calc(25% + ${mousePosition.x * -15}px)`,
+          transform: `translateZ(${50 * Math.abs(mousePosition.y)}px)`,
+          transition: 'transform 0.1s ease-out'
         }}
       ></div>
       <div 
-        className="absolute w-72 h-72 rounded-full bg-neon-green/10 blur-3xl animate-float"
+        className="absolute w-72 h-72 rounded-full bg-neon-green/10 blur-3xl"
         style={{ 
-          top: `calc(50% + ${mousePosition.y * 0.015}px)`, 
-          right: `calc(33% + ${mousePosition.x * 0.015}px)`,
-          animationDelay: "-1.5s"
+          top: `calc(50% + ${mousePosition.y * 15}px)`, 
+          right: `calc(33% + ${mousePosition.x * 15}px)`,
+          transform: `translateZ(${50 * Math.abs(mousePosition.x + mousePosition.y)}px)`,
+          transition: 'transform 0.1s ease-out'
         }}
       ></div>
       
@@ -125,7 +139,7 @@ const Hero = () => {
             </p>
           </div>
           
-          {/* Main Heading - Fixed "g" cutoff and added 3D effect */}
+          {/* Main Heading - Fixed "g" cutoff with proper padding and 3D effect */}
           <h1 
             ref={headingRef}
             className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-8 transition-all duration-700 transform-gpu ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
@@ -133,8 +147,8 @@ const Hero = () => {
               transitionDelay: "200ms",
               transformStyle: "preserve-3d",
               perspective: "1000px",
-              paddingBottom: "8px", // Added padding to prevent text cutoff
-              paddingTop: "8px"     // Added padding to prevent text cutoff
+              paddingBottom: "12px", // Increased padding to prevent text cutoff
+              paddingTop: "12px"     // Increased padding to prevent text cutoff
             }}
           >
             <div className="block shimmer-text mb-4 md:mb-6 bg-gradient-to-r from-neon-orange via-neon-blue to-neon-green bg-clip-text text-transparent">
@@ -156,7 +170,7 @@ const Hero = () => {
             </h2>
           </div>
           
-          {/* Enhanced Description - Improved "what we can do" perspective & spacing */}
+          {/* Enhanced Description */}
           <p 
             className={`text-gray-400 text-lg max-w-2xl mx-auto mb-10 md:mb-14 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
             style={{ transitionDelay: "600ms" }}
@@ -194,7 +208,7 @@ const Hero = () => {
           </div>
         </div>
         
-        {/* Feature Cards with improved spacing, grid visibility and consistent "what we can do" language */}
+        {/* Feature Cards with 3D hover effects */}
         <div 
           className={`grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mt-20 md:mt-28 max-w-5xl mx-auto transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
           style={{ transitionDelay: "1000ms" }}
