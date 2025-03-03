@@ -1,5 +1,5 @@
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Brain, Cpu, Zap } from "lucide-react";
 
@@ -8,16 +8,7 @@ const Hero = () => {
   const [typedText, setTypedText] = useState("");
   const fullText = "Apply AI, Amplify Results.Today";
   const [typingComplete, setTypingComplete] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   
-  // CTA button refs for magnetic effect
-  const primaryButtonRef = useRef<HTMLAnchorElement>(null);
-  const secondaryButtonRef = useRef<HTMLAnchorElement>(null);
-  
-  // Heading ref for 3D effect
-  const headingRef = useRef<HTMLHeadingElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-
   // Animation for fade-in
   useEffect(() => {
     setIsVisible(true);
@@ -35,102 +26,22 @@ const Hero = () => {
     }
   }, [typedText, fullText]);
 
-  // Optimized mouse move effect for floating elements and 3D headings
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      // Use requestAnimationFrame for smoother performance
-      requestAnimationFrame(() => {
-        // Only calculate position if container is visible
-        if (containerRef.current) {
-          const rect = containerRef.current.getBoundingClientRect();
-          const mouseX = e.clientX - rect.left;
-          const mouseY = e.clientY - rect.top;
-          
-          // Calculate relative position (centered at 0,0)
-          const centerX = rect.width / 2;
-          const centerY = rect.height / 2;
-          
-          setMousePosition({
-            x: (mouseX - centerX) / centerX,
-            y: (mouseY - centerY) / centerY
-          });
-          
-          // 3D effect for heading with reduced calculation intensity
-          if (headingRef.current) {
-            const rotateX = (mouseY - centerY) / 30;
-            const rotateY = (mouseX - centerX) / 30;
-            
-            headingRef.current.style.transform = `perspective(1000px) rotateX(${-rotateX * 0.8}deg) rotateY(${rotateY * 0.8}deg)`;
-          }
-        }
-      });
-    };
-
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
-  // Enhanced magnetic button effect
-  const handleButtonMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    const button = e.currentTarget;
-    const rect = button.getBoundingClientRect();
-    
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
-    
-    // Stronger magnetic pull effect (max 40px movement)
-    const strength = 40;
-    const magneticX = (x / rect.width) * strength;
-    const magneticY = (y / rect.height) * strength;
-    
-    button.style.transform = `translate(${magneticX}px, ${magneticY}px)`;
-  };
-
-  const handleButtonMouseLeave = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    const button = e.currentTarget;
-    button.style.transform = 'translate(0px, 0px)';
-  };
-
   return (
-    <div ref={containerRef} className="relative overflow-hidden bg-black text-white min-h-screen grid-bg flex items-center justify-center">
-      {/* Enhanced Background Gradient with improved blending */}
-      <div className="absolute inset-0 bg-gradient-radial from-black/60 via-black/80 to-black opacity-90"></div>
+    <div className="relative overflow-hidden bg-black text-white min-h-screen flex items-center justify-center">
+      {/* Clean Background Gradient */}
+      <div className="absolute inset-0 bg-gradient-radial from-black via-black/90 to-black opacity-90"></div>
       
-      {/* Enhanced Grid Pattern with better visibility */}
+      {/* Clean Grid Pattern with better visibility */}
       <div className="absolute inset-0 bg-grid-pattern opacity-30"></div>
       
-      {/* Floating Elements with enhanced 3D movement */}
-      <div 
-        className="absolute w-64 h-64 rounded-full bg-neon-orange/10 blur-3xl"
-        style={{ 
-          top: `calc(25% + ${mousePosition.y * 15}px)`, 
-          left: `calc(25% + ${mousePosition.x * 15}px)`,
-          transform: `translateZ(${50 * Math.abs(mousePosition.x)}px)`,
-          transition: 'transform 0.1s ease-out'
-        }}
-      ></div>
-      <div 
-        className="absolute w-80 h-80 rounded-full bg-neon-blue/10 blur-3xl" 
-        style={{ 
-          bottom: `calc(33% + ${mousePosition.y * -15}px)`, 
-          right: `calc(25% + ${mousePosition.x * -15}px)`,
-          transform: `translateZ(${50 * Math.abs(mousePosition.y)}px)`,
-          transition: 'transform 0.1s ease-out'
-        }}
-      ></div>
-      <div 
-        className="absolute w-72 h-72 rounded-full bg-neon-green/10 blur-3xl"
-        style={{ 
-          top: `calc(50% + ${mousePosition.y * 15}px)`, 
-          right: `calc(33% + ${mousePosition.x * 15}px)`,
-          transform: `translateZ(${50 * Math.abs(mousePosition.x + mousePosition.y)}px)`,
-          transition: 'transform 0.1s ease-out'
-        }}
-      ></div>
+      {/* Simple Accent Orbs */}
+      <div className="absolute w-64 h-64 rounded-full bg-neon-orange/10 blur-3xl top-1/4 left-1/4"></div>
+      <div className="absolute w-80 h-80 rounded-full bg-neon-blue/10 blur-3xl bottom-1/3 right-1/4"></div>
+      <div className="absolute w-72 h-72 rounded-full bg-neon-green/10 blur-3xl top-1/2 right-1/3"></div>
       
       <div className="container mx-auto px-4 py-16 md:py-24 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Badge - Improved vertical spacing */}
+          {/* Badge */}
           <div 
             className={`inline-block px-4 py-1.5 mb-6 md:mb-8 bg-white/5 border border-white/10 rounded-full backdrop-blur-sm transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
           >
@@ -139,17 +50,10 @@ const Hero = () => {
             </p>
           </div>
           
-          {/* Main Heading - Fixed "g" cutoff with proper padding and 3D effect */}
+          {/* Main Heading - No 3D effect */}
           <h1 
-            ref={headingRef}
-            className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-8 transition-all duration-700 transform-gpu ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-            style={{ 
-              transitionDelay: "200ms",
-              transformStyle: "preserve-3d",
-              perspective: "1000px",
-              paddingBottom: "12px", // Increased padding to prevent text cutoff
-              paddingTop: "12px"     // Increased padding to prevent text cutoff
-            }}
+            className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-8 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+            style={{ transitionDelay: "200ms" }}
           >
             <div className="block shimmer-text mb-4 md:mb-6 bg-gradient-to-r from-neon-orange via-neon-blue to-neon-green bg-clip-text text-transparent">
               Transforming Industries
@@ -178,17 +82,14 @@ const Hero = () => {
             We can help your business unlock the full potential of AI. From intelligent automation to predictive analytics, we deliver cutting-edge AI solutions that transform how you operate, innovate, and compete in today's market.
           </p>
           
-          {/* CTA Buttons with enhanced magnetic effect */}
+          {/* CTA Buttons - No magnetic effect */}
           <div 
             className={`flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
             style={{ transitionDelay: "800ms" }}
           >
             <Link 
               to="/contact" 
-              ref={primaryButtonRef}
-              className="magnetic-button neon-button-orange w-full sm:w-auto px-8 py-3 shadow-neon-orange"
-              onMouseMove={handleButtonMouseMove}
-              onMouseLeave={handleButtonMouseLeave}
+              className="neon-button-orange w-full sm:w-auto px-8 py-3 shadow-neon-orange"
             >
               <span className="relative z-10 flex items-center justify-center">
                 Book a Consultation <ArrowRight className="ml-2 h-4 w-4" />
@@ -196,10 +97,7 @@ const Hero = () => {
             </Link>
             <Link 
               to="/services" 
-              ref={secondaryButtonRef}
-              className="magnetic-button neon-button-blue w-full sm:w-auto px-8 py-3 shadow-neon-blue"
-              onMouseMove={handleButtonMouseMove}
-              onMouseLeave={handleButtonMouseLeave}
+              className="neon-button-blue w-full sm:w-auto px-8 py-3 shadow-neon-blue"
             >
               <span className="relative z-10 flex items-center justify-center">
                 Explore Our Solutions
@@ -208,14 +106,13 @@ const Hero = () => {
           </div>
         </div>
         
-        {/* Feature Cards with 3D hover effects */}
+        {/* Feature Cards - simple hover effect, no 3D */}
         <div 
           className={`grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mt-20 md:mt-28 max-w-5xl mx-auto transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
           style={{ transitionDelay: "1000ms" }}
         >
-          {/* Card 1 - Enhanced with 3D hover effect */}
-          <div className="glass-card p-6 md:p-8 rounded-xl backdrop-blur-md border border-white/20 hover:border-neon-orange/40 transition-all duration-300 hover:translate-y-[-5px] h-full flex flex-col group transform-gpu" 
-               style={{ transformStyle: "preserve-3d" }}>
+          {/* Card 1 */}
+          <div className="glass-card p-6 md:p-8 rounded-xl backdrop-blur-md border border-white/20 hover:border-neon-orange/40 transition-all duration-300 hover:translate-y-[-5px] h-full flex flex-col group">
             <div className="bg-neon-orange/15 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-5 group-hover:bg-neon-orange/25 transition-all duration-300">
               <Brain className="text-neon-orange h-6 w-6" />
             </div>
@@ -223,9 +120,8 @@ const Hero = () => {
             <p className="text-gray-400">We can develop a comprehensive AI roadmap tailored to your specific business challenges and growth objectives.</p>
           </div>
           
-          {/* Card 2 - Enhanced with 3D hover effect */}
-          <div className="glass-card p-6 md:p-8 rounded-xl backdrop-blur-md border border-white/20 hover:border-neon-blue/40 transition-all duration-300 hover:translate-y-[-5px] h-full flex flex-col group transform-gpu"
-               style={{ transformStyle: "preserve-3d" }}>
+          {/* Card 2 */}
+          <div className="glass-card p-6 md:p-8 rounded-xl backdrop-blur-md border border-white/20 hover:border-neon-blue/40 transition-all duration-300 hover:translate-y-[-5px] h-full flex flex-col group">
             <div className="bg-neon-blue/15 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-5 group-hover:bg-neon-blue/25 transition-all duration-300">
               <Cpu className="text-neon-blue h-6 w-6" />
             </div>
@@ -233,9 +129,8 @@ const Hero = () => {
             <p className="text-gray-400">We can create custom AI solutions that automate complex processes, enhance decision-making, and drive measurable efficiency gains.</p>
           </div>
           
-          {/* Card 3 - Enhanced with 3D hover effect */}
-          <div className="glass-card p-6 md:p-8 rounded-xl backdrop-blur-md border border-white/20 hover:border-neon-green/40 transition-all duration-300 hover:translate-y-[-5px] h-full flex flex-col group transform-gpu"
-               style={{ transformStyle: "preserve-3d" }}>
+          {/* Card 3 */}
+          <div className="glass-card p-6 md:p-8 rounded-xl backdrop-blur-md border border-white/20 hover:border-neon-green/40 transition-all duration-300 hover:translate-y-[-5px] h-full flex flex-col group">
             <div className="bg-neon-green/15 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-5 group-hover:bg-neon-green/25 transition-all duration-300">
               <Zap className="text-neon-green h-6 w-6" />
             </div>

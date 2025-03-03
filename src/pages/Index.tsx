@@ -155,7 +155,7 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Services Section - Enhanced with more compelling content */}
+      {/* Services Section - Fixed gradient transition */}
       <section 
         ref={servicesRef}
         className="py-24 bg-gradient-to-b from-gray-900 to-black"
@@ -208,19 +208,19 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Improved Testimonials Section with perfect blending to CTA section */}
+      {/* Improved Testimonials Section with fixed gradient transition */}
       <section 
         ref={testimonialsRef}
         className="py-24 relative overflow-hidden bg-transparent"
       >
         {/* Enhanced gradient overlays for perfect blending */}
         <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900/70 to-gray-900/50 opacity-100"></div>
-        <div className="absolute inset-0 bg-grid-pattern bg-[length:20px_20px] opacity-10"></div>
+        <div className="absolute inset-0 bg-grid-pattern bg-[length:20px_20px] opacity-20"></div>
         
-        {/* Enhanced floating orbs that follow cursor */}
-        <div className="absolute top-20 right-[20%] w-80 h-80 rounded-full bg-neon-blue/5 blur-3xl animate-float"></div>
-        <div className="absolute bottom-40 left-[30%] w-96 h-96 rounded-full bg-neon-orange/5 blur-3xl animate-float" style={{ animationDelay: "-3s" }}></div>
-        <div className="absolute top-1/3 left-[15%] w-64 h-64 rounded-full bg-neon-green/5 blur-3xl animate-float" style={{ animationDelay: "-1.5s" }}></div>
+        {/* Simple accent orbs with no animation */}
+        <div className="absolute top-20 right-[20%] w-80 h-80 rounded-full bg-neon-blue/5 blur-3xl"></div>
+        <div className="absolute bottom-40 left-[30%] w-96 h-96 rounded-full bg-neon-orange/5 blur-3xl"></div>
+        <div className="absolute top-1/3 left-[15%] w-64 h-64 rounded-full bg-neon-green/5 blur-3xl"></div>
         
         <div className="container mx-auto px-4 relative z-10">
           <div 
@@ -313,10 +313,7 @@ const Index = () => {
       >
         {/* Background Elements for seamless blending */}
         <div className="absolute inset-0 bg-gradient-to-b from-gray-900/50 via-gray-900/80 to-black opacity-100"></div>
-        <div className="absolute inset-0 bg-grid-pattern bg-[length:20px_20px] opacity-10"></div>
-        <div className="absolute inset-0 opacity-20 overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-full bg-glow-conic filter blur-3xl opacity-20 animate-gradient-x"></div>
-        </div>
+        <div className="absolute inset-0 bg-grid-pattern bg-[length:20px_20px] opacity-20"></div>
         
         <div className="container mx-auto px-4 relative z-10">
           <div 

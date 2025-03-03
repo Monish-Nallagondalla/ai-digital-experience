@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -44,7 +43,7 @@
     --sidebar-border: 220 13% 25%;
     --sidebar-ring: 217.2 91.2% 59.8%;
     
-    --cursor-size: 12px; /* Normal cursor size */
+    --cursor-size: 16px; /* Restored normal cursor size */
   }
 }
 
@@ -356,20 +355,19 @@
   transition: background-color 0.5s ease;
 }
 
-/* Fix 3D elements for interactive landing page */
-.glass-card, .magnetic-button-enhanced, .neon-button {
-  transform-style: preserve-3d;
+/* Remove 3D elements for better performance */
+.glass-card, .neon-button {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .glass-card:hover {
-  transform: perspective(1000px) rotateX(2deg) rotateY(2deg) scale(1.02);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  transform: translateY(-5px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.3);
 }
 
 @media (max-width: 768px) {
   :root {
-    --cursor-size: 8px;
+    --cursor-size: 12px;
   }
   
   .neon-button {
