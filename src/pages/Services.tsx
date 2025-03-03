@@ -5,16 +5,19 @@ import ServiceList from '../components/ServiceList';
 import { services } from '../data/services';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-// Group services by category
+// Group services by category according to the new structure
 const serviceCategories = {
-  "AI Strategy": services.filter(s => 
-    ["AI Strategy", "AI Consultation", "AI Roadmapping", "Digital Transformation"].includes(s.title)),
-  "AI Development": services.filter(s => 
-    ["AI Development", "Machine Learning", "Computer Vision", "Natural Language Processing", "Predictive Analytics"].includes(s.title)),
-  "AI Integration": services.filter(s => 
-    ["AI Integration", "Data Pipeline Development", "API Development", "Custom AI Solutions"].includes(s.title)),
-  "Specialized Solutions": services.filter(s => 
-    ["Conversational AI", "AI-Powered Customer Support", "Process Automation", "AI for Healthcare", "AI for Finance"].includes(s.title)),
+  "AI Strategy & Advisory": services.filter(s => 
+    ["AI Strategy Consulting", "AI Ethics & Governance", "AI Education & Training", "Data Science Consulting"].includes(s.title)),
+  
+  "AI Development & Implementation": services.filter(s => 
+    ["Custom AI Application Development", "Natural Language Processing Solutions", "Computer Vision Implementation", "Predictive Analytics Implementation", "Generative AI Solutions"].includes(s.title)),
+  
+  "AI Operations & Integration": services.filter(s => 
+    ["Machine Learning Operations (MLOps)", "AI Integration Services", "Data Engineering & Infrastructure", "AI Model Training & Fine-tuning"].includes(s.title)),
+  
+  "AI-Powered Business Solutions": services.filter(s => 
+    ["AI-Enhanced Customer Experience", "AI-Powered Process Automation", "AI-Driven Business Intelligence", "Comprehensive Tech Solutions with AI"].includes(s.title)),
 };
 
 const Services = () => {
@@ -46,7 +49,7 @@ const Services = () => {
   return (
     <div ref={containerRef} className="relative overflow-hidden bg-black min-h-screen">
       {/* Enhanced Grid Background with increased visibility */}
-      <div className="absolute inset-0 bg-grid-pattern bg-[length:30px_30px] opacity-50"></div>
+      <div className="absolute inset-0 bg-grid-pattern bg-[length:30px_30px] opacity-40"></div>
       
       {/* Enhanced Gradient Overlay with smooth transitions */}
       <div className="absolute inset-0 bg-gradient-radial from-black/60 via-black/80 to-black opacity-90"></div>

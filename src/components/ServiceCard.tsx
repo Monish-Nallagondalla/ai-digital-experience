@@ -46,9 +46,6 @@ const ServiceCard = ({ icon, title, description, color, index, isVisible }: Serv
     setIsHovered(false);
   };
 
-  // Special handling for role titles to avoid green background
-  const isSpecialRole = title === "Lead ML Engineer" || title === "AI Solutions Architect";
-
   return (
     <div 
       ref={cardRef}
@@ -69,7 +66,7 @@ const ServiceCard = ({ icon, title, description, color, index, isVisible }: Serv
     >
       <div className={cn(
         "p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4", 
-        isSpecialRole ? `text-${neonColor}` : `bg-${neonColor}/10 group-hover:bg-${neonColor}/25 transition-all duration-300`
+        `bg-${neonColor}/10 group-hover:bg-${neonColor}/25 transition-all duration-300`
       )}>
         {icon}
       </div>
