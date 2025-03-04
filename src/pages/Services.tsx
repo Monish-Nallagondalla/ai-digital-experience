@@ -1,11 +1,10 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import ServicesHeader from '../components/ServicesHeader';
 import ServiceList from '../components/ServiceList';
 import { services } from '../data/services';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-// Group services by category according to the new structure
+// Group services by category
 const serviceCategories = {
   "AI Strategy & Advisory": services.filter(s => 
     ["AI Strategy Consulting", "AI Ethics & Governance", "AI Education & Training", "Data Science Consulting"].includes(s.title)),
@@ -48,13 +47,13 @@ const Services = () => {
 
   return (
     <div ref={containerRef} className="relative overflow-hidden bg-black min-h-screen">
-      {/* Enhanced Grid Background with increased visibility */}
+      {/* Enhanced Grid Background with improved visibility */}
       <div className="absolute inset-0 bg-grid-pattern bg-[length:30px_30px] opacity-40"></div>
       
-      {/* Enhanced Gradient Overlay with smooth transitions */}
-      <div className="absolute inset-0 bg-gradient-radial from-black/60 via-black/80 to-black opacity-90"></div>
+      {/* Enhanced Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-radial from-black/70 via-black/90 to-black opacity-95"></div>
       
-      {/* Interactive Floating Elements */}
+      {/* Interactive Background Elements */}
       <div 
         className="absolute w-96 h-96 rounded-full bg-neon-orange/10 blur-3xl"
         style={{ 
@@ -83,35 +82,32 @@ const Services = () => {
       <div className="container mx-auto px-4 py-16 max-w-6xl relative z-10">
         <ServicesHeader />
         
-        {/* Service Category Tabs with proper content */}
         <div className={`transition-all duration-700 mb-12 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <Tabs defaultValue="all" value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <div className="flex justify-center mb-8">
-              <TabsList className="glass-card bg-black/40 border border-white/20 p-1.5 backdrop-blur-md shadow-xl rounded-xl overflow-x-auto flex-wrap justify-center">
+            <TabsList className="glass-card bg-black/40 border border-white/20 p-1.5 backdrop-blur-md shadow-xl rounded-xl w-full grid grid-cols-1 md:grid-cols-5 gap-2">
+              <TabsTrigger 
+                value="all" 
+                className="px-4 py-2.5 text-lg data-[state=active]:bg-neon-blue/20 data-[state=active]:text-white rounded-lg"
+              >
+                All Services
+              </TabsTrigger>
+              {Object.keys(serviceCategories).map((category) => (
                 <TabsTrigger 
-                  value="all" 
-                  className="px-4 py-2.5 text-lg data-[state=active]:bg-neon-blue/20 data-[state=active]:text-white rounded-lg"
+                  key={category} 
+                  value={category}
+                  className="px-4 py-2.5 text-lg data-[state=active]:bg-neon-blue/20 data-[state=active]:text-white rounded-lg whitespace-normal text-center"
                 >
-                  All Services
+                  {category}
                 </TabsTrigger>
-                {Object.keys(serviceCategories).map((category) => (
-                  <TabsTrigger 
-                    key={category} 
-                    value={category}
-                    className="px-4 py-2.5 text-lg data-[state=active]:bg-neon-blue/20 data-[state=active]:text-white rounded-lg"
-                  >
-                    {category}
-                  </TabsTrigger>
-                ))}
-              </TabsList>
-            </div>
+              ))}
+            </TabsList>
             
-            <TabsContent value="all" className="mt-0">
+            <TabsContent value="all" className="mt-8">
               <ServiceList services={services} />
             </TabsContent>
             
             {Object.entries(serviceCategories).map(([category, categoryServices]) => (
-              <TabsContent key={category} value={category} className="mt-0">
+              <TabsContent key={category} value={category} className="mt-8">
                 <ServiceList services={categoryServices} />
               </TabsContent>
             ))}

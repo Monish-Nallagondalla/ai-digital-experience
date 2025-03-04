@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Brain, Cpu, Zap } from "lucide-react";
@@ -8,13 +7,21 @@ const Hero = () => {
   const [typedText, setTypedText] = useState("");
   const fullText = "Apply AI, Amplify Results.Today";
   const [typingComplete, setTypingComplete] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   
-  // Animation for fade-in
   useEffect(() => {
     setIsVisible(true);
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const x = e.clientX / window.innerWidth - 0.5;
+      const y = e.clientY / window.innerHeight - 0.5;
+      setMousePosition({ x, y });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  // Typing animation
   useEffect(() => {
     if (typedText.length < fullText.length) {
       const timeout = setTimeout(() => {
@@ -27,19 +34,32 @@ const Hero = () => {
   }, [typedText, fullText]);
 
   return (
-    <div className="relative overflow-hidden bg-black text-white min-h-screen flex items-center justify-center">
-      {/* Clean Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-radial from-black via-black/90 to-black opacity-90"></div>
+    <div className="relative overflow-hidden bg-black min-h-screen flex items-center justify-center">
+      {/* Enhanced Grid Background with improved visibility */}
+      <div className="absolute inset-0 bg-grid-pattern bg-[length:30px_30px] opacity-40"></div>
       
-      {/* Clean Grid Pattern with better visibility */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-30"></div>
+      {/* Enhanced Gradient Overlay with smooth transitions */}
+      <div className="absolute inset-0 bg-gradient-radial from-black/70 via-black/90 to-black opacity-95"></div>
       
-      {/* Simple Accent Orbs */}
-      <div className="absolute w-64 h-64 rounded-full bg-neon-orange/10 blur-3xl top-1/4 left-1/4"></div>
-      <div className="absolute w-80 h-80 rounded-full bg-neon-blue/10 blur-3xl bottom-1/3 right-1/4"></div>
-      <div className="absolute w-72 h-72 rounded-full bg-neon-green/10 blur-3xl top-1/2 right-1/3"></div>
+      {/* Interactive Floating Elements */}
+      <div 
+        className="absolute w-96 h-96 rounded-full bg-neon-orange/10 blur-3xl"
+        style={{ 
+          top: `calc(20% + ${mousePosition.y * 40}px)`, 
+          right: `calc(20% + ${mousePosition.x * -40}px)`,
+          transition: 'top 0.3s ease-out, right 0.3s ease-out'
+        }}
+      ></div>
+      <div 
+        className="absolute w-80 h-80 rounded-full bg-neon-blue/10 blur-3xl" 
+        style={{ 
+          bottom: `calc(30% + ${mousePosition.y * -40}px)`, 
+          left: `calc(25% + ${mousePosition.x * 40}px)`,
+          transition: 'bottom 0.3s ease-out, left 0.3s ease-out'
+        }}
+      ></div>
       
-      <div className="container mx-auto px-4 py-16 md:py-24 relative z-10">
+      <div className="container mx-auto px-4 py-16 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           {/* Badge */}
           <div 
