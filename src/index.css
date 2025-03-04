@@ -43,7 +43,7 @@
     --sidebar-border: 220 13% 25%;
     --sidebar-ring: 217.2 91.2% 59.8%;
     
-    --cursor-size: 14px; /* Reduced cursor size */
+    --cursor-size: 12px;
   }
 }
 
@@ -204,6 +204,23 @@
   .magnetic-button-enhanced:hover::after {
     opacity: 1;
   }
+  
+  .magnetic-client-block {
+    transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.3s ease;
+  }
+  
+  .magnetic-client-block:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3), 0 0 15px rgba(0, 255, 255, 0.2);
+  }
+  
+  .cta-glow {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 30px rgba(0, 255, 255, 0.15);
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .cta-glow:hover {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 40px rgba(0, 255, 255, 0.25);
+  }
 }
 
 @layer components {
@@ -331,21 +348,18 @@
   transition: opacity 300ms;
 }
 
-/* Enhanced grid visibility in dark areas */
 .bg-grid-pattern {
   background-image: linear-gradient(to right, rgba(255, 255, 255, 0.2) 1px, transparent 1px), 
                     linear-gradient(to bottom, rgba(255, 255, 255, 0.2) 1px, transparent 1px);
   background-size: 30px 30px;
-  opacity: 0.7 !important; /* Increased opacity for better visibility */
+  opacity: 0.7 !important;
 }
 
-/* Improve background blending in CTA section */
 .bg-gradient-to-b {
   background-blend-mode: overlay;
   transition: background-color 0.5s ease;
 }
 
-/* Media queries for responsive design */
 @media (max-width: 768px) {
   :root {
     --cursor-size: 10px;
@@ -376,6 +390,26 @@
     white-space: nowrap;
     padding: 0.5rem;
     font-size: 0.875rem;
+  }
+  
+  .tabs-container {
+    overflow-x: auto;
+    padding-bottom: 1rem;
+    margin-left: -1rem;
+    margin-right: -1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  .tabs-container::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .tab-button {
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 }
 

@@ -72,6 +72,36 @@ const About = () => {
   
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
+  const ctaButtonRef = useRef<HTMLAnchorElement>(null);
+  const [ctaMagneticPosition, setCtaMagneticPosition] = useState({ x: 0, y: 0 });
+  
+  // Refs for stat cards to add magnetic effects
+  const statCardRefs = [
+    useRef<HTMLDivElement>(null),
+    useRef<HTMLDivElement>(null),
+    useRef<HTMLDivElement>(null),
+    useRef<HTMLDivElement>(null)
+  ];
+  
+  const [statCardPositions, setStatCardPositions] = useState([
+    { x: 0, y: 0 },
+    { x: 0, y: 0 },
+    { x: 0, y: 0 },
+    { x: 0, y: 0 }
+  ]);
+  
+  // Refs for value cards
+  const valueCardRefs = [
+    useRef<HTMLDivElement>(null),
+    useRef<HTMLDivElement>(null),
+    useRef<HTMLDivElement>(null)
+  ];
+  
+  const [valueCardPositions, setValueCardPositions] = useState([
+    { x: 0, y: 0 },
+    { x: 0, y: 0 },
+    { x: 0, y: 0 }
+  ]);
 
   const headerRef = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
@@ -137,6 +167,97 @@ const About = () => {
       window.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
+  
+  // Handlers for magnetic effects
+  const handleStatCardMouseMove = (e: React.MouseEvent, index: number) => {
+    if (!statCardRefs[index].current) return;
+    
+    const rect = statCardRefs[index].current!.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    
+    const distanceX = e.clientX - centerX;
+    const distanceY = e.clientY - centerY;
+    
+    // Lighter magnetic effect for stat cards
+    const strength = 12;
+    const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+    const maxDistance = rect.width / 2;
+    
+    if (distance < maxDistance) {
+      const x = (distanceX / maxDistance) * strength;
+      const y = (distanceY / maxDistance) * strength;
+      
+      const newPositions = [...statCardPositions];
+      newPositions[index] = { x, y };
+      setStatCardPositions(newPositions);
+    }
+  };
+  
+  const handleStatCardMouseLeave = (index: number) => {
+    const newPositions = [...statCardPositions];
+    newPositions[index] = { x: 0, y: 0 };
+    setStatCardPositions(newPositions);
+  };
+  
+  const handleValueCardMouseMove = (e: React.MouseEvent, index: number) => {
+    if (!valueCardRefs[index].current) return;
+    
+    const rect = valueCardRefs[index].current!.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    
+    const distanceX = e.clientX - centerX;
+    const distanceY = e.clientY - centerY;
+    
+    // Lighter magnetic effect for value cards
+    const strength = 12;
+    const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+    const maxDistance = rect.width / 2;
+    
+    if (distance < maxDistance) {
+      const x = (distanceX / maxDistance) * strength;
+      const y = (distanceY / maxDistance) * strength;
+      
+      const newPositions = [...valueCardPositions];
+      newPositions[index] = { x, y };
+      setValueCardPositions(newPositions);
+    }
+  };
+  
+  const handleValueCardMouseLeave = (index: number) => {
+    const newPositions = [...valueCardPositions];
+    newPositions[index] = { x: 0, y: 0 };
+    setValueCardPositions(newPositions);
+  };
+  
+  const handleCtaMouseMove = (e: React.MouseEvent) => {
+    if (!ctaButtonRef.current) return;
+    
+    const rect = ctaButtonRef.current.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    
+    const distanceX = e.clientX - centerX;
+    const distanceY = e.clientY - centerY;
+    
+    // Strong magnetic effect for CTA
+    const strength = 15;
+    const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+    const maxDistance = rect.width / 2;
+    
+    if (distance < maxDistance) {
+      const x = (distanceX / maxDistance) * strength;
+      const y = (distanceY / maxDistance) * strength;
+      setCtaMagneticPosition({ x, y });
+    } else {
+      setCtaMagneticPosition({ x: 0, y: 0 });
+    }
+  };
+  
+  const handleCtaMouseLeave = () => {
+    setCtaMagneticPosition({ x: 0, y: 0 });
+  };
 
   return (
     <div ref={containerRef} className="relative overflow-hidden bg-black min-h-screen">
@@ -189,7 +310,10 @@ const About = () => {
           className={`max-w-6xl mx-auto mb-24 glass-card p-8 rounded-xl backdrop-blur-md transition-all duration-700 border border-white/20 ${
             isVisible.about ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
-          style={{ transitionDelay: "100ms" }}
+          style={{ 
+            transitionDelay: "100ms",
+            boxShadow: isVisible.about ? '0 10px 30px rgba(0, 0, 0, 0.25), 0 0 20px rgba(0, 255, 255, 0.1)' : ''
+          }}
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             <div>
@@ -222,19 +346,66 @@ const About = () => {
           style={{ transitionDelay: "200ms" }}
         >
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="glass-card p-6 rounded-xl backdrop-blur-md border border-white/20 text-center">
+            {/* Stat Card 1 */}
+            <div 
+              ref={statCardRefs[0]}
+              className="glass-card p-6 rounded-xl backdrop-blur-md border border-white/20 text-center magnetic-client-block"
+              style={{ 
+                transform: `translate(${statCardPositions[0].x}px, ${statCardPositions[0].y}px)`,
+                transition: 'transform 0.2s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.3s ease',
+                boxShadow: statCardPositions[0].x !== 0 || statCardPositions[0].y !== 0 ? '0 10px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 95, 31, 0.3)' : ''
+              }}
+              onMouseMove={(e) => handleStatCardMouseMove(e, 0)}
+              onMouseLeave={() => handleStatCardMouseLeave(0)}
+            >
               <div className="text-4xl font-bold mb-2 text-neon-orange">100+</div>
               <div className="text-gray-300">AI Specialists</div>
             </div>
-            <div className="glass-card p-6 rounded-xl backdrop-blur-md border border-white/20 text-center">
+            
+            {/* Stat Card 2 */}
+            <div 
+              ref={statCardRefs[1]}
+              className="glass-card p-6 rounded-xl backdrop-blur-md border border-white/20 text-center magnetic-client-block"
+              style={{ 
+                transform: `translate(${statCardPositions[1].x}px, ${statCardPositions[1].y}px)`,
+                transition: 'transform 0.2s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.3s ease',
+                boxShadow: statCardPositions[1].x !== 0 || statCardPositions[1].y !== 0 ? '0 10px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 255, 255, 0.3)' : ''
+              }}
+              onMouseMove={(e) => handleStatCardMouseMove(e, 1)}
+              onMouseLeave={() => handleStatCardMouseLeave(1)}
+            >
               <div className="text-4xl font-bold mb-2 text-neon-blue">250+</div>
               <div className="text-gray-300">Projects Completed</div>
             </div>
-            <div className="glass-card p-6 rounded-xl backdrop-blur-md border border-white/20 text-center">
+            
+            {/* Stat Card 3 */}
+            <div 
+              ref={statCardRefs[2]}
+              className="glass-card p-6 rounded-xl backdrop-blur-md border border-white/20 text-center magnetic-client-block"
+              style={{ 
+                transform: `translate(${statCardPositions[2].x}px, ${statCardPositions[2].y}px)`,
+                transition: 'transform 0.2s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.3s ease',
+                boxShadow: statCardPositions[2].x !== 0 || statCardPositions[2].y !== 0 ? '0 10px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 255, 127, 0.3)' : ''
+              }}
+              onMouseMove={(e) => handleStatCardMouseMove(e, 2)}
+              onMouseLeave={() => handleStatCardMouseLeave(2)}
+            >
               <div className="text-4xl font-bold mb-2 text-neon-green">15+</div>
               <div className="text-gray-300">Industries Served</div>
             </div>
-            <div className="glass-card p-6 rounded-xl backdrop-blur-md border border-white/20 text-center">
+            
+            {/* Stat Card 4 */}
+            <div 
+              ref={statCardRefs[3]}
+              className="glass-card p-6 rounded-xl backdrop-blur-md border border-white/20 text-center magnetic-client-block"
+              style={{ 
+                transform: `translate(${statCardPositions[3].x}px, ${statCardPositions[3].y}px)`,
+                transition: 'transform 0.2s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.3s ease',
+                boxShadow: statCardPositions[3].x !== 0 || statCardPositions[3].y !== 0 ? '0 10px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 95, 31, 0.3)' : ''
+              }}
+              onMouseMove={(e) => handleStatCardMouseMove(e, 3)}
+              onMouseLeave={() => handleStatCardMouseLeave(3)}
+            >
               <div className="text-4xl font-bold mb-2 text-neon-orange">4 Years</div>
               <div className="text-gray-300">Of Innovation</div>
             </div>
@@ -251,21 +422,56 @@ const About = () => {
         >
           <h2 className="text-3xl font-semibold mb-8 text-center">Our Core Values</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="glass-card p-6 rounded-xl backdrop-blur-md border border-white/20">
+            {/* Value Card 1 */}
+            <div 
+              ref={valueCardRefs[0]}
+              className="glass-card p-6 rounded-xl backdrop-blur-md border border-white/20 magnetic-client-block"
+              style={{ 
+                transform: `translate(${valueCardPositions[0].x}px, ${valueCardPositions[0].y}px)`,
+                transition: 'transform 0.2s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.3s ease',
+                boxShadow: valueCardPositions[0].x !== 0 || valueCardPositions[0].y !== 0 ? '0 10px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 95, 31, 0.25)' : ''
+              }}
+              onMouseMove={(e) => handleValueCardMouseMove(e, 0)}
+              onMouseLeave={() => handleValueCardMouseLeave(0)}
+            >
               <div className="bg-neon-orange/15 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
                 <Sparkles className="text-neon-orange h-6 w-6" />
               </div>
               <h3 className="text-xl font-semibold mb-3">Innovation First</h3>
               <p className="text-gray-300">We push the boundaries of what AI can achieve, constantly exploring new approaches and technologies.</p>
             </div>
-            <div className="glass-card p-6 rounded-xl backdrop-blur-md border border-white/20">
+            
+            {/* Value Card 2 */}
+            <div 
+              ref={valueCardRefs[1]}
+              className="glass-card p-6 rounded-xl backdrop-blur-md border border-white/20 magnetic-client-block"
+              style={{ 
+                transform: `translate(${valueCardPositions[1].x}px, ${valueCardPositions[1].y}px)`,
+                transition: 'transform 0.2s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.3s ease',
+                boxShadow: valueCardPositions[1].x !== 0 || valueCardPositions[1].y !== 0 ? '0 10px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 255, 255, 0.25)' : ''
+              }}
+              onMouseMove={(e) => handleValueCardMouseMove(e, 1)}
+              onMouseLeave={() => handleValueCardMouseLeave(1)}
+            >
               <div className="bg-neon-blue/15 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
                 <Users className="text-neon-blue h-6 w-6" />
               </div>
               <h3 className="text-xl font-semibold mb-3">Human-Centered</h3>
               <p className="text-gray-300">We design AI that augments human capabilities, creating partnerships between people and technology.</p>
             </div>
-            <div className="glass-card p-6 rounded-xl backdrop-blur-md border border-white/20">
+            
+            {/* Value Card 3 */}
+            <div 
+              ref={valueCardRefs[2]}
+              className="glass-card p-6 rounded-xl backdrop-blur-md border border-white/20 magnetic-client-block"
+              style={{ 
+                transform: `translate(${valueCardPositions[2].x}px, ${valueCardPositions[2].y}px)`,
+                transition: 'transform 0.2s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.3s ease',
+                boxShadow: valueCardPositions[2].x !== 0 || valueCardPositions[2].y !== 0 ? '0 10px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 255, 127, 0.25)' : ''
+              }}
+              onMouseMove={(e) => handleValueCardMouseMove(e, 2)}
+              onMouseLeave={() => handleValueCardMouseLeave(2)}
+            >
               <div className="bg-neon-green/15 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
                 <CheckCircle className="text-neon-green h-6 w-6" />
               </div>
@@ -316,16 +522,29 @@ const About = () => {
           }`}
           style={{ transitionDelay: "500ms" }}
         >
-          <div className="glass-card p-10 rounded-2xl text-center border border-white/10 backdrop-blur-md shadow-xl">
+          <div className="glass-card p-10 rounded-2xl text-center border border-white/10 backdrop-blur-md cta-glow">
             <h2 className="text-3xl font-bold mb-6">Ready to Transform Your Business with AI?</h2>
             <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
               Partner with ApplyAI.today and discover how our cutting-edge AI solutions can drive innovation, efficiency, and growth for your organization.
             </p>
-            <Link to="/contact" className="neon-button-orange px-8 py-3 shadow-neon-orange">
-              <span className="relative z-10 flex items-center justify-center">
-                Schedule a Consultation <ArrowRight className="ml-2 h-4 w-4" />
-              </span>
-            </Link>
+            <div 
+              onMouseMove={handleCtaMouseMove}
+              onMouseLeave={handleCtaMouseLeave}
+            >
+              <Link 
+                ref={ctaButtonRef}
+                to="/contact" 
+                className="neon-button-orange px-8 py-3 shadow-neon-orange magnetic-button-enhanced"
+                style={{ 
+                  transform: `translate(${ctaMagneticPosition.x}px, ${ctaMagneticPosition.y}px)`,
+                  transition: 'transform 0.2s cubic-bezier(0.23, 1, 0.32, 1)'
+                }}
+              >
+                <span className="relative z-10 flex items-center justify-center">
+                  Schedule a Consultation <ArrowRight className="ml-2 h-4 w-4" />
+                </span>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

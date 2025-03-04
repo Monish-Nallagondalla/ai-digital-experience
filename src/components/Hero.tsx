@@ -11,9 +11,19 @@ const Hero = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [magneticPosition1, setMagneticPosition1] = useState({ x: 0, y: 0 });
   const [magneticPosition2, setMagneticPosition2] = useState({ x: 0, y: 0 });
+  const [featureCardPositions, setFeatureCardPositions] = useState([
+    { x: 0, y: 0 },
+    { x: 0, y: 0 },
+    { x: 0, y: 0 }
+  ]);
   
   const buttonRef1 = useRef<HTMLAnchorElement>(null);
   const buttonRef2 = useRef<HTMLAnchorElement>(null);
+  const featureCardRefs = [
+    useRef<HTMLDivElement>(null), 
+    useRef<HTMLDivElement>(null), 
+    useRef<HTMLDivElement>(null)
+  ];
   
   useEffect(() => {
     setIsVisible(true);
@@ -88,6 +98,38 @@ const Hero = () => {
     }
   };
 
+  // New handler for feature cards
+  const handleFeatureCardMouseMove = (e: React.MouseEvent, index: number) => {
+    if (!featureCardRefs[index].current) return;
+    
+    const rect = featureCardRefs[index].current!.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    
+    const distanceX = e.clientX - centerX;
+    const distanceY = e.clientY - centerY;
+    
+    // Lighter magnetic effect for cards
+    const strength = 10;
+    const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+    const maxDistance = rect.width / 2;
+    
+    if (distance < maxDistance) {
+      const x = (distanceX / maxDistance) * strength;
+      const y = (distanceY / maxDistance) * strength;
+      
+      const newPositions = [...featureCardPositions];
+      newPositions[index] = { x, y };
+      setFeatureCardPositions(newPositions);
+    }
+  };
+
+  const handleFeatureCardMouseLeave = (index: number) => {
+    const newPositions = [...featureCardPositions];
+    newPositions[index] = { x: 0, y: 0 };
+    setFeatureCardPositions(newPositions);
+  };
+
   const handleMouseLeave = (setter: React.Dispatch<React.SetStateAction<{ x: number; y: number }>>) => {
     setter({ x: 0, y: 0 });
   };
@@ -134,10 +176,10 @@ const Hero = () => {
             className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-8 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
             style={{ transitionDelay: "200ms" }}
           >
-            <div className="block shimmer-text mb-6 md:mb-8 bg-gradient-to-r from-neon-orange via-neon-blue to-neon-green bg-clip-text text-transparent pb-2">
+            <div className="block shimmer-text mb-8 md:mb-10 bg-gradient-to-r from-neon-orange via-neon-blue to-neon-green bg-clip-text text-transparent pb-4">
               Transforming Industries
             </div>
-            <div className="block mt-4">
+            <div className="block mt-6">
               Through <span className="text-neon-blue text-glow">Artificial Intelligence</span>
             </div>
           </h1>
@@ -173,7 +215,7 @@ const Hero = () => {
               <Link 
                 ref={buttonRef1}
                 to="/contact" 
-                className="neon-button-orange magnetic-button-enhanced w-full sm:w-auto px-10 py-4 shadow-neon-orange"
+                className="neon-button-orange magnetic-button-enhanced w-full sm:w-auto px-12 py-4 shadow-neon-orange"
                 style={{ 
                   transform: `translate(${magneticPosition1.x}px, ${magneticPosition1.y}px)`,
                   transition: 'transform 0.2s cubic-bezier(0.23, 1, 0.32, 1)'
@@ -192,7 +234,7 @@ const Hero = () => {
               <Link 
                 ref={buttonRef2}
                 to="/services" 
-                className="neon-button-blue magnetic-button-enhanced w-full sm:w-auto px-10 py-4 shadow-neon-blue"
+                className="neon-button-blue magnetic-button-enhanced w-full sm:w-auto px-12 py-4 shadow-neon-blue"
                 style={{ 
                   transform: `translate(${magneticPosition2.x}px, ${magneticPosition2.y}px)`,
                   transition: 'transform 0.2s cubic-bezier(0.23, 1, 0.32, 1)'
@@ -212,7 +254,17 @@ const Hero = () => {
           style={{ transitionDelay: "1000ms" }}
         >
           {/* Card 1 */}
-          <div className="glass-card p-6 md:p-8 rounded-xl backdrop-blur-md border border-white/20 hover:border-neon-orange/40 transition-all duration-300 hover:translate-y-[-5px] h-full flex flex-col group magnetic-button-enhanced">
+          <div 
+            ref={featureCardRefs[0]}
+            className="glass-card p-6 md:p-8 rounded-xl backdrop-blur-md border border-white/20 hover:border-neon-orange/40 transition-all duration-300 hover:translate-y-[-5px] h-full flex flex-col group magnetic-button-enhanced"
+            style={{ 
+              transform: `translate(${featureCardPositions[0].x}px, ${featureCardPositions[0].y}px)`,
+              transition: 'transform 0.2s cubic-bezier(0.23, 1, 0.32, 1), border-color 0.3s ease, box-shadow 0.3s ease',
+              boxShadow: featureCardPositions[0].x !== 0 || featureCardPositions[0].y !== 0 ? '0 10px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 95, 31, 0.25)' : ''
+            }}
+            onMouseMove={(e) => handleFeatureCardMouseMove(e, 0)}
+            onMouseLeave={() => handleFeatureCardMouseLeave(0)}
+          >
             <div className="bg-neon-orange/15 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-5 group-hover:bg-neon-orange/25 transition-all duration-300">
               <Brain className="text-neon-orange h-6 w-6" />
             </div>
@@ -221,7 +273,17 @@ const Hero = () => {
           </div>
           
           {/* Card 2 */}
-          <div className="glass-card p-6 md:p-8 rounded-xl backdrop-blur-md border border-white/20 hover:border-neon-blue/40 transition-all duration-300 hover:translate-y-[-5px] h-full flex flex-col group magnetic-button-enhanced">
+          <div 
+            ref={featureCardRefs[1]}
+            className="glass-card p-6 md:p-8 rounded-xl backdrop-blur-md border border-white/20 hover:border-neon-blue/40 transition-all duration-300 hover:translate-y-[-5px] h-full flex flex-col group magnetic-button-enhanced"
+            style={{ 
+              transform: `translate(${featureCardPositions[1].x}px, ${featureCardPositions[1].y}px)`,
+              transition: 'transform 0.2s cubic-bezier(0.23, 1, 0.32, 1), border-color 0.3s ease, box-shadow 0.3s ease',
+              boxShadow: featureCardPositions[1].x !== 0 || featureCardPositions[1].y !== 0 ? '0 10px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 255, 255, 0.25)' : ''
+            }}
+            onMouseMove={(e) => handleFeatureCardMouseMove(e, 1)}
+            onMouseLeave={() => handleFeatureCardMouseLeave(1)}
+          >
             <div className="bg-neon-blue/15 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-5 group-hover:bg-neon-blue/25 transition-all duration-300">
               <Cpu className="text-neon-blue h-6 w-6" />
             </div>
@@ -230,7 +292,17 @@ const Hero = () => {
           </div>
           
           {/* Card 3 */}
-          <div className="glass-card p-6 md:p-8 rounded-xl backdrop-blur-md border border-white/20 hover:border-neon-green/40 transition-all duration-300 hover:translate-y-[-5px] h-full flex flex-col group magnetic-button-enhanced">
+          <div 
+            ref={featureCardRefs[2]}
+            className="glass-card p-6 md:p-8 rounded-xl backdrop-blur-md border border-white/20 hover:border-neon-green/40 transition-all duration-300 hover:translate-y-[-5px] h-full flex flex-col group magnetic-button-enhanced"
+            style={{ 
+              transform: `translate(${featureCardPositions[2].x}px, ${featureCardPositions[2].y}px)`,
+              transition: 'transform 0.2s cubic-bezier(0.23, 1, 0.32, 1), border-color 0.3s ease, box-shadow 0.3s ease',
+              boxShadow: featureCardPositions[2].x !== 0 || featureCardPositions[2].y !== 0 ? '0 10px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 255, 127, 0.25)' : ''
+            }}
+            onMouseMove={(e) => handleFeatureCardMouseMove(e, 2)}
+            onMouseLeave={() => handleFeatureCardMouseLeave(2)}
+          >
             <div className="bg-neon-green/15 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-5 group-hover:bg-neon-green/25 transition-all duration-300">
               <Zap className="text-neon-green h-6 w-6" />
             </div>

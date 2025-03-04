@@ -21,8 +21,8 @@ const ServiceItem = ({ service, index }: ServiceItemProps) => {
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;
     
-    // Magnetic pull effect
-    const strength = 15;
+    // Enhanced magnetic pull effect
+    const strength = 20; // Increased from 15
     const magneticX = (x / rect.width) * strength;
     const magneticY = (y / rect.height) * strength;
     
@@ -40,7 +40,8 @@ const ServiceItem = ({ service, index }: ServiceItemProps) => {
       className="glass-card rounded-xl overflow-hidden flex flex-col h-full shadow-lg border border-white/10 hover:border-white/20 transition-all duration-300 magnetic-button-enhanced"
       style={{ 
         transform: isHovered ? `translate3d(${magneticPosition.x}px, ${magneticPosition.y}px, 0)` : 'translate3d(0, 0, 0)',
-        transition: 'transform 0.2s cubic-bezier(0.23, 1, 0.32, 1)'
+        transition: 'transform 0.2s cubic-bezier(0.23, 1, 0.32, 1)',
+        boxShadow: isHovered ? `0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(${service.color === 'orange' ? '255, 95, 31' : service.color === 'blue' ? '0, 255, 255' : '0, 255, 127'}, 0.35)` : ''
       }}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
