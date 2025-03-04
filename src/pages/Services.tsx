@@ -83,12 +83,12 @@ const Services = () => {
         
         <div className={`transition-all duration-700 mb-12 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <Tabs defaultValue="all" value={activeTab} onValueChange={setActiveTab} className="w-full">
-            {/* Improved tabs layout */}
-            <div className="w-full mb-8">
-              <TabsList className="glass-card bg-black/40 border border-white/20 p-2 backdrop-blur-md shadow-xl rounded-xl w-full flex flex-wrap justify-center">
+            {/* Improved tabs layout with fixed tab design */}
+            <div className="w-full mb-8 overflow-hidden">
+              <TabsList className="glass-card bg-black/40 border border-white/20 p-2 backdrop-blur-md shadow-xl rounded-xl w-full flex justify-between">
                 <TabsTrigger 
                   value="all" 
-                  className="px-4 py-3 text-base md:text-lg data-[state=active]:bg-neon-blue/20 data-[state=active]:text-white rounded-lg"
+                  className="flex-1 px-4 py-3 text-base data-[state=active]:bg-neon-blue/20 data-[state=active]:text-white rounded-lg"
                 >
                   All Services
                 </TabsTrigger>
@@ -96,7 +96,7 @@ const Services = () => {
                   <TabsTrigger 
                     key={category} 
                     value={category}
-                    className="px-4 py-3 text-base md:text-lg data-[state=active]:bg-neon-blue/20 data-[state=active]:text-white rounded-lg whitespace-normal text-center"
+                    className="flex-1 px-4 py-3 text-base data-[state=active]:bg-neon-blue/20 data-[state=active]:text-white rounded-lg whitespace-normal text-center"
                   >
                     {category}
                   </TabsTrigger>

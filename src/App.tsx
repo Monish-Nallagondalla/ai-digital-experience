@@ -44,8 +44,20 @@ const ScrollToTop = () => {
       }
     };
 
+    // Handle mobile viewport height
+    const setMobileHeight = () => {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    };
+
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', setMobileHeight);
+    setMobileHeight(); // Initial call
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', setMobileHeight);
+    };
   }, []);
 
   return null;
@@ -58,7 +70,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ScrollToTop />
-        <div className="flex flex-col min-h-screen">
+        <div className="flex flex-col min-h-screen min-h-[calc(var(--vh,1vh)*100)]">
           <CustomCursor />
           <Navbar />
           <main className="flex-grow">

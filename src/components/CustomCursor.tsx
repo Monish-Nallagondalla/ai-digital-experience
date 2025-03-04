@@ -6,6 +6,7 @@ const CustomCursor = () => {
   const [clicked, setClicked] = useState(false);
   const [linkHovered, setLinkHovered] = useState(false);
   const [buttonHovered, setButtonHovered] = useState(false);
+  const [inputHovered, setInputHovered] = useState(false);
   const [hidden, setHidden] = useState(true);
   
   const cursorDotRef = useRef<HTMLDivElement>(null);
@@ -66,7 +67,8 @@ const CustomCursor = () => {
 
     const handleElementHoverEvents = () => {
       const linkElements = document.querySelectorAll("a, .interactive");
-      const buttonElements = document.querySelectorAll("button, .neon-button-orange, .neon-button-blue, .neon-button-green, .magnetic-button-enhanced, input[type='submit']");
+      const buttonElements = document.querySelectorAll("button, .neon-button-orange, .neon-button-blue, .neon-button-green, .magnetic-button, .magnetic-button-enhanced, input[type='submit']");
+      const inputElements = document.querySelectorAll("input, textarea, select");
       
       linkElements.forEach(el => {
         el.addEventListener("mouseenter", () => setLinkHovered(true));
@@ -77,10 +79,15 @@ const CustomCursor = () => {
         el.addEventListener("mouseenter", () => setButtonHovered(true));
         el.addEventListener("mouseleave", () => setButtonHovered(false));
       });
+      
+      inputElements.forEach(el => {
+        el.addEventListener("mouseenter", () => setInputHovered(true));
+        el.addEventListener("mouseleave", () => setInputHovered(false));
+      });
     };
 
     document.body.style.cursor = "none";
-    document.querySelectorAll("a, button, input, .interactive").forEach(el => {
+    document.querySelectorAll("a, button, input, .interactive, select, textarea").forEach(el => {
       (el as HTMLElement).style.cursor = "none";
     });
 
@@ -95,12 +102,12 @@ const CustomCursor = () => {
   const cursorDotClasses = `custom-cursor cursor-dot ${
     clicked ? "scale-50" : ""
   } ${hidden ? "opacity-0" : "opacity-100"} ${
-    linkHovered ? "bg-neon-orange" : buttonHovered ? "bg-neon-blue" : ""
+    linkHovered ? "bg-neon-orange" : buttonHovered ? "bg-neon-blue" : inputHovered ? "bg-neon-green" : ""
   }`;
 
   const cursorOutlineClasses = `custom-cursor cursor-outline ${
     clicked ? "scale-75" : ""
-  } ${linkHovered ? "scale-150 border-neon-orange" : buttonHovered ? "scale-175 border-neon-blue" : ""} ${
+  } ${linkHovered ? "scale-150 border-neon-orange" : buttonHovered ? "scale-175 border-neon-blue" : inputHovered ? "scale-150 border-neon-green" : ""} ${
     hidden ? "opacity-0" : "opacity-100"
   }`;
 
@@ -116,7 +123,9 @@ const CustomCursor = () => {
             ? '0 0 20px rgba(0, 255, 255, 0.95), 0 0 40px rgba(0, 255, 255, 0.5)' 
             : linkHovered 
               ? '0 0 20px rgba(255, 95, 31, 0.95), 0 0 40px rgba(255, 95, 31, 0.5)' 
-              : '0 0 15px rgba(255, 255, 255, 0.95), 0 0 30px rgba(255, 255, 255, 0.4)'
+              : inputHovered
+                ? '0 0 20px rgba(0, 255, 127, 0.95), 0 0 40px rgba(0, 255, 127, 0.5)'
+                : '0 0 15px rgba(255, 255, 255, 0.95), 0 0 30px rgba(255, 255, 255, 0.4)'
         }}
       />
       
@@ -130,12 +139,16 @@ const CustomCursor = () => {
             ? 'rgba(0, 255, 255, 0.9)' 
             : linkHovered 
               ? 'rgba(255, 95, 31, 0.9)' 
-              : 'rgba(255, 255, 255, 0.8)',
+              : inputHovered
+                ? 'rgba(0, 255, 127, 0.9)'
+                : 'rgba(255, 255, 255, 0.8)',
           boxShadow: buttonHovered 
             ? '0 0 15px rgba(0, 255, 255, 0.6)' 
             : linkHovered 
-              ? '0 0 15px rgba(255, 95, 31, 0.6)' 
-              : 'none'
+              ? '0 0 15px rgba(255, 95, 31, 0.6)'
+              : inputHovered
+                ? '0 0 15px rgba(0, 255, 127, 0.6)'
+                : 'none'
         }}
       />
     </>

@@ -43,7 +43,7 @@
     --sidebar-border: 220 13% 25%;
     --sidebar-ring: 217.2 91.2% 59.8%;
     
-    --cursor-size: 16px; /* Slightly reduced cursor size */
+    --cursor-size: 14px; /* Reduced cursor size */
   }
 }
 
@@ -216,7 +216,7 @@
   }
 
   .neon-button {
-    @apply relative inline-flex items-center justify-center overflow-hidden font-medium transition-all border rounded-md;
+    @apply relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-medium transition-all border rounded-md;
   }
 
   .neon-button-orange {
@@ -345,19 +345,10 @@
   transition: background-color 0.5s ease;
 }
 
-/* Remove 3D elements for better performance */
-.glass-card, .neon-button {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.glass-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.3);
-}
-
+/* Media queries for responsive design */
 @media (max-width: 768px) {
   :root {
-    --cursor-size: 12px;
+    --cursor-size: 10px;
   }
   
   .neon-button {
@@ -373,5 +364,28 @@
     backdrop-filter: blur(8px);
     background-color: rgba(0, 0, 0, 0.85);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .TabsList {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .TabsTrigger {
+    flex: 1 1 auto;
+    white-space: nowrap;
+    padding: 0.5rem;
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --cursor-size: 8px;
+  }
+  
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
