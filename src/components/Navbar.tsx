@@ -46,7 +46,6 @@ const Navbar = () => {
     { name: "Home", path: "/" },
     { name: "Services", path: "/services" },
     { name: "About", path: "/about" },
-    { name: "Team", path: "/team" },
     { name: "Blog", path: "/blog" },
     { name: "Contact", path: "/contact" },
   ];
@@ -133,7 +132,7 @@ const Navbar = () => {
             <Link
               ref={buttonRef}
               to="/contact"
-              className="neon-button-orange"
+              className="neon-button-orange magnetic-button-enhanced"
               style={{ 
                 transform: `translate(${magneticPosition.x}px, ${magneticPosition.y}px)`,
                 transition: 'transform 0.2s cubic-bezier(0.23, 1, 0.32, 1)'
@@ -189,7 +188,7 @@ const Navbar = () => {
           ))}
           <Link
             to="/contact"
-            className="neon-button-orange mt-6"
+            className="neon-button-orange magnetic-button-enhanced mt-6"
             onClick={() => setIsMenuOpen(false)}
           >
             <span className="relative z-10">Get Started</span>

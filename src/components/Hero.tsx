@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Brain, Cpu, Zap } from "lucide-react";
@@ -70,10 +71,10 @@ const Hero = () => {
             </p>
           </div>
           
-          {/* Main Heading - No 3D effect */}
+          {/* Main Heading - With proper padding to avoid text being cut off */}
           <h1 
             className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-8 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-            style={{ transitionDelay: "200ms" }}
+            style={{ transitionDelay: "200ms", padding: "0 0 8px 0" }}
           >
             <div className="block shimmer-text mb-4 md:mb-6 bg-gradient-to-r from-neon-orange via-neon-blue to-neon-green bg-clip-text text-transparent">
               Transforming Industries
@@ -102,14 +103,14 @@ const Hero = () => {
             We can help your business unlock the full potential of AI. From intelligent automation to predictive analytics, we deliver cutting-edge AI solutions that transform how you operate, innovate, and compete in today's market.
           </p>
           
-          {/* CTA Buttons - No magnetic effect */}
+          {/* CTA Buttons with magnetic effect restored */}
           <div 
             className={`flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
             style={{ transitionDelay: "800ms" }}
           >
             <Link 
               to="/contact" 
-              className="neon-button-orange w-full sm:w-auto px-8 py-3 shadow-neon-orange"
+              className="neon-button-orange magnetic-button-enhanced w-full sm:w-auto px-8 py-3 shadow-neon-orange"
             >
               <span className="relative z-10 flex items-center justify-center">
                 Book a Consultation <ArrowRight className="ml-2 h-4 w-4" />
@@ -117,7 +118,7 @@ const Hero = () => {
             </Link>
             <Link 
               to="/services" 
-              className="neon-button-blue w-full sm:w-auto px-8 py-3 shadow-neon-blue"
+              className="neon-button-blue magnetic-button-enhanced w-full sm:w-auto px-8 py-3 shadow-neon-blue"
             >
               <span className="relative z-10 flex items-center justify-center">
                 Explore Our Solutions
@@ -126,13 +127,13 @@ const Hero = () => {
           </div>
         </div>
         
-        {/* Feature Cards - simple hover effect, no 3D */}
+        {/* Feature Cards with magnetic effect */}
         <div 
           className={`grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mt-20 md:mt-28 max-w-5xl mx-auto transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
           style={{ transitionDelay: "1000ms" }}
         >
           {/* Card 1 */}
-          <div className="glass-card p-6 md:p-8 rounded-xl backdrop-blur-md border border-white/20 hover:border-neon-orange/40 transition-all duration-300 hover:translate-y-[-5px] h-full flex flex-col group">
+          <div className="glass-card p-6 md:p-8 rounded-xl backdrop-blur-md border border-white/20 hover:border-neon-orange/40 transition-all duration-300 hover:translate-y-[-5px] h-full flex flex-col group magnetic-button-enhanced">
             <div className="bg-neon-orange/15 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-5 group-hover:bg-neon-orange/25 transition-all duration-300">
               <Brain className="text-neon-orange h-6 w-6" />
             </div>
@@ -141,7 +142,7 @@ const Hero = () => {
           </div>
           
           {/* Card 2 */}
-          <div className="glass-card p-6 md:p-8 rounded-xl backdrop-blur-md border border-white/20 hover:border-neon-blue/40 transition-all duration-300 hover:translate-y-[-5px] h-full flex flex-col group">
+          <div className="glass-card p-6 md:p-8 rounded-xl backdrop-blur-md border border-white/20 hover:border-neon-blue/40 transition-all duration-300 hover:translate-y-[-5px] h-full flex flex-col group magnetic-button-enhanced">
             <div className="bg-neon-blue/15 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-5 group-hover:bg-neon-blue/25 transition-all duration-300">
               <Cpu className="text-neon-blue h-6 w-6" />
             </div>
@@ -150,7 +151,7 @@ const Hero = () => {
           </div>
           
           {/* Card 3 */}
-          <div className="glass-card p-6 md:p-8 rounded-xl backdrop-blur-md border border-white/20 hover:border-neon-green/40 transition-all duration-300 hover:translate-y-[-5px] h-full flex flex-col group">
+          <div className="glass-card p-6 md:p-8 rounded-xl backdrop-blur-md border border-white/20 hover:border-neon-green/40 transition-all duration-300 hover:translate-y-[-5px] h-full flex flex-col group magnetic-button-enhanced">
             <div className="bg-neon-green/15 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-5 group-hover:bg-neon-green/25 transition-all duration-300">
               <Zap className="text-neon-green h-6 w-6" />
             </div>

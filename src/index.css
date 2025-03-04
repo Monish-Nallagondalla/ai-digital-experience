@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -43,7 +44,7 @@
     --sidebar-border: 220 13% 25%;
     --sidebar-ring: 217.2 91.2% 59.8%;
     
-    --cursor-size: 20px; /* Increased cursor size */
+    --cursor-size: 18px; /* Slightly reduced cursor size */
   }
 }
 
@@ -91,8 +92,8 @@
   }
   
   .cursor-trail {
-    width: calc(var(--cursor-size) * 0.6);
-    height: calc(var(--cursor-size) * 0.6); 
+    width: calc(var(--cursor-size) * 0.8);  /* Increased trail size relative to cursor */
+    height: calc(var(--cursor-size) * 0.8); /* Increased trail size relative to cursor */
     background-color: rgba(255, 255, 255, 0.4);
     border-radius: 50%;
     transform: translate(-50%, -50%);

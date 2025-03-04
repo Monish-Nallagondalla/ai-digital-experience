@@ -6,8 +6,12 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-black border-t border-gray-800 pt-16 pb-8">
-      <div className="container mx-auto px-4 md:px-6">
+    <footer className="bg-black relative overflow-hidden pt-16 pb-8">
+      {/* Consistent background elements */}
+      <div className="absolute inset-0 bg-grid-pattern bg-[length:30px_30px] opacity-40"></div>
+      <div className="absolute inset-0 bg-gradient-radial from-black/70 via-black/90 to-black opacity-95"></div>
+      
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* Company Info */}
           <div>
@@ -48,9 +52,6 @@ const Footer = () => {
                 <Link to="/about" className="text-gray-400 hover:text-neon-blue transition-colors">About Us</Link>
               </li>
               <li>
-                <Link to="/team" className="text-gray-400 hover:text-neon-blue transition-colors">Our Team</Link>
-              </li>
-              <li>
                 <Link to="/blog" className="text-gray-400 hover:text-neon-blue transition-colors">Blog</Link>
               </li>
               <li>
@@ -59,21 +60,21 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Services */}
+          {/* Services - Updated to match our service categories */}
           <div>
             <h3 className="text-white text-lg font-semibold mb-6">Services</h3>
             <ul className="space-y-3">
               <li>
-                <Link to="/services" className="text-gray-400 hover:text-neon-blue transition-colors">AI Consultation</Link>
+                <Link to="/services" className="text-gray-400 hover:text-neon-blue transition-colors">AI Strategy & Advisory</Link>
               </li>
               <li>
-                <Link to="/services" className="text-gray-400 hover:text-neon-blue transition-colors">AI Integration</Link>
+                <Link to="/services" className="text-gray-400 hover:text-neon-blue transition-colors">AI Development & Implementation</Link>
               </li>
               <li>
-                <Link to="/services" className="text-gray-400 hover:text-neon-blue transition-colors">Agent Development</Link>
+                <Link to="/services" className="text-gray-400 hover:text-neon-blue transition-colors">AI Operations & Integration</Link>
               </li>
               <li>
-                <Link to="/services" className="text-gray-400 hover:text-neon-blue transition-colors">Business Intelligence</Link>
+                <Link to="/services" className="text-gray-400 hover:text-neon-blue transition-colors">AI-Powered Business Solutions</Link>
               </li>
               <li>
                 <Link to="/services" className="text-gray-400 hover:text-neon-blue transition-colors">View All Services</Link>

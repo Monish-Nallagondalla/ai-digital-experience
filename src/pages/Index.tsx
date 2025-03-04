@@ -125,12 +125,17 @@ const Index = () => {
       {/* Hero Section */}
       <Hero />
       
-      {/* Trusted By Section */}
+      {/* Trusted By Section - Updated background to be consistent */}
       <section 
         ref={clientsRef}
-        className="py-20 bg-gradient-to-b from-black to-gray-900"
+        className="py-20 relative overflow-hidden"
       >
-        <div className="container mx-auto px-4">
+        {/* Consistent background elements */}
+        <div className="absolute inset-0 bg-black opacity-100"></div>
+        <div className="absolute inset-0 bg-grid-pattern bg-[length:30px_30px] opacity-40"></div>
+        <div className="absolute inset-0 bg-gradient-radial from-black/70 via-black/90 to-black opacity-95"></div>
+        
+        <div className="container mx-auto px-4 relative z-10">
           <div 
             className={`text-center mb-12 transition-all duration-700 ${isVisible.clients ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
           >
@@ -145,7 +150,7 @@ const Index = () => {
             {clients.map((client, index) => (
               <div 
                 key={index} 
-                className="glass-card px-6 py-4 rounded-lg flex items-center justify-center w-full h-20 hover:border-white/20 transition-all duration-300 hover:shadow-lg group"
+                className="glass-card px-6 py-4 rounded-lg flex items-center justify-center w-full h-20 hover:border-white/20 transition-all duration-300 hover:shadow-lg group magnetic-button-enhanced"
                 style={{ transitionDelay: `${200 + (index * 100)}ms` }}
               >
                 <span className="text-xl font-semibold text-gray-300 group-hover:text-white transition-colors duration-300">{client}</span>
@@ -155,12 +160,17 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Services Section - Fixed gradient transition */}
+      {/* Services Section - Consistent background */}
       <section 
         ref={servicesRef}
-        className="py-24 bg-gradient-to-b from-gray-900 to-black"
+        className="py-24 relative overflow-hidden"
       >
-        <div className="container mx-auto px-4">
+        {/* Consistent background elements */}
+        <div className="absolute inset-0 bg-black opacity-100"></div>
+        <div className="absolute inset-0 bg-grid-pattern bg-[length:30px_30px] opacity-40"></div>
+        <div className="absolute inset-0 bg-gradient-radial from-black/70 via-black/90 to-black opacity-95"></div>
+        
+        <div className="container mx-auto px-4 relative z-10">
           <div 
             className={`max-w-3xl mx-auto text-center mb-16 transition-all duration-700 ${isVisible.services ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
           >
@@ -177,7 +187,7 @@ const Index = () => {
             {featuredServices.map((service, index) => (
               <div 
                 key={index} 
-                className={`glass-card p-8 rounded-xl hover:border-neon-${service.color}/30 transition-all duration-300 hover:translate-y-[-5px] flex flex-col h-full group`}
+                className={`glass-card p-8 rounded-xl hover:border-neon-${service.color}/30 transition-all duration-300 hover:translate-y-[-5px] flex flex-col h-full group magnetic-button-enhanced`}
                 style={{ transitionDelay: `${200 + (index * 100)}ms` }}
               >
                 <div className={`bg-neon-${service.color}/10 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4 group-hover:bg-neon-${service.color}/20 transition-all duration-300`}>
@@ -199,7 +209,7 @@ const Index = () => {
             className={`text-center transition-all duration-700 ${isVisible.services ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
             style={{ transitionDelay: "600ms" }}
           >
-            <Link to="/services" className="neon-button-green px-8 py-3">
+            <Link to="/services" className="neon-button-green px-8 py-3 magnetic-button-enhanced">
               <span className="relative z-10 flex items-center justify-center">
                 Explore All Services <ArrowRight className="ml-2 h-4 w-4" />
               </span>
@@ -208,14 +218,15 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Improved Testimonials Section with fixed gradient transition */}
+      {/* Improved Testimonials Section with consistent background */}
       <section 
         ref={testimonialsRef}
-        className="py-24 relative overflow-hidden bg-transparent"
+        className="py-24 relative overflow-hidden"
       >
-        {/* Enhanced gradient overlays for perfect blending */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900/70 to-gray-900/50 opacity-100"></div>
-        <div className="absolute inset-0 bg-grid-pattern bg-[length:20px_20px] opacity-20"></div>
+        {/* Consistent background elements */}
+        <div className="absolute inset-0 bg-black opacity-100"></div>
+        <div className="absolute inset-0 bg-grid-pattern bg-[length:30px_30px] opacity-40"></div>
+        <div className="absolute inset-0 bg-gradient-radial from-black/70 via-black/90 to-black opacity-95"></div>
         
         {/* Simple accent orbs with no animation */}
         <div className="absolute top-20 right-[20%] w-80 h-80 rounded-full bg-neon-blue/5 blur-3xl"></div>
@@ -306,14 +317,15 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Call To Action Section - Perfect blending with testimonials */}
+      {/* Call To Action Section with consistent background */}
       <section 
         ref={ctaRef}
         className="py-24 relative overflow-hidden"
       >
-        {/* Background Elements for seamless blending */}
-        <div className="absolute inset-0 bg-gradient-to-b from-gray-900/50 via-gray-900/80 to-black opacity-100"></div>
-        <div className="absolute inset-0 bg-grid-pattern bg-[length:20px_20px] opacity-20"></div>
+        {/* Background Elements for consistent styling */}
+        <div className="absolute inset-0 bg-black opacity-100"></div>
+        <div className="absolute inset-0 bg-grid-pattern bg-[length:30px_30px] opacity-40"></div>
+        <div className="absolute inset-0 bg-gradient-radial from-black/70 via-black/90 to-black opacity-95"></div>
         
         <div className="container mx-auto px-4 relative z-10">
           <div 
@@ -324,12 +336,12 @@ const Index = () => {
               Partner with ApplyAi.today and discover how our cutting-edge AI solutions can drive innovation, efficiency, and growth for your organization. Our team of experts is ready to help you navigate the AI landscape.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
-              <Link to="/contact" className="neon-button-orange px-8 py-3 shadow-neon-orange">
+              <Link to="/contact" className="neon-button-orange px-8 py-3 shadow-neon-orange magnetic-button-enhanced">
                 <span className="relative z-10 flex items-center justify-center">
                   Schedule a Consultation <ArrowRight className="ml-2 h-4 w-4" />
                 </span>
               </Link>
-              <Link to="/services" className="neon-button-blue px-8 py-3 shadow-neon-blue">
+              <Link to="/services" className="neon-button-blue px-8 py-3 shadow-neon-blue magnetic-button-enhanced">
                 <span className="relative z-10 flex items-center justify-center">
                   Explore Our Solutions
                 </span>

@@ -48,16 +48,16 @@ const CustomCursor = () => {
         cursorOutlineRef.current.style.top = `${e.clientY}px`;
       }
       
-      // Update trail positions (fewer trails with longer delay for subtler effect)
+      // Update trail positions (increased number of trails)
       setTimeout(() => {
         setTrailPositions(prev => {
           const newTrail = [...prev, newPosition];
-          if (newTrail.length > 10) { // Reduced number of trail particles
-            return newTrail.slice(newTrail.length - 10);
+          if (newTrail.length > 15) { // Increased number of trail particles
+            return newTrail.slice(newTrail.length - 15);
           }
           return newTrail;
         });
-      }, 15); // Slower trail update for more subtle effect
+      }, 10); // Slightly faster trail update
     };
 
     const onMouseDown = () => {
@@ -125,8 +125,8 @@ const CustomCursor = () => {
           style={{
             left: `${pos.x}px`,
             top: `${pos.y}px`,
-            opacity: (index + 1) / trailPositions.length * 0.3,
-            transform: `scale(${0.2 + (index / trailPositions.length) * 0.4})`,
+            opacity: (index + 1) / trailPositions.length * 0.4, // Increased opacity
+            transform: `scale(${0.2 + (index / trailPositions.length) * 0.6})`, // Slightly larger trail sizes
             backgroundColor: index % 3 === 0 ? 'rgba(255, 95, 31, 0.7)' : 
                            index % 3 === 1 ? 'rgba(0, 255, 127, 0.7)' : 'rgba(0, 255, 255, 0.7)',
             filter: `blur(${Math.max(0, (trailPositions.length - index) / 10)}px)`,

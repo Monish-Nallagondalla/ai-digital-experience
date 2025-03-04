@@ -1,10 +1,11 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import ServicesHeader from '../components/ServicesHeader';
 import ServiceList from '../components/ServiceList';
 import { services } from '../data/services';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-// Group services by category
+// Group services by category with improved names
 const serviceCategories = {
   "AI Strategy & Advisory": services.filter(s => 
     ["AI Strategy Consulting", "AI Ethics & Governance", "AI Education & Training", "Data Science Consulting"].includes(s.title)),
@@ -47,10 +48,8 @@ const Services = () => {
 
   return (
     <div ref={containerRef} className="relative overflow-hidden bg-black min-h-screen">
-      {/* Enhanced Grid Background with improved visibility */}
+      {/* Consistent background elements */}
       <div className="absolute inset-0 bg-grid-pattern bg-[length:30px_30px] opacity-40"></div>
-      
-      {/* Enhanced Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-radial from-black/70 via-black/90 to-black opacity-95"></div>
       
       {/* Interactive Background Elements */}
@@ -84,23 +83,26 @@ const Services = () => {
         
         <div className={`transition-all duration-700 mb-12 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <Tabs defaultValue="all" value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="glass-card bg-black/40 border border-white/20 p-1.5 backdrop-blur-md shadow-xl rounded-xl w-full grid grid-cols-1 md:grid-cols-5 gap-2">
-              <TabsTrigger 
-                value="all" 
-                className="px-4 py-2.5 text-lg data-[state=active]:bg-neon-blue/20 data-[state=active]:text-white rounded-lg"
-              >
-                All Services
-              </TabsTrigger>
-              {Object.keys(serviceCategories).map((category) => (
+            {/* Fixed tabs without scroll - Use flex-wrap for responsiveness */}
+            <div className="w-full overflow-hidden">
+              <TabsList className="glass-card bg-black/40 border border-white/20 p-1.5 backdrop-blur-md shadow-xl rounded-xl w-full flex flex-wrap justify-center gap-2">
                 <TabsTrigger 
-                  key={category} 
-                  value={category}
-                  className="px-4 py-2.5 text-lg data-[state=active]:bg-neon-blue/20 data-[state=active]:text-white rounded-lg whitespace-normal text-center"
+                  value="all" 
+                  className="px-4 py-2.5 text-lg data-[state=active]:bg-neon-blue/20 data-[state=active]:text-white rounded-lg mb-2"
                 >
-                  {category}
+                  All Services
                 </TabsTrigger>
-              ))}
-            </TabsList>
+                {Object.keys(serviceCategories).map((category) => (
+                  <TabsTrigger 
+                    key={category} 
+                    value={category}
+                    className="px-4 py-2.5 text-lg data-[state=active]:bg-neon-blue/20 data-[state=active]:text-white rounded-lg whitespace-normal text-center mb-2"
+                  >
+                    {category}
+                  </TabsTrigger>
+                ))}
+              </TabsList>
+            </div>
             
             <TabsContent value="all" className="mt-8">
               <ServiceList services={services} />
