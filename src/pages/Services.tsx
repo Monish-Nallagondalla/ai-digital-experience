@@ -10,13 +10,13 @@ const serviceCategories = {
   "AI Strategy & Advisory": services.filter(s => 
     ["AI Strategy Consulting", "AI Ethics & Governance", "AI Education & Training", "Data Science Consulting"].includes(s.title)),
   
-  "AI Development & Implementation": services.filter(s => 
+  "AI Development": services.filter(s => 
     ["Custom AI Application Development", "Natural Language Processing Solutions", "Computer Vision Implementation", "Predictive Analytics Implementation", "Generative AI Solutions"].includes(s.title)),
   
-  "AI Operations & Integration": services.filter(s => 
+  "AI Operations": services.filter(s => 
     ["Machine Learning Operations (MLOps)", "AI Integration Services", "Data Engineering & Infrastructure", "AI Model Training & Fine-tuning"].includes(s.title)),
   
-  "AI-Powered Business Solutions": services.filter(s => 
+  "Business Solutions": services.filter(s => 
     ["AI-Enhanced Customer Experience", "AI-Powered Process Automation", "AI-Driven Business Intelligence", "Comprehensive Tech Solutions with AI"].includes(s.title)),
 };
 
@@ -83,12 +83,12 @@ const Services = () => {
         
         <div className={`transition-all duration-700 mb-12 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <Tabs defaultValue="all" value={activeTab} onValueChange={setActiveTab} className="w-full">
-            {/* Fixed tabs without scroll - Use flex-wrap for responsiveness */}
-            <div className="w-full overflow-hidden">
-              <TabsList className="glass-card bg-black/40 border border-white/20 p-1.5 backdrop-blur-md shadow-xl rounded-xl w-full flex flex-wrap justify-center gap-2">
+            {/* Improved tabs layout */}
+            <div className="w-full mb-8">
+              <TabsList className="glass-card bg-black/40 border border-white/20 p-2 backdrop-blur-md shadow-xl rounded-xl w-full flex flex-wrap justify-center">
                 <TabsTrigger 
                   value="all" 
-                  className="px-4 py-2.5 text-lg data-[state=active]:bg-neon-blue/20 data-[state=active]:text-white rounded-lg mb-2"
+                  className="px-4 py-3 text-base md:text-lg data-[state=active]:bg-neon-blue/20 data-[state=active]:text-white rounded-lg"
                 >
                   All Services
                 </TabsTrigger>
@@ -96,7 +96,7 @@ const Services = () => {
                   <TabsTrigger 
                     key={category} 
                     value={category}
-                    className="px-4 py-2.5 text-lg data-[state=active]:bg-neon-blue/20 data-[state=active]:text-white rounded-lg whitespace-normal text-center mb-2"
+                    className="px-4 py-3 text-base md:text-lg data-[state=active]:bg-neon-blue/20 data-[state=active]:text-white rounded-lg whitespace-normal text-center"
                   >
                     {category}
                   </TabsTrigger>

@@ -132,7 +132,7 @@ const Navbar = () => {
             <Link
               ref={buttonRef}
               to="/contact"
-              className="neon-button-orange magnetic-button-enhanced"
+              className="neon-button-orange magnetic-button-enhanced px-6 py-2.5"
               style={{ 
                 transform: `translate(${magneticPosition.x}px, ${magneticPosition.y}px)`,
                 transition: 'transform 0.2s cubic-bezier(0.23, 1, 0.32, 1)'
@@ -188,7 +188,7 @@ const Navbar = () => {
           ))}
           <Link
             to="/contact"
-            className="neon-button-orange magnetic-button-enhanced mt-6"
+            className="neon-button-orange magnetic-button-enhanced px-8 py-3 mt-6"
             onClick={() => setIsMenuOpen(false)}
           >
             <span className="relative z-10">Get Started</span>

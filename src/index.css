@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -44,7 +43,7 @@
     --sidebar-border: 220 13% 25%;
     --sidebar-ring: 217.2 91.2% 59.8%;
     
-    --cursor-size: 18px; /* Slightly reduced cursor size */
+    --cursor-size: 16px; /* Slightly reduced cursor size */
   }
 }
 
@@ -82,23 +81,13 @@
   }
   
   .cursor-outline {
-    width: calc(var(--cursor-size) * 3.5);
-    height: calc(var(--cursor-size) * 3.5);
+    width: calc(var(--cursor-size) * 3);
+    height: calc(var(--cursor-size) * 3);
     background-color: transparent;
     border: 1.5px solid rgba(255, 255, 255, 0.85);
     border-radius: 50%;
     transform: translate(-50%, -50%);
     transition: width 0.2s ease, height 0.2s ease, transform 0.08s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-  }
-  
-  .cursor-trail {
-    width: calc(var(--cursor-size) * 0.8);  /* Increased trail size relative to cursor */
-    height: calc(var(--cursor-size) * 0.8); /* Increased trail size relative to cursor */
-    background-color: rgba(255, 255, 255, 0.4);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: opacity 0.12s ease;
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
   }
   
   a:hover ~ .cursor-outline,

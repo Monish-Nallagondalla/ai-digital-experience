@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Brain, Cpu, Zap } from "lucide-react";
 
@@ -9,6 +9,11 @@ const Hero = () => {
   const fullText = "Apply AI, Amplify Results.Today";
   const [typingComplete, setTypingComplete] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [magneticPosition1, setMagneticPosition1] = useState({ x: 0, y: 0 });
+  const [magneticPosition2, setMagneticPosition2] = useState({ x: 0, y: 0 });
+  
+  const buttonRef1 = useRef<HTMLAnchorElement>(null);
+  const buttonRef2 = useRef<HTMLAnchorElement>(null);
   
   useEffect(() => {
     setIsVisible(true);
@@ -33,6 +38,59 @@ const Hero = () => {
       setTypingComplete(true);
     }
   }, [typedText, fullText]);
+  
+  // Magnetic button effect handlers
+  const handleMouseMove1 = (e: React.MouseEvent) => {
+    if (!buttonRef1.current) return;
+    
+    const rect = buttonRef1.current.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    
+    const distanceX = e.clientX - centerX;
+    const distanceY = e.clientY - centerY;
+    
+    // Calculate strength based on distance from center
+    const strength = 15;
+    const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+    const maxDistance = rect.width / 2;
+    
+    if (distance < maxDistance) {
+      const x = (distanceX / maxDistance) * strength;
+      const y = (distanceY / maxDistance) * strength;
+      setMagneticPosition1({ x, y });
+    } else {
+      setMagneticPosition1({ x: 0, y: 0 });
+    }
+  };
+  
+  const handleMouseMove2 = (e: React.MouseEvent) => {
+    if (!buttonRef2.current) return;
+    
+    const rect = buttonRef2.current.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    
+    const distanceX = e.clientX - centerX;
+    const distanceY = e.clientY - centerY;
+    
+    // Calculate strength based on distance from center
+    const strength = 15;
+    const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+    const maxDistance = rect.width / 2;
+    
+    if (distance < maxDistance) {
+      const x = (distanceX / maxDistance) * strength;
+      const y = (distanceY / maxDistance) * strength;
+      setMagneticPosition2({ x, y });
+    } else {
+      setMagneticPosition2({ x: 0, y: 0 });
+    }
+  };
+
+  const handleMouseLeave = (setter: React.Dispatch<React.SetStateAction<{ x: number; y: number }>>) => {
+    setter({ x: 0, y: 0 });
+  };
 
   return (
     <div className="relative overflow-hidden bg-black min-h-screen flex items-center justify-center">
@@ -71,15 +129,15 @@ const Hero = () => {
             </p>
           </div>
           
-          {/* Main Heading - With proper padding to avoid text being cut off */}
+          {/* Main Heading - With increased padding to avoid text being cut off */}
           <h1 
             className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-8 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-            style={{ transitionDelay: "200ms", padding: "0 0 8px 0" }}
+            style={{ transitionDelay: "200ms" }}
           >
-            <div className="block shimmer-text mb-4 md:mb-6 bg-gradient-to-r from-neon-orange via-neon-blue to-neon-green bg-clip-text text-transparent">
+            <div className="block shimmer-text mb-6 md:mb-8 bg-gradient-to-r from-neon-orange via-neon-blue to-neon-green bg-clip-text text-transparent pb-2">
               Transforming Industries
             </div>
-            <div className="block">
+            <div className="block mt-4">
               Through <span className="text-neon-blue text-glow">Artificial Intelligence</span>
             </div>
           </h1>
@@ -108,22 +166,43 @@ const Hero = () => {
             className={`flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
             style={{ transitionDelay: "800ms" }}
           >
-            <Link 
-              to="/contact" 
-              className="neon-button-orange magnetic-button-enhanced w-full sm:w-auto px-8 py-3 shadow-neon-orange"
+            <div 
+              onMouseMove={handleMouseMove1}
+              onMouseLeave={() => handleMouseLeave(setMagneticPosition1)}
             >
-              <span className="relative z-10 flex items-center justify-center">
-                Book a Consultation <ArrowRight className="ml-2 h-4 w-4" />
-              </span>
-            </Link>
-            <Link 
-              to="/services" 
-              className="neon-button-blue magnetic-button-enhanced w-full sm:w-auto px-8 py-3 shadow-neon-blue"
+              <Link 
+                ref={buttonRef1}
+                to="/contact" 
+                className="neon-button-orange magnetic-button-enhanced w-full sm:w-auto px-10 py-4 shadow-neon-orange"
+                style={{ 
+                  transform: `translate(${magneticPosition1.x}px, ${magneticPosition1.y}px)`,
+                  transition: 'transform 0.2s cubic-bezier(0.23, 1, 0.32, 1)'
+                }}
+              >
+                <span className="relative z-10 flex items-center justify-center">
+                  Book a Consultation <ArrowRight className="ml-2 h-4 w-4" />
+                </span>
+              </Link>
+            </div>
+            
+            <div 
+              onMouseMove={handleMouseMove2}
+              onMouseLeave={() => handleMouseLeave(setMagneticPosition2)}
             >
-              <span className="relative z-10 flex items-center justify-center">
-                Explore Our Solutions
-              </span>
-            </Link>
+              <Link 
+                ref={buttonRef2}
+                to="/services" 
+                className="neon-button-blue magnetic-button-enhanced w-full sm:w-auto px-10 py-4 shadow-neon-blue"
+                style={{ 
+                  transform: `translate(${magneticPosition2.x}px, ${magneticPosition2.y}px)`,
+                  transition: 'transform 0.2s cubic-bezier(0.23, 1, 0.32, 1)'
+                }}
+              >
+                <span className="relative z-10 flex items-center justify-center">
+                  Explore Our Solutions
+                </span>
+              </Link>
+            </div>
           </div>
         </div>
         

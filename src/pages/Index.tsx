@@ -19,6 +19,14 @@ const Index = () => {
   const servicesRef = useRef<HTMLDivElement>(null);
   const testimonialsRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
+  
+  const [magneticPosition, setMagneticPosition] = useState({ x: 0, y: 0 });
+  const [magneticPosition2, setMagneticPosition2] = useState({ x: 0, y: 0 });
+  const [magneticPosition3, setMagneticPosition3] = useState({ x: 0, y: 0 });
+  
+  const ctaButtonRef1 = useRef<HTMLAnchorElement>(null);
+  const ctaButtonRef2 = useRef<HTMLAnchorElement>(null);
+  const servicesButtonRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
     const observerOptions = {
@@ -66,6 +74,41 @@ const Index = () => {
     
     return () => clearInterval(interval);
   }, [autoplay]);
+
+  // Magnetic effect handlers
+  const handleMagneticMouseMove = (
+    e: React.MouseEvent,
+    buttonRef: React.RefObject<HTMLAnchorElement>,
+    setMagneticPosition: React.Dispatch<React.SetStateAction<{ x: number; y: number }>>
+  ) => {
+    if (!buttonRef.current) return;
+    
+    const rect = buttonRef.current.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    
+    const distanceX = e.clientX - centerX;
+    const distanceY = e.clientY - centerY;
+    
+    // Calculate strength based on distance from center
+    const strength = 15;
+    const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+    const maxDistance = rect.width / 2;
+    
+    if (distance < maxDistance) {
+      const x = (distanceX / maxDistance) * strength;
+      const y = (distanceY / maxDistance) * strength;
+      setMagneticPosition({ x, y });
+    } else {
+      setMagneticPosition({ x: 0, y: 0 });
+    }
+  };
+
+  const handleMagneticMouseLeave = (
+    setMagneticPosition: React.Dispatch<React.SetStateAction<{ x: number; y: number }>>
+  ) => {
+    setMagneticPosition({ x: 0, y: 0 });
+  };
 
   // Refined client logos with recognizable tech brands
   const clients = ["Tesla", "Amazon", "Google", "Microsoft", "Airbnb", "Uber"];
@@ -208,8 +251,18 @@ const Index = () => {
           <div 
             className={`text-center transition-all duration-700 ${isVisible.services ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
             style={{ transitionDelay: "600ms" }}
+            onMouseMove={(e) => handleMagneticMouseMove(e, servicesButtonRef, setMagneticPosition3)}
+            onMouseLeave={() => handleMagneticMouseLeave(setMagneticPosition3)}
           >
-            <Link to="/services" className="neon-button-green px-8 py-3 magnetic-button-enhanced">
+            <Link 
+              ref={servicesButtonRef}
+              to="/services" 
+              className="neon-button-green px-8 py-3 magnetic-button-enhanced"
+              style={{ 
+                transform: `translate(${magneticPosition3.x}px, ${magneticPosition3.y}px)`,
+                transition: 'transform 0.2s cubic-bezier(0.23, 1, 0.32, 1)'
+              }}
+            >
               <span className="relative z-10 flex items-center justify-center">
                 Explore All Services <ArrowRight className="ml-2 h-4 w-4" />
               </span>
@@ -336,16 +389,43 @@ const Index = () => {
               Partner with ApplyAi.today and discover how our cutting-edge AI solutions can drive innovation, efficiency, and growth for your organization. Our team of experts is ready to help you navigate the AI landscape.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
-              <Link to="/contact" className="neon-button-orange px-8 py-3 shadow-neon-orange magnetic-button-enhanced">
-                <span className="relative z-10 flex items-center justify-center">
-                  Schedule a Consultation <ArrowRight className="ml-2 h-4 w-4" />
-                </span>
-              </Link>
-              <Link to="/services" className="neon-button-blue px-8 py-3 shadow-neon-blue magnetic-button-enhanced">
-                <span className="relative z-10 flex items-center justify-center">
-                  Explore Our Solutions
-                </span>
-              </Link>
+              <div 
+                onMouseMove={(e) => handleMagneticMouseMove(e, ctaButtonRef1, setMagneticPosition)}
+                onMouseLeave={() => handleMagneticMouseLeave(setMagneticPosition)}
+              >
+                <Link 
+                  ref={ctaButtonRef1}
+                  to="/contact" 
+                  className="neon-button-orange px-8 py-4 shadow-neon-orange magnetic-button-enhanced w-full sm:w-auto"
+                  style={{ 
+                    transform: `translate(${magneticPosition.x}px, ${magneticPosition.y}px)`,
+                    transition: 'transform 0.2s cubic-bezier(0.23, 1, 0.32, 1)'
+                  }}
+                >
+                  <span className="relative z-10 flex items-center justify-center">
+                    Schedule a Consultation <ArrowRight className="ml-2 h-4 w-4" />
+                  </span>
+                </Link>
+              </div>
+              
+              <div 
+                onMouseMove={(e) => handleMagneticMouseMove(e, ctaButtonRef2, setMagneticPosition2)}
+                onMouseLeave={() => handleMagneticMouseLeave(setMagneticPosition2)}
+              >
+                <Link 
+                  ref={ctaButtonRef2}
+                  to="/services" 
+                  className="neon-button-blue px-8 py-4 shadow-neon-blue magnetic-button-enhanced w-full sm:w-auto"
+                  style={{ 
+                    transform: `translate(${magneticPosition2.x}px, ${magneticPosition2.y}px)`,
+                    transition: 'transform 0.2s cubic-bezier(0.23, 1, 0.32, 1)'
+                  }}
+                >
+                  <span className="relative z-10 flex items-center justify-center">
+                    Explore Our Solutions
+                  </span>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
