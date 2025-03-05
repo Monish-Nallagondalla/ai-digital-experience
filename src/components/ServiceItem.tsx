@@ -22,7 +22,7 @@ const ServiceItem = ({ service, index }: ServiceItemProps) => {
     const y = e.clientY - rect.top - rect.height / 2;
     
     // Enhanced magnetic pull effect
-    const strength = 20; // Increased from 15
+    const strength = 25; // Increased from 20
     const magneticX = (x / rect.width) * strength;
     const magneticY = (y / rect.height) * strength;
     

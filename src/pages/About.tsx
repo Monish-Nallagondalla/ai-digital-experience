@@ -1,10 +1,22 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Award, Building, Clock, Users, CheckCircle, Sparkles } from 'lucide-react';
+import { 
+  ArrowRight, 
+  Award, 
+  Building, 
+  Clock, 
+  Users, 
+  CheckCircle, 
+  Sparkles, 
+  Target, 
+  Compass, 
+  Badge, 
+  BadgeCheck, 
+  Flag,
+  BarChart4
+} from 'lucide-react';
 import TeamMember from '../components/TeamMember';
 
-// Sample team members data
 const teamMembers = [
   {
     name: "Dr. Alex Chen",
@@ -75,7 +87,6 @@ const About = () => {
   const ctaButtonRef = useRef<HTMLAnchorElement>(null);
   const [ctaMagneticPosition, setCtaMagneticPosition] = useState({ x: 0, y: 0 });
   
-  // Refs for stat cards to add magnetic effects
   const statCardRefs = [
     useRef<HTMLDivElement>(null),
     useRef<HTMLDivElement>(null),
@@ -90,7 +101,6 @@ const About = () => {
     { x: 0, y: 0 }
   ]);
   
-  // Refs for value cards
   const valueCardRefs = [
     useRef<HTMLDivElement>(null),
     useRef<HTMLDivElement>(null),
@@ -150,7 +160,6 @@ const About = () => {
     if (teamRef.current) observer.observe(teamRef.current);
     if (ctaRef.current) observer.observe(ctaRef.current);
 
-    // Background effect
     const handleMouseMove = (e: MouseEvent) => {
       if (containerRef.current) {
         const { left, top, width, height } = containerRef.current.getBoundingClientRect();
@@ -168,7 +177,6 @@ const About = () => {
     };
   }, []);
   
-  // Handlers for magnetic effects
   const handleStatCardMouseMove = (e: React.MouseEvent, index: number) => {
     if (!statCardRefs[index].current) return;
     
@@ -179,7 +187,6 @@ const About = () => {
     const distanceX = e.clientX - centerX;
     const distanceY = e.clientY - centerY;
     
-    // Lighter magnetic effect for stat cards
     const strength = 12;
     const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
     const maxDistance = rect.width / 2;
@@ -210,7 +217,6 @@ const About = () => {
     const distanceX = e.clientX - centerX;
     const distanceY = e.clientY - centerY;
     
-    // Lighter magnetic effect for value cards
     const strength = 12;
     const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
     const maxDistance = rect.width / 2;
@@ -241,7 +247,6 @@ const About = () => {
     const distanceX = e.clientX - centerX;
     const distanceY = e.clientY - centerY;
     
-    // Strong magnetic effect for CTA
     const strength = 15;
     const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
     const maxDistance = rect.width / 2;
@@ -261,13 +266,10 @@ const About = () => {
 
   return (
     <div ref={containerRef} className="relative overflow-hidden bg-black min-h-screen">
-      {/* Enhanced Grid Background with improved visibility */}
       <div className="absolute inset-0 bg-grid-pattern bg-[length:30px_30px] opacity-40"></div>
       
-      {/* Enhanced Gradient Overlay with smooth transitions */}
       <div className="absolute inset-0 bg-gradient-radial from-black/70 via-black/90 to-black opacity-95"></div>
       
-      {/* Interactive Floating Elements */}
       <div 
         className="absolute w-96 h-96 rounded-full bg-neon-orange/10 blur-3xl"
         style={{ 
@@ -286,14 +288,14 @@ const About = () => {
       ></div>
       
       <div className="container mx-auto px-4 py-16 relative z-10">
-        {/* Page Header */}
         <div 
           ref={headerRef}
           className={`max-w-4xl mx-auto text-center mb-16 transition-all duration-700 ${
             isVisible.header ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >
-          <div className="inline-block px-4 py-1.5 bg-white/5 border border-white/10 rounded-full backdrop-blur-sm mb-6">
+          <div className="inline-block px-4 py-1.5 bg-white/5 border border-white/10 rounded-full backdrop-blur-sm mb-6 flex items-center">
+            <BadgeCheck className="w-4 h-4 mr-2 text-neon-blue" />
             <p className="text-sm font-medium text-gray-300">Our Story and Vision</p>
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-6 shimmer-text bg-gradient-to-r from-neon-orange via-neon-blue to-neon-green py-2">
@@ -304,7 +306,6 @@ const About = () => {
           </p>
         </div>
         
-        {/* About Us Section */}
         <div 
           ref={aboutRef}
           className={`max-w-6xl mx-auto mb-24 glass-card p-8 rounded-xl backdrop-blur-md transition-all duration-700 border border-white/20 ${
@@ -317,7 +318,12 @@ const About = () => {
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             <div>
-              <h2 className="text-2xl font-semibold mb-4">Our Mission</h2>
+              <div className="flex items-center mb-4">
+                <div className="bg-neon-orange/15 p-2 rounded-full mr-3">
+                  <Target className="h-6 w-6 text-neon-orange" />
+                </div>
+                <h2 className="text-2xl font-semibold">Our Mission</h2>
+              </div>
               <p className="text-gray-300 mb-4">
                 At ApplyAI.today, we're on a mission to make cutting-edge artificial intelligence accessible, practical, and transformative for businesses of all sizes. We believe that AI should be a force multiplier for human potential, not a replacement for human ingenuity.
               </p>
@@ -326,7 +332,12 @@ const About = () => {
               </p>
             </div>
             <div>
-              <h2 className="text-2xl font-semibold mb-4">Our Approach</h2>
+              <div className="flex items-center mb-4">
+                <div className="bg-neon-blue/15 p-2 rounded-full mr-3">
+                  <Compass className="h-6 w-6 text-neon-blue" />
+                </div>
+                <h2 className="text-2xl font-semibold">Our Approach</h2>
+              </div>
               <p className="text-gray-300 mb-4">
                 We combine deep technical expertise with a practical business mindset. Every AI solution we create is designed with real-world applications in mind, focused on delivering measurable results that impact your bottom line.
               </p>
@@ -337,7 +348,6 @@ const About = () => {
           </div>
         </div>
         
-        {/* Key Stats */}
         <div 
           ref={statsRef}
           className={`max-w-6xl mx-auto mb-24 transition-all duration-700 ${
@@ -346,7 +356,6 @@ const About = () => {
           style={{ transitionDelay: "200ms" }}
         >
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {/* Stat Card 1 */}
             <div 
               ref={statCardRefs[0]}
               className="glass-card p-6 rounded-xl backdrop-blur-md border border-white/20 text-center magnetic-client-block"
@@ -358,11 +367,13 @@ const About = () => {
               onMouseMove={(e) => handleStatCardMouseMove(e, 0)}
               onMouseLeave={() => handleStatCardMouseLeave(0)}
             >
+              <div className="flex justify-center mb-2">
+                <Users className="h-8 w-8 text-neon-orange" />
+              </div>
               <div className="text-4xl font-bold mb-2 text-neon-orange">100+</div>
               <div className="text-gray-300">AI Specialists</div>
             </div>
             
-            {/* Stat Card 2 */}
             <div 
               ref={statCardRefs[1]}
               className="glass-card p-6 rounded-xl backdrop-blur-md border border-white/20 text-center magnetic-client-block"
@@ -374,11 +385,13 @@ const About = () => {
               onMouseMove={(e) => handleStatCardMouseMove(e, 1)}
               onMouseLeave={() => handleStatCardMouseLeave(1)}
             >
+              <div className="flex justify-center mb-2">
+                <BarChart4 className="h-8 w-8 text-neon-blue" />
+              </div>
               <div className="text-4xl font-bold mb-2 text-neon-blue">250+</div>
               <div className="text-gray-300">Projects Completed</div>
             </div>
             
-            {/* Stat Card 3 */}
             <div 
               ref={statCardRefs[2]}
               className="glass-card p-6 rounded-xl backdrop-blur-md border border-white/20 text-center magnetic-client-block"
@@ -390,11 +403,13 @@ const About = () => {
               onMouseMove={(e) => handleStatCardMouseMove(e, 2)}
               onMouseLeave={() => handleStatCardMouseLeave(2)}
             >
+              <div className="flex justify-center mb-2">
+                <Building className="h-8 w-8 text-neon-green" />
+              </div>
               <div className="text-4xl font-bold mb-2 text-neon-green">15+</div>
               <div className="text-gray-300">Industries Served</div>
             </div>
             
-            {/* Stat Card 4 */}
             <div 
               ref={statCardRefs[3]}
               className="glass-card p-6 rounded-xl backdrop-blur-md border border-white/20 text-center magnetic-client-block"
@@ -406,13 +421,15 @@ const About = () => {
               onMouseMove={(e) => handleStatCardMouseMove(e, 3)}
               onMouseLeave={() => handleStatCardMouseLeave(3)}
             >
+              <div className="flex justify-center mb-2">
+                <Clock className="h-8 w-8 text-neon-orange" />
+              </div>
               <div className="text-4xl font-bold mb-2 text-neon-orange">4 Years</div>
               <div className="text-gray-300">Of Innovation</div>
             </div>
           </div>
         </div>
         
-        {/* Our Values */}
         <div 
           ref={valuesRef}
           className={`max-w-6xl mx-auto mb-24 transition-all duration-700 ${
@@ -422,7 +439,6 @@ const About = () => {
         >
           <h2 className="text-3xl font-semibold mb-8 text-center">Our Core Values</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Value Card 1 */}
             <div 
               ref={valueCardRefs[0]}
               className="glass-card p-6 rounded-xl backdrop-blur-md border border-white/20 magnetic-client-block"
@@ -441,7 +457,6 @@ const About = () => {
               <p className="text-gray-300">We push the boundaries of what AI can achieve, constantly exploring new approaches and technologies.</p>
             </div>
             
-            {/* Value Card 2 */}
             <div 
               ref={valueCardRefs[1]}
               className="glass-card p-6 rounded-xl backdrop-blur-md border border-white/20 magnetic-client-block"
@@ -460,7 +475,6 @@ const About = () => {
               <p className="text-gray-300">We design AI that augments human capabilities, creating partnerships between people and technology.</p>
             </div>
             
-            {/* Value Card 3 */}
             <div 
               ref={valueCardRefs[2]}
               className="glass-card p-6 rounded-xl backdrop-blur-md border border-white/20 magnetic-client-block"
@@ -481,7 +495,6 @@ const About = () => {
           </div>
         </div>
         
-        {/* Team Section */}
         <div 
           ref={teamRef}
           className={`max-w-6xl mx-auto mb-24 transition-all duration-700 ${
@@ -514,7 +527,6 @@ const About = () => {
           </div>
         </div>
         
-        {/* CTA Section */}
         <div 
           ref={ctaRef}
           className={`max-w-4xl mx-auto transition-all duration-700 ${

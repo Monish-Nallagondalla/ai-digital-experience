@@ -60,21 +60,21 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Services - Updated to match our service categories */}
+          {/* Services - Updated to match our service categories from service page */}
           <div>
             <h3 className="text-white text-lg font-semibold mb-6">Services</h3>
             <ul className="space-y-3">
               <li>
-                <Link to="/services" className="text-gray-400 hover:text-neon-blue transition-colors">AI Strategy & Advisory</Link>
+                <Link to="/services" className="text-gray-400 hover:text-neon-blue transition-colors">AI Strategy</Link>
               </li>
               <li>
-                <Link to="/services" className="text-gray-400 hover:text-neon-blue transition-colors">AI Development & Implementation</Link>
+                <Link to="/services" className="text-gray-400 hover:text-neon-blue transition-colors">Custom AI Development</Link>
               </li>
               <li>
-                <Link to="/services" className="text-gray-400 hover:text-neon-blue transition-colors">AI Operations & Integration</Link>
+                <Link to="/services" className="text-gray-400 hover:text-neon-blue transition-colors">AI Integration</Link>
               </li>
               <li>
-                <Link to="/services" className="text-gray-400 hover:text-neon-blue transition-colors">AI-Powered Business Solutions</Link>
+                <Link to="/services" className="text-gray-400 hover:text-neon-blue transition-colors">AI Training & Support</Link>
               </li>
               <li>
                 <Link to="/services" className="text-gray-400 hover:text-neon-blue transition-colors">View All Services</Link>
@@ -82,24 +82,24 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact Info - Updated with Bangalore-specific information */}
+          {/* Contact Info - Updated with consistent icon sizes */}
           <div>
             <h3 className="text-white text-lg font-semibold mb-6">Contact Us</h3>
             <ul className="space-y-4">
               <li className="flex items-start">
-                <MapPin className="h-5 w-5 text-neon-orange mr-3 mt-0.5" />
+                <MapPin className="h-5 w-5 text-neon-orange mr-3 mt-0.5 flex-shrink-0" />
                 <span className="text-gray-400">42, Whitefield Main Road, EPIP Zone, Whitefield, Bangalore, Karnataka 560066, India</span>
               </li>
               <li className="flex items-center">
-                <Phone className="h-5 w-5 text-neon-blue mr-3" />
+                <Phone className="h-5 w-5 text-neon-blue mr-3 flex-shrink-0" />
                 <span className="text-gray-400">+91 80-4123-4567</span>
               </li>
               <li className="flex items-center">
-                <Mail className="h-5 w-5 text-neon-green mr-3" />
+                <Mail className="h-5 w-5 text-neon-green mr-3 flex-shrink-0" />
                 <span className="text-gray-400">info@applyai.today</span>
               </li>
               <li className="flex items-center">
-                <ExternalLink className="h-5 w-5 text-neon-orange mr-3" />
+                <ExternalLink className="h-5 w-5 text-neon-orange mr-3 flex-shrink-0" />
                 <span className="text-gray-400">www.applyai.today</span>
               </li>
             </ul>

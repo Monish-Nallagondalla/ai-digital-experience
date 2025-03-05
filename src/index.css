@@ -43,7 +43,7 @@
     --sidebar-border: 220 13% 25%;
     --sidebar-ring: 217.2 91.2% 59.8%;
     
-    --cursor-size: 12px;
+    --cursor-size: 14px;
   }
 }
 
@@ -221,6 +221,52 @@
   .cta-glow:hover {
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 40px rgba(0, 255, 255, 0.25);
   }
+  
+  .blog-card {
+    position: relative;
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.3s ease;
+  }
+  
+  .blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 255, 255, 0.15);
+  }
+  
+  .contact-card {
+    position: relative;
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.3s ease;
+  }
+  
+  .contact-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3), 0 0 15px rgba(255, 95, 31, 0.15);
+  }
+  
+  .corner-glow::before {
+    content: '';
+    position: absolute;
+    top: -150px;
+    right: -150px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(rgba(0, 255, 255, 0.15), transparent 70%);
+    opacity: 0.5;
+    z-index: 0;
+  }
+  
+  .corner-glow::after {
+    content: '';
+    position: absolute;
+    bottom: -150px;
+    left: -150px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(rgba(255, 95, 31, 0.15), transparent 70%);
+    opacity: 0.5;
+    z-index: 0;
+  }
 }
 
 @layer components {
@@ -362,7 +408,7 @@
 
 @media (max-width: 768px) {
   :root {
-    --cursor-size: 10px;
+    --cursor-size: 12px;
   }
   
   .neon-button {
@@ -415,7 +461,7 @@
 
 @media (max-width: 640px) {
   :root {
-    --cursor-size: 8px;
+    --cursor-size: 10px;
   }
   
   .container {
