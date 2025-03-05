@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
@@ -98,7 +99,7 @@ const Navbar = () => {
               <Link
                 key={link.name}
                 to={link.path}
-                className={`text-md font-medium transition-all duration-300 relative group ${
+                className={`text-base md:text-lg font-medium transition-all duration-300 relative group ${
                   location.pathname === link.path
                     ? "text-neon-blue"
                     : "text-gray-300 hover:text-white"

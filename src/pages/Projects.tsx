@@ -1,41 +1,42 @@
 
 import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, ExternalLink, PlayCircle, BadgeCheck } from "lucide-react";
+import { ArrowRight, BadgeCheck } from "lucide-react";
+import PageBadge from "../components/PageBadge";
 
 const Projects = () => {
   const [visibleItems, setVisibleItems] = useState<number[]>([]);
   const [activeFilter, setActiveFilter] = useState("all");
   const projectRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  // Project data with detailed descriptions and results
+  // Project examples showcasing what we CAN do (potential solutions)
   const projects = [
     {
       id: 1,
-      title: "AI-Powered Customer Service Transformation",
-      client: "Global Telecommunications Provider",
+      title: "AI-Powered Customer Service Solution",
+      industry: "Telecommunications",
       image: "/placeholder.svg", // Replace with actual project image
-      description: "Implemented an advanced conversational AI system to handle 80% of customer inquiries automatically while maintaining high satisfaction scores.",
-      results: [
-        "Reduced average response time from 15 minutes to under 30 seconds",
-        "Cut customer service operational costs by 42% annually",
-        "Improved CSAT scores from 3.6 to 4.5 out of 5",
-        "Seamless handling of 15,000+ daily customer interactions"
+      description: "Implement a conversational AI system to handle customer inquiries automatically while maintaining high satisfaction scores.",
+      potential: [
+        "Reduce average response time from minutes to seconds",
+        "Cut customer service operational costs by up to 40%",
+        "Improve CSAT scores significantly",
+        "Handle thousands of daily customer interactions seamlessly"
       ],
       technologies: ["Natural Language Processing", "Sentiment Analysis", "Knowledge Graph", "Multi-channel Integration"],
       category: "customer-service"
     },
     {
       id: 2,
-      title: "Predictive Maintenance Platform for Manufacturing",
-      client: "Industrial Equipment Manufacturer",
+      title: "Predictive Maintenance System",
+      industry: "Manufacturing",
       image: "/placeholder.svg", // Replace with actual project image
-      description: "Developed a comprehensive predictive maintenance system using IoT sensors and machine learning to predict equipment failures before they occur.",
-      results: [
-        "Reduced unplanned downtime by 78% within the first year",
-        "Increased equipment lifespan by an average of 34%",
-        "Saved $4.2M in maintenance costs and productivity losses",
-        "Optimized maintenance scheduling across 12 global facilities"
+      description: "Develop a comprehensive predictive maintenance system using IoT sensors and machine learning to predict equipment failures before they occur.",
+      potential: [
+        "Reduce unplanned downtime by up to 75%",
+        "Increase equipment lifespan by 30%+",
+        "Save millions in maintenance costs and productivity losses",
+        "Optimize maintenance scheduling across facilities"
       ],
       technologies: ["Predictive Analytics", "IoT Integration", "Time Series Analysis", "Edge Computing"],
       category: "manufacturing"
@@ -43,14 +44,14 @@ const Projects = () => {
     {
       id: 3,
       title: "Retail Inventory Optimization System",
-      client: "National Retail Chain",
+      industry: "Retail",
       image: "/placeholder.svg", // Replace with actual project image
-      description: "Created an intelligent inventory management system that predicts demand patterns and optimizes stock levels across 230+ store locations.",
-      results: [
-        "Reduced excess inventory by 28% while maintaining 99.2% product availability",
-        "Decreased logistics costs by $3.7M annually",
-        "Improved gross margin by 3.2% through optimized purchasing",
-        "Cut waste of perishable goods by 41% in food departments"
+      description: "Create an intelligent inventory management system that predicts demand patterns and optimizes stock levels across multiple store locations.",
+      potential: [
+        "Reduce excess inventory while maintaining high product availability",
+        "Decrease logistics costs significantly",
+        "Improve gross margin through optimized purchasing",
+        "Cut waste of perishable goods in food departments"
       ],
       technologies: ["Demand Forecasting", "Supply Chain Optimization", "Deep Learning", "Real-time Analytics"],
       category: "retail"
@@ -58,44 +59,44 @@ const Projects = () => {
     {
       id: 4,
       title: "Financial Fraud Detection System",
-      client: "Multinational Banking Institution",
+      industry: "Banking",
       image: "/placeholder.svg", // Replace with actual project image
-      description: "Implemented an advanced fraud detection system that analyzes transaction patterns in real-time to identify suspicious activities with high accuracy.",
-      results: [
-        "Detected 96.8% of fraudulent transactions, up from 73% with previous system",
-        "Reduced false positive alerts by 67%, improving operational efficiency",
-        "Saved an estimated $12.5M in potential fraud losses in the first year",
-        "Decreased manual review requirements by 54%"
+      description: "Implement an advanced fraud detection system that analyzes transaction patterns in real-time to identify suspicious activities with high accuracy.",
+      potential: [
+        "Detect 95%+ of fraudulent transactions",
+        "Reduce false positive alerts significantly",
+        "Save millions in potential fraud losses",
+        "Decrease manual review requirements"
       ],
       technologies: ["Anomaly Detection", "Behavioral Analysis", "Graph Neural Networks", "Real-time Processing"],
       category: "finance"
     },
     {
       id: 5,
-      title: "Healthcare Patient Outcome Prediction Platform",
-      client: "Regional Healthcare Network",
+      title: "Healthcare Patient Outcome Prediction",
+      industry: "Healthcare",
       image: "/placeholder.svg", // Replace with actual project image
-      description: "Developed a predictive analytics platform that helps healthcare providers identify at-risk patients and optimize treatment plans based on comprehensive data analysis.",
-      results: [
-        "Improved early intervention rates by 58% for high-risk patients",
-        "Reduced 30-day readmission rates by 32%",
-        "Increased preventative care appointment compliance by 41%",
-        "Enhanced resource allocation efficiency by 23% across network facilities"
+      description: "Develop a predictive analytics platform that helps healthcare providers identify at-risk patients and optimize treatment plans based on comprehensive data analysis.",
+      potential: [
+        "Improve early intervention rates for high-risk patients",
+        "Reduce 30-day readmission rates by up to 30%",
+        "Increase preventative care appointment compliance",
+        "Enhance resource allocation efficiency across facilities"
       ],
       technologies: ["Clinical Data Analysis", "Risk Stratification", "Medical Imaging Analysis", "Protected Health Information Security"],
       category: "healthcare"
     },
     {
       id: 6,
-      title: "Supply Chain Optimization for E-commerce",
-      client: "International E-commerce Platform",
+      title: "Supply Chain Optimization",
+      industry: "E-commerce & Logistics",
       image: "/placeholder.svg", // Replace with actual project image
-      description: "Created an end-to-end supply chain optimization solution that improves logistics efficiency, reduces delivery times, and minimizes costs through intelligent routing and inventory placement.",
-      results: [
-        "Reduced average delivery time by 32% without increasing shipping costs",
-        "Optimized warehouse utilization, increasing capacity by 28%",
-        "Decreased logistics costs by 17% while handling 35% more volume",
-        "Improved delivery time accuracy to 98.7% of estimated arrival times"
+      description: "Create an end-to-end supply chain optimization solution that improves logistics efficiency, reduces delivery times, and minimizes costs through intelligent routing and inventory placement.",
+      potential: [
+        "Reduce average delivery time by up to 30%",
+        "Optimize warehouse utilization, increasing capacity",
+        "Decrease logistics costs while handling more volume",
+        "Improve delivery time accuracy and customer satisfaction"
       ],
       technologies: ["Route Optimization", "Demand Forecasting", "Warehouse Management", "Last-mile Delivery Planning"],
       category: "logistics"
@@ -103,7 +104,7 @@ const Projects = () => {
   ];
 
   const categories = [
-    { id: "all", name: "All Projects" },
+    { id: "all", name: "All Solutions" },
     { id: "customer-service", name: "Customer Service" },
     { id: "manufacturing", name: "Manufacturing" },
     { id: "retail", name: "Retail" },
@@ -160,17 +161,15 @@ const Projects = () => {
       <div className="absolute bottom-40 left-20 w-80 h-80 rounded-full bg-neon-orange/5 filter blur-3xl pointer-events-none"></div>
       
       <div className="container mx-auto py-16 px-4 relative z-10">
-        <div className="max-w-4xl mx-auto text-center mb-12 mt-8">
-          <div className="inline-block px-4 py-1.5 bg-white/5 border border-white/10 rounded-full backdrop-blur-sm mb-6 flex items-center">
-            <BadgeCheck className="w-4 h-4 mr-2 text-neon-blue" />
-            <p className="text-sm font-medium text-gray-300">Our Work</p>
-          </div>
+        <PageBadge text="AI Implementation Possibilities" icon="check" />
+        
+        <div className="max-w-4xl mx-auto text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold mb-6 shimmer-text bg-gradient-to-r from-neon-orange via-neon-blue to-neon-green py-2">
-            Projects & Case Studies
+            Sample AI Solutions
           </h1>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Explore our portfolio of successful AI implementations that have delivered
-            measurable results and transformed business operations
+            Explore our portfolio of possible AI implementations that can deliver
+            measurable results and transform your business operations
           </p>
         </div>
 
@@ -215,8 +214,8 @@ const Projects = () => {
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <button className="text-white flex items-center gap-2 bg-neon-orange/80 px-4 py-2 rounded-full hover:bg-neon-orange transition-colors duration-300">
-                      <PlayCircle className="h-5 w-5" />
-                      Watch Demo
+                      <ArrowRight className="h-5 w-5" />
+                      Learn More
                     </button>
                   </div>
                 </div>
@@ -225,18 +224,17 @@ const Projects = () => {
                 <div className="p-6 flex flex-col flex-grow">
                   <div className="mb-2">
                     <span className="inline-block px-3 py-1 text-xs font-medium bg-white/10 text-gray-300 rounded-full">
-                      {categories.find(cat => cat.id === project.category)?.name}
+                      {project.industry}
                     </span>
                   </div>
                   <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                  <p className="text-gray-400 mb-3 text-sm">Client: {project.client}</p>
                   <p className="text-gray-300 mb-5">{project.description}</p>
                   
-                  {/* Key Results */}
+                  {/* Potential Benefits */}
                   <div className="mb-5">
-                    <h4 className="text-sm font-semibold text-white mb-3 uppercase tracking-wider">Key Results</h4>
+                    <h4 className="text-sm font-semibold text-white mb-3 uppercase tracking-wider">Potential Benefits</h4>
                     <ul className="space-y-2">
-                      {project.results.map((result, i) => (
+                      {project.potential.map((result, i) => (
                         <li key={i} className="flex items-start gap-2">
                           <span className="inline-flex items-center justify-center w-5 h-5 bg-neon-green/20 text-neon-green rounded-full flex-shrink-0 mt-0.5">✓</span>
                           <span className="text-gray-300 text-sm">{result}</span>
@@ -260,11 +258,11 @@ const Projects = () => {
                   {/* CTA Button */}
                   <div className="mt-auto pt-4">
                     <Link 
-                      to={`/contact?project=${project.id}`}
+                      to={`/contact?solution=${project.id}`}
                       className="neon-button-blue w-full px-4 py-2 text-center"
                     >
                       <span className="relative z-10 flex items-center justify-center">
-                        Request Similar Solution <ArrowRight className="ml-2 h-4 w-4" />
+                        Discuss This Solution <ArrowRight className="ml-2 h-4 w-4" />
                       </span>
                     </Link>
                   </div>
@@ -276,13 +274,13 @@ const Projects = () => {
         
         {/* Call to Action */}
         <div className="mt-16 text-center">
-          <h3 className="text-2xl font-bold mb-4">Ready to Build Your Success Story?</h3>
+          <h3 className="text-2xl font-bold mb-4">Ready to Explore AI Possibilities?</h3>
           <p className="text-gray-400 max-w-2xl mx-auto mb-8">
             Let's discuss how we can apply our expertise to your unique business challenges and create measurable results.
           </p>
           <Link to="/contact" className="neon-button-orange px-8 py-3 inline-flex items-center">
             <span className="relative z-10 flex items-center justify-center">
-              Start Your Project <ArrowRight className="ml-2 h-4 w-4" />
+              Start Your AI Journey <ArrowRight className="ml-2 h-4 w-4" />
             </span>
           </Link>
         </div>

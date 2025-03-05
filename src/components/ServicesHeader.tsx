@@ -1,7 +1,8 @@
 
 import React, { useRef, useState } from 'react';
-import { Sparkles, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import PageBadge from './PageBadge';
 
 const ServicesHeader = () => {
   const buttonRef = useRef<HTMLAnchorElement>(null);
@@ -31,10 +32,7 @@ const ServicesHeader = () => {
 
   return (
     <div className="text-center mb-16">
-      <div className="inline-flex items-center px-4 py-1.5 mb-6 bg-white/5 border border-white/10 rounded-full backdrop-blur-sm">
-        <Sparkles className="w-4 h-4 text-neon-orange mr-2" />
-        <p className="text-sm font-medium text-gray-300">Enterprise-Grade AI Solutions</p>
-      </div>
+      <PageBadge text="Enterprise-Grade AI Solutions" icon="sparkles" />
       
       <h1 className="text-4xl md:text-5xl font-bold mb-6 shimmer-text bg-gradient-to-r from-neon-orange via-neon-blue to-neon-green py-2">Our AI Services</h1>
       
