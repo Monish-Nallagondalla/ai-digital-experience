@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
@@ -10,7 +9,6 @@ const Navbar = () => {
   const [magneticPosition, setMagneticPosition] = useState({ x: 0, y: 0 });
   const buttonRef = useRef<HTMLAnchorElement>(null);
 
-  // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 10) {
@@ -24,12 +22,10 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu when route changes
   useEffect(() => {
     setIsMenuOpen(false);
   }, [location]);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -45,12 +41,12 @@ const Navbar = () => {
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "Services", path: "/services" },
+    { name: "Projects", path: "/projects" },
     { name: "About", path: "/about" },
     { name: "Blog", path: "/blog" },
     { name: "Contact", path: "/contact" },
   ];
 
-  // Magnetic button effect
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!buttonRef.current) return;
     
@@ -61,7 +57,6 @@ const Navbar = () => {
     const distanceX = e.clientX - centerX;
     const distanceY = e.clientY - centerY;
     
-    // Calculate strength based on distance from center (max 15px movement)
     const strength = 15;
     const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
     const maxDistance = rect.width / 2;
@@ -89,7 +84,6 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between h-20">
-          {/* Logo */}
           <Link
             to="/"
             className="text-2xl font-bold text-white hover:text-neon-orange transition-colors duration-300"
@@ -99,13 +93,12 @@ const Navbar = () => {
             <span className="text-white">.today</span>
           </Link>
 
-          {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 to={link.path}
-                className={`text-sm font-medium transition-all duration-300 relative group ${
+                className={`text-md font-medium transition-all duration-300 relative group ${
                   location.pathname === link.path
                     ? "text-neon-blue"
                     : "text-gray-300 hover:text-white"
@@ -123,7 +116,6 @@ const Navbar = () => {
             ))}
           </nav>
 
-          {/* CTA Button (Desktop) with Magnetic Effect */}
           <div 
             className="hidden md:block"
             onMouseMove={handleMouseMove}
@@ -142,7 +134,6 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             className="md:hidden text-white"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -156,7 +147,6 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Navigation - Fixed position to prevent scrolling */}
       <div
         className={`fixed inset-0 z-40 bg-black/95 backdrop-blur-md flex flex-col justify-center items-center transition-all duration-300 transform ${
           isMenuOpen

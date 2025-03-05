@@ -41,12 +41,15 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Quick Links - Updated to include Projects */}
           <div>
             <h3 className="text-white text-lg font-semibold mb-6">Quick Links</h3>
             <ul className="space-y-3">
               <li>
                 <Link to="/services" className="text-gray-400 hover:text-neon-blue transition-colors">Services</Link>
+              </li>
+              <li>
+                <Link to="/projects" className="text-gray-400 hover:text-neon-blue transition-colors">Projects</Link>
               </li>
               <li>
                 <Link to="/about" className="text-gray-400 hover:text-neon-blue transition-colors">About Us</Link>
@@ -60,21 +63,21 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Services - Updated to match categories from Services page */}
+          {/* Services - Updated to exactly match the service categories from Services page */}
           <div>
             <h3 className="text-white text-lg font-semibold mb-6">Services</h3>
             <ul className="space-y-3">
               <li>
-                <Link to="/services?category=AI%20Strategy%20%26%20Advisory" className="text-gray-400 hover:text-neon-blue transition-colors">AI Strategy & Advisory</Link>
+                <Link to="/services?category=AI%20Strategy" className="text-gray-400 hover:text-neon-blue transition-colors">AI Strategy</Link>
               </li>
               <li>
                 <Link to="/services?category=AI%20Development" className="text-gray-400 hover:text-neon-blue transition-colors">AI Development</Link>
               </li>
               <li>
-                <Link to="/services?category=AI%20Operations" className="text-gray-400 hover:text-neon-blue transition-colors">AI Operations</Link>
+                <Link to="/services?category=AI%20Implementation" className="text-gray-400 hover:text-neon-blue transition-colors">AI Implementation</Link>
               </li>
               <li>
-                <Link to="/services?category=Business%20Solutions" className="text-gray-400 hover:text-neon-blue transition-colors">Business Solutions</Link>
+                <Link to="/services?category=Data%20Solutions" className="text-gray-400 hover:text-neon-blue transition-colors">Data Solutions</Link>
               </li>
               <li>
                 <Link to="/services" className="text-gray-400 hover:text-neon-blue transition-colors">View All Services</Link>
@@ -82,7 +85,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact Info - Fixed MapPin icon size */}
+          {/* Contact Info - Fixed icon size for address to match others */}
           <div>
             <h3 className="text-white text-lg font-semibold mb-6">Contact Us</h3>
             <ul className="space-y-4">
@@ -109,15 +112,15 @@ const Footer = () => {
         {/* Divider */}
         <div className="border-t border-gray-800 my-8"></div>
 
-        {/* Bottom Footer */}
+        {/* Bottom Footer - Fixed links to match actual pages */}
         <div className="flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-500 text-sm mb-4 md:mb-0">
             &copy; {currentYear} ApplyAi.today. All rights reserved.
           </p>
           <div className="flex space-x-6">
-            <Link to="/privacy" className="text-gray-500 hover:text-gray-300 text-sm">Privacy Policy</Link>
-            <Link to="/terms" className="text-gray-500 hover:text-gray-300 text-sm">Terms of Service</Link>
-            <Link to="/cookies" className="text-gray-500 hover:text-gray-300 text-sm">Cookie Policy</Link>
+            <Link to="/privacy-policy" className="text-gray-500 hover:text-gray-300 text-sm">Privacy Policy</Link>
+            <Link to="/terms-of-service" className="text-gray-500 hover:text-gray-300 text-sm">Terms of Service</Link>
+            <Link to="/cookie-policy" className="text-gray-500 hover:text-gray-300 text-sm">Cookie Policy</Link>
           </div>
         </div>
       </div>
