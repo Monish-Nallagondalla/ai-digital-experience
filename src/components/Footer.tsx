@@ -60,21 +60,21 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Services - Updated to match our service categories from service page */}
+          {/* Services - Updated to match categories from Services page */}
           <div>
             <h3 className="text-white text-lg font-semibold mb-6">Services</h3>
             <ul className="space-y-3">
               <li>
-                <Link to="/services" className="text-gray-400 hover:text-neon-blue transition-colors">AI Strategy</Link>
+                <Link to="/services?category=AI%20Strategy%20%26%20Advisory" className="text-gray-400 hover:text-neon-blue transition-colors">AI Strategy & Advisory</Link>
               </li>
               <li>
-                <Link to="/services" className="text-gray-400 hover:text-neon-blue transition-colors">Custom AI Development</Link>
+                <Link to="/services?category=AI%20Development" className="text-gray-400 hover:text-neon-blue transition-colors">AI Development</Link>
               </li>
               <li>
-                <Link to="/services" className="text-gray-400 hover:text-neon-blue transition-colors">AI Integration</Link>
+                <Link to="/services?category=AI%20Operations" className="text-gray-400 hover:text-neon-blue transition-colors">AI Operations</Link>
               </li>
               <li>
-                <Link to="/services" className="text-gray-400 hover:text-neon-blue transition-colors">AI Training & Support</Link>
+                <Link to="/services?category=Business%20Solutions" className="text-gray-400 hover:text-neon-blue transition-colors">Business Solutions</Link>
               </li>
               <li>
                 <Link to="/services" className="text-gray-400 hover:text-neon-blue transition-colors">View All Services</Link>
@@ -82,7 +82,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact Info - Updated with consistent icon sizes */}
+          {/* Contact Info - Fixed MapPin icon size */}
           <div>
             <h3 className="text-white text-lg font-semibold mb-6">Contact Us</h3>
             <ul className="space-y-4">

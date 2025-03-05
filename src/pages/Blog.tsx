@@ -22,8 +22,8 @@ const BlogCard = ({ title, date, excerpt, imageUrl, category, index }: BlogCardP
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;
     
-    // Magnetic pull effect
-    const strength = 10;
+    // Enhanced magnetic pull effect
+    const strength = 15;
     const magneticX = (x / rect.width) * strength;
     const magneticY = (y / rect.height) * strength;
     
@@ -124,9 +124,10 @@ const Blog = () => {
   ];
 
   return (
-    <div className="container mx-auto py-12 px-4 relative corner-glow">
-      {/* Background elements for consistency */}
-      <div className="absolute inset-0 bg-grid-pattern bg-[length:30px_30px] opacity-20 pointer-events-none"></div>
+    <div className="container mx-auto py-12 px-4 relative corner-glow bg-black min-h-screen">
+      {/* Background elements for consistency with other pages */}
+      <div className="absolute inset-0 bg-grid-pattern bg-[length:30px_30px] opacity-40 pointer-events-none"></div>
+      <div className="absolute inset-0 bg-gradient-radial from-black/70 via-black/90 to-black opacity-95 pointer-events-none"></div>
       
       {/* Floating orbs for visual consistency */}
       <div className="absolute top-40 right-20 w-64 h-64 rounded-full bg-neon-blue/5 filter blur-3xl pointer-events-none"></div>

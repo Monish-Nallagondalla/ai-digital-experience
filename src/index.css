@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -43,9 +44,11 @@
     --sidebar-border: 220 13% 25%;
     --sidebar-ring: 217.2 91.2% 59.8%;
     
-    --cursor-size: 14px;
+    --cursor-size: 16px; /* Slightly increased cursor size */
   }
 }
+
+/* ... keep existing code (body styles and cursor basics) */
 
 @layer base {
   * {
@@ -143,6 +146,8 @@
     box-shadow: 0 0 20px rgba(0, 255, 127, 0.9), 0 0 40px rgba(0, 255, 127, 0.4);
   }
 
+  /* ... keep existing code (shimmer-text and other animations) */
+
   .shimmer-text {
     background-size: 300% 100% !important;
     animation: text-shimmer 6s linear infinite !important;
@@ -163,14 +168,25 @@
     animation: text-glow 3s ease-in-out infinite;
   }
   
-  .magnetic-button {
+  /* Enhanced uniform magnetic effect for all relevant elements */
+  .magnetic-button,
+  .magnetic-button-enhanced,
+  .magnetic-client-block,
+  .blog-card,
+  .contact-card,
+  .glass-card {
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
     overflow: hidden;
     z-index: 1;
   }
   
-  .magnetic-button::after {
+  .magnetic-button::after,
+  .magnetic-button-enhanced::after,
+  .magnetic-client-block::after,
+  .blog-card::after,
+  .contact-card::after,
+  .glass-card::after {
     content: '';
     position: absolute;
     inset: 0;
@@ -180,68 +196,30 @@
     transition: opacity 0.4s ease;
   }
   
-  .magnetic-button:hover::after {
+  .magnetic-button:hover::after,
+  .magnetic-button-enhanced:hover::after,
+  .magnetic-client-block:hover::after,
+  .blog-card:hover::after,
+  .contact-card:hover::after,
+  .glass-card:hover::after {
     opacity: 1;
   }
   
-  .magnetic-button-enhanced {
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-  }
-  
-  .magnetic-button-enhanced::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    opacity: 0;
-    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
-    transition: opacity 0.4s ease;
-  }
-  
-  .magnetic-button-enhanced:hover::after {
-    opacity: 1;
-  }
-  
-  .magnetic-client-block {
-    transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.3s ease;
-  }
-  
-  .magnetic-client-block:hover {
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3), 0 0 15px rgba(0, 255, 255, 0.2);
-  }
-  
-  .cta-glow {
+  /* Standardized glows for all cards */
+  .cta-glow,
+  .magnetic-client-block,
+  .blog-card:hover,
+  .contact-card:hover {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 30px rgba(0, 255, 255, 0.15);
     transition: box-shadow 0.3s ease;
   }
   
-  .cta-glow:hover {
+  .cta-glow:hover,
+  .magnetic-client-block:hover {
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 40px rgba(0, 255, 255, 0.25);
   }
   
-  .blog-card {
-    position: relative;
-    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.3s ease;
-  }
-  
-  .blog-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 255, 255, 0.15);
-  }
-  
-  .contact-card {
-    position: relative;
-    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.3s ease;
-  }
-  
-  .contact-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3), 0 0 15px rgba(255, 95, 31, 0.15);
-  }
-  
+  /* Enhanced corner glow for consistency */
   .corner-glow::before {
     content: '';
     position: absolute;
@@ -268,6 +246,8 @@
     z-index: 0;
   }
 }
+
+/* ... keep existing code (component styles and media queries) */
 
 @layer components {
   .text-stroke {
@@ -355,6 +335,8 @@
   }
 }
 
+/* ... keep existing code (scrollbar styles and responsive media queries) */
+
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -408,7 +390,7 @@
 
 @media (max-width: 768px) {
   :root {
-    --cursor-size: 12px;
+    --cursor-size: 14px;
   }
   
   .neon-button {
@@ -461,7 +443,7 @@
 
 @media (max-width: 640px) {
   :root {
-    --cursor-size: 10px;
+    --cursor-size: 12px;
   }
   
   .container {
