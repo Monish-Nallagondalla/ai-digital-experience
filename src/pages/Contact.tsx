@@ -1,7 +1,7 @@
 
 import React, { useRef, useState } from 'react';
 import ContactForm from '../components/ContactForm';
-import { Phone, Mail, MapPin } from 'lucide-react';
+import { Phone, Mail, MapPin, BadgeCheck } from 'lucide-react';
 
 const Contact = () => {
   const infoCardRef = useRef<HTMLDivElement>(null);
@@ -60,7 +60,15 @@ const Contact = () => {
       <div className="absolute bottom-40 left-20 w-80 h-80 rounded-full bg-neon-orange/5 filter blur-3xl pointer-events-none"></div>
       
       <div className="container mx-auto px-4 py-12 relative z-10">
-        <h1 className="text-4xl font-bold text-center mb-12">Contact Us</h1>
+        <div className="max-w-4xl mx-auto text-center mb-12 mt-8">
+          <div className="inline-block px-4 py-1.5 bg-white/5 border border-white/10 rounded-full backdrop-blur-sm mb-6 flex items-center">
+            <BadgeCheck className="w-4 h-4 mr-2 text-neon-blue" />
+            <p className="text-sm font-medium text-gray-300">Reach Out To Us</p>
+          </div>
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 shimmer-text bg-gradient-to-r from-neon-orange via-neon-blue to-neon-green py-2">
+            Contact Us
+          </h1>
+        </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
           <div>
@@ -84,8 +92,8 @@ const Contact = () => {
               
               <div className="space-y-6">
                 <div className="flex items-start">
-                  <div className="bg-primary/10 p-3 rounded-full mr-4">
-                    <Phone className="h-6 w-6 text-primary" />
+                  <div className="bg-neon-orange/10 p-3 rounded-full mr-4">
+                    <Phone className="h-6 w-6 text-neon-orange" />
                   </div>
                   <div>
                     <h3 className="text-lg font-medium">Phone</h3>
@@ -94,8 +102,8 @@ const Contact = () => {
                 </div>
                 
                 <div className="flex items-start">
-                  <div className="bg-primary/10 p-3 rounded-full mr-4">
-                    <Mail className="h-6 w-6 text-primary" />
+                  <div className="bg-neon-blue/10 p-3 rounded-full mr-4">
+                    <Mail className="h-6 w-6 text-neon-blue" />
                   </div>
                   <div>
                     <h3 className="text-lg font-medium">Email</h3>
@@ -104,8 +112,8 @@ const Contact = () => {
                 </div>
                 
                 <div className="flex items-start">
-                  <div className="bg-primary/10 p-3 rounded-full mr-4">
-                    <MapPin className="h-6 w-6 text-primary" />
+                  <div className="bg-neon-green/10 p-3 rounded-full mr-4">
+                    <MapPin className="h-6 w-6 text-neon-green" />
                   </div>
                   <div>
                     <h3 className="text-lg font-medium">Address</h3>

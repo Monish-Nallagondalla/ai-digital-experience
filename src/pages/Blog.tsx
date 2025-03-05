@@ -1,5 +1,6 @@
 
 import React, { useRef, useState } from 'react';
+import { BadgeCheck, ArrowRight } from 'lucide-react';
 
 interface BlogCardProps { 
   title: string; 
@@ -35,16 +36,26 @@ const BlogCard = ({ title, date, excerpt, imageUrl, category, index }: BlogCardP
     setIsHovered(false);
   };
 
+  // Determine color based on index
+  const getThemeColor = () => {
+    if (index % 3 === 0) return "neon-orange";
+    if (index % 3 === 1) return "neon-blue";
+    return "neon-green";
+  };
+
+  const colorClass = getThemeColor();
+  const boxShadowColor = index % 3 === 0 ? 'rgba(255, 95, 31, 0.2)' : 
+                          index % 3 === 1 ? 'rgba(0, 255, 255, 0.2)' : 
+                          'rgba(0, 255, 127, 0.2)';
+
   return (
     <div 
       ref={cardRef}
-      className="glass-card rounded-xl overflow-hidden transition-all duration-300 blog-card"
+      className="glass-card rounded-xl overflow-hidden transition-all duration-300 blog-card border border-white/10 hover:border-white/20"
       style={{ 
         transform: isHovered ? `translate3d(${magneticPosition.x}px, ${magneticPosition.y - 5}px, 0)` : 'translate3d(0, 0, 0)',
         transition: 'transform 0.2s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.3s ease',
-        boxShadow: isHovered ? `0 15px 40px rgba(0, 0, 0, 0.2), 0 0 20px rgba(${
-          index % 3 === 0 ? '255, 95, 31' : index % 3 === 1 ? '0, 255, 255' : '0, 255, 127'
-        }, 0.2)` : ''
+        boxShadow: isHovered ? `0 15px 40px rgba(0, 0, 0, 0.2), 0 0 20px ${boxShadowColor}` : ''
       }}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
@@ -55,16 +66,14 @@ const BlogCard = ({ title, date, excerpt, imageUrl, category, index }: BlogCardP
       </div>
       <div className="p-6">
         <div className="flex justify-between items-center mb-3">
-          <span className="text-xs text-primary">{category}</span>
+          <span className={`text-xs text-${colorClass} bg-${colorClass}/10 px-3 py-1 rounded-full`}>{category}</span>
           <span className="text-xs text-gray-400">{date}</span>
         </div>
         <h3 className="text-xl font-semibold mb-3">{title}</h3>
         <p className="text-gray-400 mb-4">{excerpt}</p>
-        <button className="text-primary hover:text-primary/80 transition-colors flex items-center text-sm">
+        <button className={`text-${colorClass} hover:text-${colorClass}/80 transition-colors flex items-center text-sm`}>
           Read More
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
+          <ArrowRight className="h-4 w-4 ml-1" />
         </button>
       </div>
     </div>
@@ -133,7 +142,18 @@ const Blog = () => {
       <div className="absolute top-40 right-20 w-64 h-64 rounded-full bg-neon-blue/5 filter blur-3xl pointer-events-none"></div>
       <div className="absolute bottom-40 left-20 w-80 h-80 rounded-full bg-neon-orange/5 filter blur-3xl pointer-events-none"></div>
       
-      <h1 className="text-4xl font-bold mb-12 text-center relative z-10">Our Blog</h1>
+      <div className="max-w-4xl mx-auto text-center mb-12 mt-8">
+        <div className="inline-block px-4 py-1.5 bg-white/5 border border-white/10 rounded-full backdrop-blur-sm mb-6 flex items-center">
+          <BadgeCheck className="w-4 h-4 mr-2 text-neon-blue" />
+          <p className="text-sm font-medium text-gray-300">Latest Insights</p>
+        </div>
+        <h1 className="text-4xl md:text-5xl font-bold mb-6 shimmer-text bg-gradient-to-r from-neon-orange via-neon-blue to-neon-green py-2">
+          Our Blog
+        </h1>
+        <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+          Explore our latest thoughts on AI innovation, industry trends, and digital transformation
+        </p>
+      </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
         {blogPosts.map((post, index) => (

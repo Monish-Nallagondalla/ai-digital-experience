@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, ExternalLink, PlayCircle } from "lucide-react";
+import { ArrowRight, ExternalLink, PlayCircle, BadgeCheck } from "lucide-react";
 
 const Projects = () => {
   const [visibleItems, setVisibleItems] = useState<number[]>([]);
@@ -150,126 +150,142 @@ const Projects = () => {
   }, [filteredProjects.length]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div className="container mx-auto py-16 px-4">
-      <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold mb-4">Projects & Case Studies</h1>
-        <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-          Explore our portfolio of successful AI implementations that have delivered
-          measurable results and transformed business operations
-        </p>
-      </div>
+    <div className="bg-black min-h-screen relative corner-glow">
+      {/* Background elements for consistency with other pages */}
+      <div className="absolute inset-0 bg-grid-pattern bg-[length:30px_30px] opacity-40 pointer-events-none"></div>
+      <div className="absolute inset-0 bg-gradient-radial from-black/70 via-black/90 to-black opacity-95 pointer-events-none"></div>
+      
+      {/* Floating orbs for visual consistency */}
+      <div className="absolute top-40 right-20 w-64 h-64 rounded-full bg-neon-blue/5 filter blur-3xl pointer-events-none"></div>
+      <div className="absolute bottom-40 left-20 w-80 h-80 rounded-full bg-neon-orange/5 filter blur-3xl pointer-events-none"></div>
+      
+      <div className="container mx-auto py-16 px-4 relative z-10">
+        <div className="max-w-4xl mx-auto text-center mb-12 mt-8">
+          <div className="inline-block px-4 py-1.5 bg-white/5 border border-white/10 rounded-full backdrop-blur-sm mb-6 flex items-center">
+            <BadgeCheck className="w-4 h-4 mr-2 text-neon-blue" />
+            <p className="text-sm font-medium text-gray-300">Our Work</p>
+          </div>
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 shimmer-text bg-gradient-to-r from-neon-orange via-neon-blue to-neon-green py-2">
+            Projects & Case Studies
+          </h1>
+          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+            Explore our portfolio of successful AI implementations that have delivered
+            measurable results and transformed business operations
+          </p>
+        </div>
 
-      {/* Category Filter */}
-      <div className="flex flex-wrap justify-center gap-3 mb-12">
-        {categories.map((category) => (
-          <button
-            key={category.id}
-            onClick={() => {
-              setActiveFilter(category.id);
-              setVisibleItems([]);
-            }}
-            className={`px-4 py-2 rounded-full transition-all duration-300 ${
-              activeFilter === category.id
-                ? 'bg-white/10 text-white font-medium border border-white/20'
-                : 'bg-transparent text-gray-400 hover:text-white hover:bg-white/5'
-            }`}
-          >
-            {category.name}
-          </button>
-        ))}
-      </div>
+        {/* Category Filter */}
+        <div className="flex flex-wrap justify-center gap-3 mb-12">
+          {categories.map((category) => (
+            <button
+              key={category.id}
+              onClick={() => {
+                setActiveFilter(category.id);
+                setVisibleItems([]);
+              }}
+              className={`px-4 py-2 rounded-full transition-all duration-300 ${
+                activeFilter === category.id
+                  ? 'bg-white/10 text-white font-medium border border-white/20'
+                  : 'bg-transparent text-gray-400 hover:text-white hover:bg-white/5'
+              }`}
+            >
+              {category.name}
+            </button>
+          ))}
+        </div>
 
-      {/* Projects Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-        {filteredProjects.map((project, index) => (
-          <div
-            key={project.id}
-            ref={(el) => (projectRefs.current[index] = el)}
-            className={`transition-all duration-700 ${
-              visibleItems.includes(index) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}
-            style={{ transitionDelay: `${index * 150}ms` }}
-          >
-            <div className="glass-card overflow-hidden rounded-xl border border-white/10 h-full flex flex-col">
-              {/* Project Image/Video Thumbnail */}
-              <div className="relative group">
-                <img 
-                  src={project.image} 
-                  alt={project.title} 
-                  className="w-full h-60 object-cover"
-                />
-                <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <button className="text-white flex items-center gap-2 bg-neon-orange/80 px-4 py-2 rounded-full hover:bg-neon-orange transition-colors duration-300">
-                    <PlayCircle className="h-5 w-5" />
-                    Watch Demo
-                  </button>
-                </div>
-              </div>
-              
-              {/* Project Content */}
-              <div className="p-6 flex flex-col flex-grow">
-                <div className="mb-2">
-                  <span className="inline-block px-3 py-1 text-xs font-medium bg-white/10 text-gray-300 rounded-full">
-                    {categories.find(cat => cat.id === project.category)?.name}
-                  </span>
-                </div>
-                <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                <p className="text-gray-400 mb-3 text-sm">Client: {project.client}</p>
-                <p className="text-gray-300 mb-5">{project.description}</p>
-                
-                {/* Key Results */}
-                <div className="mb-5">
-                  <h4 className="text-sm font-semibold text-white mb-3 uppercase tracking-wider">Key Results</h4>
-                  <ul className="space-y-2">
-                    {project.results.map((result, i) => (
-                      <li key={i} className="flex items-start gap-2">
-                        <span className="inline-flex items-center justify-center w-5 h-5 bg-neon-green/20 text-neon-green rounded-full flex-shrink-0 mt-0.5">✓</span>
-                        <span className="text-gray-300 text-sm">{result}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                
-                {/* Technologies Used */}
-                <div className="mb-5">
-                  <h4 className="text-sm font-semibold text-white mb-2 uppercase tracking-wider">Technologies</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech, i) => (
-                      <span key={i} className="px-2 py-1 bg-white/5 text-gray-300 rounded text-xs">
-                        {tech}
-                      </span>
-                    ))}
+        {/* Projects Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+          {filteredProjects.map((project, index) => (
+            <div
+              key={project.id}
+              ref={(el) => (projectRefs.current[index] = el)}
+              className={`transition-all duration-700 ${
+                visibleItems.includes(index) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`}
+              style={{ transitionDelay: `${index * 150}ms` }}
+            >
+              <div className="glass-card overflow-hidden rounded-xl border border-white/10 h-full flex flex-col">
+                {/* Project Image/Video Thumbnail */}
+                <div className="relative group">
+                  <img 
+                    src={project.image} 
+                    alt={project.title} 
+                    className="w-full h-60 object-cover"
+                  />
+                  <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <button className="text-white flex items-center gap-2 bg-neon-orange/80 px-4 py-2 rounded-full hover:bg-neon-orange transition-colors duration-300">
+                      <PlayCircle className="h-5 w-5" />
+                      Watch Demo
+                    </button>
                   </div>
                 </div>
                 
-                {/* CTA Button */}
-                <div className="mt-auto pt-4">
-                  <Link 
-                    to={`/contact?project=${project.id}`}
-                    className="neon-button-blue w-full px-4 py-2 text-center"
-                  >
-                    <span className="relative z-10 flex items-center justify-center">
-                      Request Similar Solution <ArrowRight className="ml-2 h-4 w-4" />
+                {/* Project Content */}
+                <div className="p-6 flex flex-col flex-grow">
+                  <div className="mb-2">
+                    <span className="inline-block px-3 py-1 text-xs font-medium bg-white/10 text-gray-300 rounded-full">
+                      {categories.find(cat => cat.id === project.category)?.name}
                     </span>
-                  </Link>
+                  </div>
+                  <h3 className="text-xl font-bold mb-2">{project.title}</h3>
+                  <p className="text-gray-400 mb-3 text-sm">Client: {project.client}</p>
+                  <p className="text-gray-300 mb-5">{project.description}</p>
+                  
+                  {/* Key Results */}
+                  <div className="mb-5">
+                    <h4 className="text-sm font-semibold text-white mb-3 uppercase tracking-wider">Key Results</h4>
+                    <ul className="space-y-2">
+                      {project.results.map((result, i) => (
+                        <li key={i} className="flex items-start gap-2">
+                          <span className="inline-flex items-center justify-center w-5 h-5 bg-neon-green/20 text-neon-green rounded-full flex-shrink-0 mt-0.5">✓</span>
+                          <span className="text-gray-300 text-sm">{result}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  
+                  {/* Technologies Used */}
+                  <div className="mb-5">
+                    <h4 className="text-sm font-semibold text-white mb-2 uppercase tracking-wider">Technologies</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies.map((tech, i) => (
+                        <span key={i} className="px-2 py-1 bg-white/5 text-gray-300 rounded text-xs">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  
+                  {/* CTA Button */}
+                  <div className="mt-auto pt-4">
+                    <Link 
+                      to={`/contact?project=${project.id}`}
+                      className="neon-button-blue w-full px-4 py-2 text-center"
+                    >
+                      <span className="relative z-10 flex items-center justify-center">
+                        Request Similar Solution <ArrowRight className="ml-2 h-4 w-4" />
+                      </span>
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
-      
-      {/* Call to Action */}
-      <div className="mt-16 text-center">
-        <h3 className="text-2xl font-bold mb-4">Ready to Build Your Success Story?</h3>
-        <p className="text-gray-400 max-w-2xl mx-auto mb-8">
-          Let's discuss how we can apply our expertise to your unique business challenges and create measurable results.
-        </p>
-        <Link to="/contact" className="neon-button-orange px-8 py-3 inline-flex items-center">
-          <span className="relative z-10 flex items-center justify-center">
-            Start Your Project <ArrowRight className="ml-2 h-4 w-4" />
-          </span>
-        </Link>
+          ))}
+        </div>
+        
+        {/* Call to Action */}
+        <div className="mt-16 text-center">
+          <h3 className="text-2xl font-bold mb-4">Ready to Build Your Success Story?</h3>
+          <p className="text-gray-400 max-w-2xl mx-auto mb-8">
+            Let's discuss how we can apply our expertise to your unique business challenges and create measurable results.
+          </p>
+          <Link to="/contact" className="neon-button-orange px-8 py-3 inline-flex items-center">
+            <span className="relative z-10 flex items-center justify-center">
+              Start Your Project <ArrowRight className="ml-2 h-4 w-4" />
+            </span>
+          </Link>
+        </div>
       </div>
     </div>
   );

@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { 
@@ -290,7 +291,7 @@ const About = () => {
       <div className="container mx-auto px-4 py-16 relative z-10">
         <div 
           ref={headerRef}
-          className={`max-w-4xl mx-auto text-center mb-16 transition-all duration-700 ${
+          className={`max-w-4xl mx-auto text-center mb-16 mt-8 transition-all duration-700 ${
             isVisible.header ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >
