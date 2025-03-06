@@ -503,3 +503,34 @@
   background-blend-mode: overlay;
   transition: background-color 0.5s ease;
 }
+
+/* Mobile optimizations for smooth scrolling */
+html, body {
+  overscroll-behavior-y: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Safari-specific fixes for mobile */
+@supports (-webkit-touch-callout: none) {
+  .min-h-screen {
+    min-height: -webkit-fill-available;
+  }
+}
+
+/* Improve tap targets for mobile */
+@media (max-width: 640px) {
+  button, 
+  .button-like,
+  .TabsTrigger {
+    min-height: 44px;
+  }
+}
+
+/* Fix scrolling issues within tabs */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

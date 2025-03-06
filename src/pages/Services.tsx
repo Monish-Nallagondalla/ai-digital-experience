@@ -25,6 +25,7 @@ const Services = () => {
   const [activeTab, setActiveTab] = useState("all");
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
+  const tabsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setIsVisible(true);
@@ -47,7 +48,7 @@ const Services = () => {
     : serviceCategories[activeTab as keyof typeof serviceCategories];
 
   return (
-    <div ref={containerRef} className="relative overflow-hidden bg-black min-h-screen">
+    <div ref={containerRef} className="relative overflow-hidden bg-black min-h-screen pt-16 sm:pt-20">
       {/* Consistent background elements */}
       <div className="absolute inset-0 bg-grid-pattern bg-[length:30px_30px] opacity-40"></div>
       <div className="absolute inset-0 bg-gradient-radial from-black/70 via-black/90 to-black opacity-95"></div>
@@ -78,17 +79,20 @@ const Services = () => {
         }}
       ></div>
       
-      <div className="container mx-auto px-4 py-16 max-w-6xl relative z-10">
+      <div className="container mx-auto px-4 py-10 sm:py-12 md:py-16 max-w-6xl relative z-10">
         <ServicesHeader />
         
-        <div className={`transition-all duration-700 mb-12 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <div 
+          ref={tabsRef}
+          className={`transition-all duration-700 mb-8 sm:mb-12 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+        >
           <Tabs defaultValue="all" value={activeTab} onValueChange={setActiveTab} className="w-full">
-            {/* Improved tabs layout with fixed tab design */}
-            <div className="w-full mb-8 overflow-hidden">
-              <TabsList className="glass-card bg-black/40 border border-white/20 p-2 backdrop-blur-md shadow-xl rounded-xl w-full flex justify-between">
+            {/* Mobile-optimized tabs */}
+            <div className="w-full mb-6 sm:mb-8 overflow-x-auto scrollbar-none">
+              <TabsList className="glass-card bg-black/60 border border-white/20 p-1.5 sm:p-2 backdrop-blur-md shadow-xl rounded-xl w-full flex min-w-max">
                 <TabsTrigger 
                   value="all" 
-                  className="flex-1 px-4 py-3 text-base data-[state=active]:bg-neon-blue/20 data-[state=active]:text-white rounded-lg"
+                  className="flex-1 px-3 py-2 sm:px-4 sm:py-3 text-sm sm:text-base data-[state=active]:bg-neon-blue/20 data-[state=active]:text-white rounded-lg"
                 >
                   All Services
                 </TabsTrigger>
@@ -96,7 +100,7 @@ const Services = () => {
                   <TabsTrigger 
                     key={category} 
                     value={category}
-                    className="flex-1 px-4 py-3 text-base data-[state=active]:bg-neon-blue/20 data-[state=active]:text-white rounded-lg whitespace-normal text-center"
+                    className="flex-1 px-3 py-2 sm:px-4 sm:py-3 text-sm sm:text-base data-[state=active]:bg-neon-blue/20 data-[state=active]:text-white rounded-lg whitespace-nowrap"
                   >
                     {category}
                   </TabsTrigger>
@@ -104,12 +108,12 @@ const Services = () => {
               </TabsList>
             </div>
             
-            <TabsContent value="all" className="mt-8">
+            <TabsContent value="all" className="mt-6 sm:mt-8">
               <ServiceList services={services} />
             </TabsContent>
             
             {Object.entries(serviceCategories).map(([category, categoryServices]) => (
-              <TabsContent key={category} value={category} className="mt-8">
+              <TabsContent key={category} value={category} className="mt-6 sm:mt-8">
                 <ServiceList services={categoryServices} />
               </TabsContent>
             ))}

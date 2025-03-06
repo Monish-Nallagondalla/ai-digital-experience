@@ -81,8 +81,8 @@ const Navbar = () => {
     <header
       ref={navRef}
       className={`fixed w-full top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-black/80 backdrop-blur-md shadow-md"
+        scrolled || isMenuOpen
+          ? "bg-black/90 backdrop-blur-md shadow-md"
           : "bg-transparent"
       }`}
     >
@@ -155,18 +155,18 @@ const Navbar = () => {
       </div>
 
       <div
-        className={`fixed inset-0 z-40 bg-black/95 backdrop-blur-md flex flex-col justify-center items-center transition-all duration-300 transform ${
+        className={`fixed inset-0 pt-16 top-0 z-40 bg-black/95 backdrop-blur-md flex flex-col justify-start items-center transition-all duration-300 transform ${
           isMenuOpen
             ? "translate-x-0 opacity-100"
             : "translate-x-full opacity-0 pointer-events-none"
         } md:hidden`}
       >
-        <nav className="flex flex-col space-y-6 items-center">
+        <nav className="flex flex-col space-y-6 items-center mt-8 w-full px-6">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               to={link.path}
-              className={`text-xl sm:text-2xl font-medium transition-all duration-300 relative group ${
+              className={`text-xl sm:text-2xl font-medium transition-all duration-300 relative group w-full text-center py-3 ${
                 location.pathname === link.path
                   ? "text-neon-blue"
                   : "text-gray-300 hover:text-white"
@@ -185,7 +185,7 @@ const Navbar = () => {
           ))}
           <Link
             to="/contact"
-            className="neon-button-orange px-8 py-3 mt-4"
+            className="neon-button-orange w-full text-center px-8 py-3 mt-6"
             onClick={() => setIsMenuOpen(false)}
           >
             <span className="relative z-10">Get Started</span>

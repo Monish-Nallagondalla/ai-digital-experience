@@ -53,3 +53,37 @@
 .read-the-docs {
   color: #888;
 }
+
+/* Add CSS Scroll Snap for tab containers */
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* Fixed position content adjustment for mobile */
+.mobile-adjusted-content {
+  padding-top: env(safe-area-inset-top, 16px);
+}
+
+/* Prevent content from being hidden under the navbar */
+main {
+  padding-top: 60px; /* Height of navbar on mobile */
+}
+
+@media (min-width: 768px) {
+  main {
+    padding-top: 80px; /* Height of navbar on desktop */
+  }
+}
+
+/* Improve tap target size for mobile */
+@media (max-width: 640px) {
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
