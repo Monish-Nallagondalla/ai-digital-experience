@@ -86,4 +86,24 @@ main {
     min-height: 44px;
     min-width: 44px;
   }
+  
+  /* Fix mobile menu spacing */
+  .mobile-menu-container {
+    padding-top: 4rem;
+  }
+  
+  /* Improve badge display */
+  .page-badge {
+    display: inline-flex;
+    white-space: nowrap;
+  }
+}
+
+/* Fix Safari issues with fixed positioning */
+@supports (-webkit-touch-callout: none) {
+  .fixed {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
 }

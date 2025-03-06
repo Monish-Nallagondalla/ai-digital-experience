@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -102,87 +101,6 @@
     }
   }
   
-  .custom-cursor {
-    position: fixed;
-    pointer-events: none;
-    z-index: 9999;
-    mix-blend-mode: difference;
-    transition: opacity 0.15s ease, transform 0.15s ease-out;
-  }
-  
-  .cursor-dot {
-    width: var(--cursor-size);
-    height: var(--cursor-size);
-    background-color: white;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: transform 0.08s ease-out, background-color 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.75), 0 0 25px rgba(255, 255, 255, 0.25);
-  }
-  
-  .cursor-outline {
-    width: calc(var(--cursor-size) * 3);
-    height: calc(var(--cursor-size) * 3);
-    background-color: transparent;
-    border: 1.5px solid rgba(255, 255, 255, 0.85);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: width 0.2s ease, height 0.2s ease, transform 0.08s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-  }
-  
-  a:hover ~ .cursor-outline,
-  .interactive:hover ~ .cursor-outline {
-    width: calc(var(--cursor-size) * 5);
-    height: calc(var(--cursor-size) * 5);
-    background-color: rgba(255, 95, 31, 0.18);
-    border-color: rgba(255, 95, 31, 0.9);
-  }
-  
-  button:hover ~ .cursor-outline,
-  input[type="submit"]:hover ~ .cursor-outline,
-  .neon-button-orange:hover ~ .cursor-outline,
-  .neon-button-blue:hover ~ .cursor-outline,
-  .neon-button-green:hover ~ .cursor-outline {
-    width: calc(var(--cursor-size) * 6);
-    height: calc(var(--cursor-size) * 6);
-    background-color: rgba(0, 255, 255, 0.18);
-    border-color: rgba(0, 255, 255, 0.9);
-  }
-  
-  select:hover ~ .cursor-outline,
-  input:hover ~ .cursor-outline,
-  textarea:hover ~ .cursor-outline {
-    width: calc(var(--cursor-size) * 4);
-    height: calc(var(--cursor-size) * 4);
-    background-color: rgba(0, 255, 127, 0.15);
-    border-color: rgba(0, 255, 127, 0.8);
-  }
-  
-  a:hover ~ .cursor-dot,
-  .interactive:hover ~ .cursor-dot {
-    background-color: rgba(255, 95, 31, 1);
-    transform: translate(-50%, -50%) scale(1.5);
-    box-shadow: 0 0 20px rgba(255, 95, 31, 0.9), 0 0 40px rgba(255, 95, 31, 0.4);
-  }
-  
-  button:hover ~ .cursor-dot,
-  input[type="submit"]:hover ~ .cursor-dot,
-  .neon-button-orange:hover ~ .cursor-dot,
-  .neon-button-blue:hover ~ .cursor-dot,
-  .neon-button-green:hover ~ .cursor-dot {
-    background-color: rgba(0, 255, 255, 1);
-    transform: translate(-50%, -50%) scale(1.5);
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.9), 0 0 40px rgba(0, 255, 255, 0.4);
-  }
-  
-  select:hover ~ .cursor-dot,
-  input:hover ~ .cursor-dot,
-  textarea:hover ~ .cursor-dot {
-    background-color: rgba(0, 255, 127, 1);
-    transform: translate(-50%, -50%) scale(1.5);
-    box-shadow: 0 0 20px rgba(0, 255, 127, 0.9), 0 0 40px rgba(0, 255, 127, 0.4);
-  }
-
   .shimmer-text {
     background-size: 300% 100% !important;
     animation: text-shimmer 6s linear infinite !important;
@@ -533,4 +451,25 @@ html, body {
 }
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
+}
+
+/* Fix mobile menu positioning */
+@media (max-width: 768px) {
+  .mobile-menu {
+    background-color: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+  }
+  
+  /* Fix tab navigation on mobile */
+  .tabs-overflow-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-bottom: 0.5rem;
+  }
+  
+  .tabs-overflow-container::-webkit-scrollbar {
+    display: none;
+  }
 }
