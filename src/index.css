@@ -183,8 +183,6 @@
     box-shadow: 0 0 20px rgba(0, 255, 127, 0.9), 0 0 40px rgba(0, 255, 127, 0.4);
   }
 
-  /* ... keep existing code (shimmer-text and other animations) */
-
   .shimmer-text {
     background-size: 300% 100% !important;
     animation: text-shimmer 6s linear infinite !important;
@@ -284,8 +282,6 @@
   }
 }
 
-/* ... keep existing code (component styles and media queries) */
-
 @layer components {
   .text-stroke {
     -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
@@ -372,8 +368,90 @@
   }
 }
 
-/* ... keep existing code (scrollbar styles and responsive media queries) */
+/* Responsive Styles */
+@layer utilities {
+  /* Mobile styles */
+  @media (max-width: 768px) {
+    :root {
+      --cursor-size: 14px;
+    }
+    
+    .neon-button {
+      @apply px-4 py-2 text-sm;
+    }
+    
+    .fixed-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      backdrop-filter: blur(8px);
+      background-color: rgba(0, 0, 0, 0.85);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .TabsList {
+      flex-wrap: wrap;
+      justify-center;
+    }
+    
+    .TabsTrigger {
+      flex: 1 1 auto;
+      white-space: nowrap;
+      padding: 0.5rem;
+      font-size: 0.875rem;
+    }
+    
+    .tabs-container {
+      overflow-x: auto;
+      padding-bottom: 1rem;
+      margin-left: -1rem;
+      margin-right: -1rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    
+    .tabs-container::-webkit-scrollbar {
+      display: none;
+    }
+    
+    .tab-button {
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+  }
 
+  /* Small screens */
+  @media (max-width: 640px) {
+    :root {
+      --cursor-size: 12px;
+    }
+    
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    
+    /* Mobile-specific optimizations */
+    .glass-card,
+    .shimmer-text,
+    .bg-gradient-radial,
+    .bg-grid-pattern {
+      will-change: transform;
+    }
+    
+    /* Reduce or disable animations on mobile */
+    .animate-float,
+    .text-glow {
+      animation: none !important;
+    }
+  }
+}
+
+/* Scrollbar styling */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -393,6 +471,7 @@
   border: 1.5px solid rgba(255, 255, 255, 0.1);
 }
 
+/* Page transitions */
 .page-transition-enter {
   opacity: 0;
   transform: translate3d(0, 20px, 0);
@@ -413,6 +492,7 @@
   transition: opacity 300ms;
 }
 
+/* Background patterns and gradients */
 .bg-grid-pattern {
   background-image: linear-gradient(to right, rgba(255, 255, 255, 0.2) 1px, transparent 1px), 
                     linear-gradient(to bottom, rgba(255, 255, 255, 0.2) 1px, transparent 1px);
@@ -423,82 +503,4 @@
 .bg-gradient-to-b {
   background-blend-mode: overlay;
   transition: background-color 0.5s ease;
-}
-
-@media (max-width: 768px) {
-  :root {
-    --cursor-size: 14px;
-  }
-  
-  .neon-button {
-    @apply px-4 py-2 text-sm;
-  }
-  
-  .fixed-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 50;
-    backdrop-filter: blur(8px);
-    background-color: rgba(0, 0, 0, 0.85);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  
-  .TabsList {
-    flex-wrap: wrap;
-    justify-center;
-  }
-  
-  .TabsTrigger {
-    flex: 1 1 auto;
-    white-space: nowrap;
-    padding: 0.5rem;
-    font-size: 0.875rem;
-  }
-  
-  .tabs-container {
-    overflow-x: auto;
-    padding-bottom: 1rem;
-    margin-left: -1rem;
-    margin-right: -1rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-  
-  .tabs-container::-webkit-scrollbar {
-    display: none;
-  }
-  
-  .tab-button {
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-}
-
-@media (max-width: 640px) {
-  :root {
-    --cursor-size: 12px;
-  }
-  
-  .container {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-  
-  /* Mobile-specific optimizations */
-  .glass-card,
-  .shimmer-text,
-  .bg-gradient-radial,
-  .bg-grid-pattern {
-    will-change: transform;
-  }
-  
-  /* Reduce or disable animations on mobile */
-  .animate-float,
-  .text-glow {
-    animation: none !important;
-  }
 }
