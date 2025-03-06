@@ -154,14 +154,14 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Fixed mobile menu with solid background */}
+      {/* Mobile menu with solid background */}
       <div
         className={`fixed inset-0 top-0 z-40 bg-black/95 backdrop-blur-md flex flex-col justify-start items-center transition-all duration-300 transform ${
           isMenuOpen
             ? "translate-x-0 opacity-100"
             : "translate-x-full opacity-0 pointer-events-none"
         } md:hidden`}
-        style={{ paddingTop: '4rem' }} // Fixed distance from top
+        style={{ paddingTop: '4rem', backgroundColor: 'rgba(0, 0, 0, 0.95)' }} // Fixed dark background
       >
         <nav className="flex flex-col space-y-6 items-center w-full px-6">
           {navLinks.map((link) => (
