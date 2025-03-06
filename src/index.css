@@ -48,7 +48,20 @@
   }
 }
 
-/* ... keep existing code (body styles and cursor basics) */
+/* Touch devices - disable custom cursor */
+@media (hover: none) {
+  body {
+    cursor: auto !important;
+  }
+  
+  a, button, .interactive, input[type="submit"] {
+    cursor: auto !important;
+  }
+  
+  .custom-cursor {
+    display: none !important;
+  }
+}
 
 @layer base {
   * {
@@ -59,10 +72,34 @@
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
     cursor: none !important;
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: touch;
   }
   
   a, button, .interactive, input[type="submit"] {
     cursor: none !important;
+  }
+  
+  /* Reduce animation complexity on mobile */
+  @media (max-width: 768px) {
+    .magnetic-button, 
+    .magnetic-button-enhanced,
+    .magnetic-client-block,
+    .blog-card,
+    .contact-card,
+    .glass-card {
+      transform: none !important;
+      transition: box-shadow 0.3s ease, border-color 0.3s ease !important;
+    }
+    
+    .magnetic-button::after,
+    .magnetic-button-enhanced::after,
+    .magnetic-client-block::after,
+    .blog-card::after,
+    .contact-card::after,
+    .glass-card::after {
+      display: none !important;
+    }
   }
   
   .custom-cursor {
@@ -259,7 +296,7 @@
   }
 
   .neon-button {
-    @apply relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-medium transition-all border rounded-md;
+    @apply relative inline-flex items-center justify-center px-4 py-2 sm:px-6 sm:py-3 overflow-hidden font-medium transition-all border rounded-md;
   }
 
   .neon-button-orange {
@@ -410,7 +447,7 @@
   
   .TabsList {
     flex-wrap: wrap;
-    justify-content: center;
+    justify-center;
   }
   
   .TabsTrigger {
@@ -449,5 +486,19 @@
   .container {
     padding-left: 1rem;
     padding-right: 1rem;
+  }
+  
+  /* Mobile-specific optimizations */
+  .glass-card,
+  .shimmer-text,
+  .bg-gradient-radial,
+  .bg-grid-pattern {
+    will-change: transform;
+  }
+  
+  /* Reduce or disable animations on mobile */
+  .animate-float,
+  .text-glow {
+    animation: none !important;
   }
 }
