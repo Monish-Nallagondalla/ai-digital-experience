@@ -156,13 +156,22 @@ const Navbar = () => {
 
       {/* Mobile menu with solid background */}
       <div
-        className={`fixed inset-0 top-0 z-40 bg-black/95 backdrop-blur-md flex flex-col justify-start items-center transition-all duration-300 transform ${
+        className={`fixed inset-0 top-0 z-40 flex flex-col justify-start items-center transition-all duration-300 transform ${
           isMenuOpen
             ? "translate-x-0 opacity-100"
             : "translate-x-full opacity-0 pointer-events-none"
-        } md:hidden`}
-        style={{ paddingTop: '4rem', backgroundColor: 'rgba(0, 0, 0, 0.95)' }} // Fixed dark background
+        } md:hidden mobile-menu-overlay`}
+        style={{ paddingTop: '4rem', backgroundColor: 'rgb(0, 0, 0)' }}
       >
+        {/* Added explicit close button at the top right of mobile menu */}
+        <button
+          className="absolute top-4 right-4 text-white p-2 focus:outline-none"
+          onClick={() => setIsMenuOpen(false)}
+          aria-label="Close menu"
+        >
+          <X className="h-6 w-6" />
+        </button>
+        
         <nav className="flex flex-col space-y-6 items-center w-full px-6">
           {navLinks.map((link) => (
             <Link
