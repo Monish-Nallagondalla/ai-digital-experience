@@ -154,22 +154,28 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile menu with solid background */}
+      {/* Mobile menu with solid black background */}
       <div
-        className={`fixed inset-0 top-0 z-40 flex flex-col justify-start items-center transition-all duration-300 transform ${
+        className={`fixed inset-0 top-0 z-50 w-full h-full flex flex-col justify-start items-center transition-transform duration-300 ${
           isMenuOpen
-            ? "translate-x-0 opacity-100"
+            ? "translate-x-0 opacity-100 pointer-events-auto"
             : "translate-x-full opacity-0 pointer-events-none"
-        } md:hidden mobile-menu-overlay`}
-        style={{ paddingTop: '4rem', backgroundColor: 'rgb(0, 0, 0)' }}
+        } md:hidden`}
+        style={{
+          background: "#000",         // TRUE solid black, no transparency
+          paddingTop: "4rem",
+          minHeight: "100vh",
+          minWidth: "100vw",
+        }}
       >
-        {/* Added explicit close button at the top right of mobile menu */}
+        {/* Always-visible close (X) button */}
         <button
-          className="absolute top-4 right-4 text-white p-2 focus:outline-none"
+          className="absolute top-4 right-4 text-white p-2 focus:outline-none z-60"
           onClick={() => setIsMenuOpen(false)}
           aria-label="Close menu"
+          style={{ background: "rgba(0,0,0,0.8)", borderRadius: "50%" }}
         >
-          <X className="h-6 w-6" />
+          <X className="h-7 w-7" />
         </button>
         
         <nav className="flex flex-col space-y-6 items-center w-full px-6">
@@ -183,6 +189,9 @@ const Navbar = () => {
                   : "text-gray-300 hover:text-white"
               }`}
               onClick={() => setIsMenuOpen(false)}
+              style={{
+                background: "transparent",
+              }}
             >
               {link.name}
               <span

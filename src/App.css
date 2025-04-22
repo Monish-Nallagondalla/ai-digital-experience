@@ -113,3 +113,26 @@ main {
   background-color: rgb(0, 0, 0) !important;
   backdrop-filter: blur(10px);
 }
+
+/* MOBILE MENU ABSOLUTELY SOLID BACKGROUND */
+@media (max-width: 768px) {
+  .mobile-menu-overlay,
+  .mobile-menu-container,
+  .md\:hidden {
+    background-color: #000 !important;
+    opacity: 1 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+  }
+}
+
+/* Prevent double scroll on mobile menu open */
+body:has(.md\:hidden[style*="translate-x-0"]) {
+  overflow: hidden !important;
+}
+
+/* Ensure X close button always above */
+.mobile-menu-overlay button,
+.md\:hidden button {
+  z-index: 60 !important;
+}
