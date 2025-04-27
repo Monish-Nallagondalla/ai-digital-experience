@@ -241,3 +241,27 @@ canvas {
   outline: none;
   -webkit-tap-highlight-color: transparent;
 }
+
+/* Fixed positioning for page badges */
+.fixed-top-spacing {
+  margin-top: 80px; /* Height of navbar */
+  position: relative;
+  z-index: 10;
+}
+
+@media (max-width: 768px) {
+  .fixed-top-spacing {
+    margin-top: 64px; /* Adjusted for mobile navbar height */
+  }
+}
+
+/* Animation for badge hover effect */
+.page-badge-hover {
+  transition: all 0.3s ease;
+}
+
+.page-badge-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
