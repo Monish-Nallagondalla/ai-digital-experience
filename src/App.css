@@ -63,6 +63,30 @@
   display: none;
 }
 
+/* Improve badge display and positioning */
+.page-badge-container {
+  position: relative;
+  z-index: 10;
+  margin-top: 80px; /* Space below navbar */
+  padding-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .page-badge-container {
+    margin-top: 64px; /* Adjusted for mobile navbar height */
+  }
+}
+
+.page-badge-hover {
+  transform: translateY(0);
+  transition: all 0.3s ease;
+}
+
+.page-badge-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 255, 255, 0.15);
+}
+
 /* Fixed position content adjustment for mobile */
 .mobile-adjusted-content {
   padding-top: env(safe-area-inset-top, 16px);

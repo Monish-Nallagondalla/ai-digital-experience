@@ -24,8 +24,8 @@ const PageBadge = ({ text, icon = 'sparkles' }: BadgeProps) => {
   };
 
   return (
-    <div className="flex justify-center py-6 px-4 fixed-top-spacing">
-      <div className="inline-flex items-center px-4 py-2 bg-black/80 border border-white/10 rounded-full backdrop-blur-sm hover:border-white/20 transition-all duration-300 shadow-sm hover:shadow-md hover:transform hover:translate-y-[-2px]">
+    <div className="flex justify-center px-4 page-badge-container">
+      <div className="inline-flex items-center px-4 py-2 bg-black/80 border border-white/10 rounded-full backdrop-blur-sm hover:border-white/20 transition-all duration-300 shadow-sm hover:shadow-md page-badge-hover">
         {renderIcon()}
         <p className="text-sm font-medium text-gray-300">{text}</p>
       </div>
