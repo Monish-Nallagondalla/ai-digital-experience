@@ -1,7 +1,7 @@
-
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Brain, Cpu, Zap } from "lucide-react";
+import Hero3D from "./Hero3D";
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -49,7 +49,6 @@ const Hero = () => {
     }
   }, [typedText, fullText]);
   
-  // Magnetic button effect handlers
   const handleMouseMove1 = (e: React.MouseEvent) => {
     if (!buttonRef1.current) return;
     
@@ -60,7 +59,6 @@ const Hero = () => {
     const distanceX = e.clientX - centerX;
     const distanceY = e.clientY - centerY;
     
-    // Calculate strength based on distance from center
     const strength = 15;
     const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
     const maxDistance = rect.width / 2;
@@ -84,7 +82,6 @@ const Hero = () => {
     const distanceX = e.clientX - centerX;
     const distanceY = e.clientY - centerY;
     
-    // Calculate strength based on distance from center
     const strength = 15;
     const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
     const maxDistance = rect.width / 2;
@@ -98,7 +95,6 @@ const Hero = () => {
     }
   };
 
-  // New handler for feature cards
   const handleFeatureCardMouseMove = (e: React.MouseEvent, index: number) => {
     if (!featureCardRefs[index].current) return;
     
@@ -109,7 +105,6 @@ const Hero = () => {
     const distanceX = e.clientX - centerX;
     const distanceY = e.clientY - centerY;
     
-    // Lighter magnetic effect for cards
     const strength = 10;
     const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
     const maxDistance = rect.width / 2;
@@ -136,13 +131,12 @@ const Hero = () => {
 
   return (
     <div className="relative overflow-hidden bg-black min-h-screen flex items-center justify-center">
-      {/* Enhanced Grid Background with improved visibility */}
+      <Hero3D />
+      
       <div className="absolute inset-0 bg-grid-pattern bg-[length:30px_30px] opacity-40"></div>
       
-      {/* Enhanced Gradient Overlay with smooth transitions */}
       <div className="absolute inset-0 bg-gradient-radial from-black/70 via-black/90 to-black opacity-95"></div>
       
-      {/* Interactive Floating Elements */}
       <div 
         className="absolute w-96 h-96 rounded-full bg-neon-orange/10 blur-3xl"
         style={{ 
@@ -162,7 +156,6 @@ const Hero = () => {
       
       <div className="container mx-auto px-4 py-16 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Badge */}
           <div 
             className={`inline-block px-4 py-1.5 mb-6 md:mb-8 bg-white/5 border border-white/10 rounded-full backdrop-blur-sm transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
           >
@@ -171,7 +164,6 @@ const Hero = () => {
             </p>
           </div>
           
-          {/* Main Heading - With increased padding to avoid text being cut off */}
           <h1 
             className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-8 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
             style={{ transitionDelay: "200ms" }}
@@ -184,7 +176,6 @@ const Hero = () => {
             </div>
           </h1>
           
-          {/* Animated Tagline */}
           <div 
             className={`h-12 mb-8 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
             style={{ transitionDelay: "400ms" }}
@@ -195,7 +186,6 @@ const Hero = () => {
             </h2>
           </div>
           
-          {/* Enhanced Description */}
           <p 
             className={`text-gray-400 text-lg max-w-2xl mx-auto mb-10 md:mb-14 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
             style={{ transitionDelay: "600ms" }}
@@ -203,7 +193,6 @@ const Hero = () => {
             We can help your business unlock the full potential of AI. From intelligent automation to predictive analytics, we deliver cutting-edge AI solutions that transform how you operate, innovate, and compete in today's market.
           </p>
           
-          {/* CTA Buttons with magnetic effect restored */}
           <div 
             className={`flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
             style={{ transitionDelay: "800ms" }}
@@ -248,12 +237,10 @@ const Hero = () => {
           </div>
         </div>
         
-        {/* Feature Cards with magnetic effect */}
         <div 
           className={`grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mt-20 md:mt-28 max-w-5xl mx-auto transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
           style={{ transitionDelay: "1000ms" }}
         >
-          {/* Card 1 */}
           <div 
             ref={featureCardRefs[0]}
             className="glass-card p-6 md:p-8 rounded-xl backdrop-blur-md border border-white/20 hover:border-neon-orange/40 transition-all duration-300 hover:translate-y-[-5px] h-full flex flex-col group magnetic-button-enhanced"
@@ -272,7 +259,6 @@ const Hero = () => {
             <p className="text-gray-400">We can develop a comprehensive AI roadmap tailored to your specific business challenges and growth objectives.</p>
           </div>
           
-          {/* Card 2 */}
           <div 
             ref={featureCardRefs[1]}
             className="glass-card p-6 md:p-8 rounded-xl backdrop-blur-md border border-white/20 hover:border-neon-blue/40 transition-all duration-300 hover:translate-y-[-5px] h-full flex flex-col group magnetic-button-enhanced"
@@ -291,7 +277,6 @@ const Hero = () => {
             <p className="text-gray-400">We can create custom AI solutions that automate complex processes, enhance decision-making, and drive measurable efficiency gains.</p>
           </div>
           
-          {/* Card 3 */}
           <div 
             ref={featureCardRefs[2]}
             className="glass-card p-6 md:p-8 rounded-xl backdrop-blur-md border border-white/20 hover:border-neon-green/40 transition-all duration-300 hover:translate-y-[-5px] h-full flex flex-col group magnetic-button-enhanced"

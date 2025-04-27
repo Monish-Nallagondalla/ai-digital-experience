@@ -1,4 +1,3 @@
-
 #root {
   max-width: 100%;
   margin: 0 auto;
@@ -71,12 +70,12 @@
 
 /* Prevent content from being hidden under the navbar */
 main {
-  padding-top: 60px; /* Height of navbar on mobile */
+  padding-top: 80px; /* Height of navbar */
 }
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
   main {
-    padding-top: 80px; /* Height of navbar on desktop */
+    padding-top: 64px; /* Adjusted for mobile */
   }
 }
 
@@ -224,4 +223,21 @@ body:has(.mobile-menu-container.block) {
 
 .nav-link-hover-effect:hover::after {
   transform: translateX(0);
+}
+
+/* Improved badge styling */
+.page-badge {
+  transform: translateY(0);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.page-badge:hover {
+  transform: translateY(-2px);
+}
+
+/* Enhanced 3D canvas styling */
+canvas {
+  touch-action: none;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
 }

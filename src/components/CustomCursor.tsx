@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 
 const CustomCursor = () => {
@@ -12,8 +11,7 @@ const CustomCursor = () => {
     // Detect touch device
     const isTouchDevice = () => {
       return (('ontouchstart' in window) ||
-        (navigator.maxTouchPoints > 0) ||
-        (navigator.msMaxTouchPoints > 0));
+        (navigator.maxTouchPoints > 0));
     };
 
     setTouchDevice(isTouchDevice());
