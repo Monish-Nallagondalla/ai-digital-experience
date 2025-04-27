@@ -244,7 +244,8 @@ canvas {
 
 /* Fixed positioning for page badges */
 .fixed-top-spacing {
-  margin-top: 80px; /* Height of navbar */
+  padding-top: 1.5rem;
+  margin-top: 0;
   position: relative;
   z-index: 10;
 }

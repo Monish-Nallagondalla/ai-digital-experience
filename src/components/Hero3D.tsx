@@ -11,7 +11,7 @@ const AnimatedCube = () => {
     <mesh ref={meshRef} scale={2}>
       <boxGeometry args={[1, 1, 1]} />
       <meshStandardMaterial 
-        color={"#00ffff"} 
+        color="#00ffff" 
         wireframe={true}
         transparent={true}
         opacity={0.5}
