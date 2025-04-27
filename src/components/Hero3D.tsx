@@ -10,10 +10,10 @@ const AnimatedCube = () => {
   return (
     <mesh ref={meshRef} scale={2}>
       <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial
-        color="#00ffff"
-        wireframe
-        transparent
+      <meshStandardMaterial 
+        color={"#00ffff"} 
+        wireframe={true}
+        transparent={true}
         opacity={0.5}
       />
     </mesh>
