@@ -141,7 +141,7 @@ const Navbar = () => {
           </div>
 
           <button
-            className="md:hidden text-white focus:outline-none"
+            className="md:hidden text-white focus:outline-none z-50"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           >
@@ -156,42 +156,39 @@ const Navbar = () => {
 
       {/* Mobile menu with solid black background */}
       <div
-        className={`fixed inset-0 top-0 z-50 w-full h-full flex flex-col justify-start items-center transition-transform duration-300 ${
-          isMenuOpen
-            ? "translate-x-0 opacity-100 pointer-events-auto"
-            : "translate-x-full opacity-0 pointer-events-none"
-        } md:hidden`}
+        className={`fixed inset-0 z-50 md:hidden mobile-menu-container ${
+          isMenuOpen ? "block" : "hidden"
+        }`}
         style={{
-          background: "#000",         // TRUE solid black, no transparency
-          paddingTop: "4rem",
-          minHeight: "100vh",
-          minWidth: "100vw",
+          backgroundColor: "#000000",
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          paddingTop: "5rem",
         }}
       >
-        {/* Always-visible close (X) button */}
+        {/* Close button with improved visibility and positioning */}
         <button
-          className="absolute top-4 right-4 text-white p-2 focus:outline-none z-60"
+          className="absolute top-5 right-5 text-white bg-black/80 p-2 rounded-full focus:outline-none shadow-neon-orange z-50"
           onClick={() => setIsMenuOpen(false)}
           aria-label="Close menu"
-          style={{ background: "rgba(0,0,0,0.8)", borderRadius: "50%" }}
         >
-          <X className="h-7 w-7" />
+          <X className="h-8 w-8" strokeWidth={2.5} />
         </button>
         
-        <nav className="flex flex-col space-y-6 items-center w-full px-6">
+        <nav className="flex flex-col space-y-7 items-center w-full px-6">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               to={link.path}
-              className={`text-xl sm:text-2xl font-medium transition-all duration-300 relative group w-full text-center py-3 ${
+              className={`text-xl font-medium transition-colors duration-300 relative group w-full text-center py-3 ${
                 location.pathname === link.path
                   ? "text-neon-blue"
                   : "text-gray-300 hover:text-white"
               }`}
               onClick={() => setIsMenuOpen(false)}
-              style={{
-                background: "transparent",
-              }}
             >
               {link.name}
               <span
