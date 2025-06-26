@@ -13,21 +13,21 @@ const PageBadge = ({ text, icon = 'sparkles' }: BadgeProps) => {
     
     switch (icon) {
       case 'check':
-        return <BadgeCheck {...iconProps} style={{ color: '#60a5fa' }} />;
+        return <BadgeCheck {...iconProps} className="w-4 h-4 mr-2 text-orange-400" />;
       case 'sparkles':
-        return <Sparkles {...iconProps} style={{ color: '#fb923c' }} />;
+        return <Sparkles {...iconProps} className="w-4 h-4 mr-2 text-orange-400" />;
       case 'book':
-        return <BookOpen {...iconProps} style={{ color: '#4ade80' }} />;
+        return <BookOpen {...iconProps} className="w-4 h-4 mr-2 text-orange-400" />;
       case 'tag':
-        return <Tag {...iconProps} style={{ color: '#60a5fa' }} />;
+        return <Tag {...iconProps} className="w-4 h-4 mr-2 text-orange-400" />;
       default:
-        return <Sparkles {...iconProps} style={{ color: '#fb923c' }} />;
+        return <Sparkles {...iconProps} className="w-4 h-4 mr-2 text-orange-400" />;
     }
   };
 
   return (
-    <div className="w-full flex justify-center px-4 py-6 mt-20">
-      <div className="inline-flex items-center px-6 py-3 bg-black/80 border border-white/10 rounded-full backdrop-blur-sm hover:border-white/20 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 max-w-fit">
+    <div className="w-full flex justify-center px-4 pt-20 pb-6">
+      <div className="inline-flex items-center px-6 py-3 bg-black/80 border border-orange-400/20 rounded-full backdrop-blur-sm hover:border-orange-400/40 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1">
         {getIcon()}
         <span className="text-sm font-medium text-gray-300 whitespace-nowrap">{text}</span>
       </div>

@@ -52,7 +52,7 @@ const Contact = () => {
 
   return (
     <div className="bg-black min-h-screen relative">
-      {/* Background pattern */}
+      {/* Background effects */}
       <div className="absolute inset-0 opacity-20 pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-br from-transparent via-gray-900/20 to-transparent"></div>
       </div>
@@ -65,7 +65,7 @@ const Contact = () => {
         <PageBadge text="Reach Out To Us" icon="check" />
         
         <div className="max-w-4xl mx-auto text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-orange-500 via-blue-400 to-green-400 bg-clip-text text-transparent py-2">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-orange-500 via-blue-400 to-orange-400 bg-clip-text text-transparent py-2">
             Contact Us
           </h1>
         </div>
@@ -74,7 +74,7 @@ const Contact = () => {
           <div>
             <div 
               ref={infoCardRef}
-              className="bg-black/40 backdrop-blur-md border border-white/10 p-8 rounded-xl hover:border-white/20 transition-all duration-300"
+              className="bg-black/40 backdrop-blur-md border border-orange-400/20 p-8 rounded-xl hover:border-orange-400/40 transition-all duration-300"
               style={{ 
                 transform: isInfoCardHovered ? `translate3d(${infoCardPosition.x}px, ${infoCardPosition.y}px, 0)` : 'translate3d(0, 0, 0)',
                 transition: 'transform 0.2s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.3s ease',
@@ -102,8 +102,8 @@ const Contact = () => {
                 </div>
                 
                 <div className="flex items-start">
-                  <div className="bg-blue-500/20 p-3 rounded-full mr-4">
-                    <Mail className="h-6 w-6 text-blue-400" />
+                  <div className="bg-orange-500/20 p-3 rounded-full mr-4">
+                    <Mail className="h-6 w-6 text-orange-400" />
                   </div>
                   <div>
                     <h3 className="text-lg font-medium text-white">Email</h3>
@@ -112,8 +112,8 @@ const Contact = () => {
                 </div>
                 
                 <div className="flex items-start">
-                  <div className="bg-green-500/20 p-3 rounded-full mr-4">
-                    <MapPin className="h-6 w-6 text-green-400" />
+                  <div className="bg-orange-500/20 p-3 rounded-full mr-4">
+                    <MapPin className="h-6 w-6 text-orange-400" />
                   </div>
                   <div>
                     <h3 className="text-lg font-medium text-white">Address</h3>
@@ -126,11 +126,11 @@ const Contact = () => {
           
           <div 
             ref={formCardRef}
-            className="bg-black/40 backdrop-blur-md border border-white/10 rounded-xl overflow-hidden hover:border-white/20 transition-all duration-300"
+            className="bg-black/40 backdrop-blur-md border border-orange-400/20 rounded-xl overflow-hidden hover:border-orange-400/40 transition-all duration-300"
             style={{ 
               transform: isFormCardHovered ? `translate3d(${formCardPosition.x}px, ${formCardPosition.y}px, 0)` : 'translate3d(0, 0, 0)',
               transition: 'transform 0.2s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.3s ease',
-              boxShadow: isFormCardHovered ? '0 15px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 255, 255, 0.2)' : ''
+              boxShadow: isFormCardHovered ? '0 15px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 95, 31, 0.2)' : ''
             }}
             onMouseMove={handleFormCardMouseMove}
             onMouseEnter={() => setIsFormCardHovered(true)}

@@ -1,38 +1,12 @@
 
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
-import { useRef } from 'react';
-import * as THREE from 'three';
-
-const AnimatedCube = () => {
-  const meshRef = useRef<THREE.Mesh>(null);
-
-  return (
-    <mesh ref={meshRef} scale={2}>
-      <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial 
-        color="#00ffff" 
-        wireframe={true}
-        transparent={true}
-        opacity={0.5}
-      />
-    </mesh>
-  );
-};
+import React from 'react';
 
 const Hero3D = () => {
   return (
-    <div className="absolute inset-0 z-0 opacity-50">
-      <Canvas camera={{ position: [0, 0, 5] }}>
-        <ambientLight intensity={0.5} />
-        <pointLight position={[10, 10, 10]} />
-        <AnimatedCube />
-        <OrbitControls
-          enableZoom={false}
-          autoRotate
-          autoRotateSpeed={2}
-        />
-      </Canvas>
+    <div className="absolute inset-0 z-0 opacity-30">
+      <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-transparent to-blue-500/10"></div>
+      <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-orange-500/20 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-40 h-40 bg-blue-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
     </div>
   );
 };
