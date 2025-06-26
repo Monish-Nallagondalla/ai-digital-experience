@@ -31,12 +31,18 @@ const Navbar = () => {
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
     } else {
       document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
     }
 
     return () => {
       document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
     }
   }, [isMenuOpen]);
 
@@ -141,7 +147,7 @@ const Navbar = () => {
           </div>
 
           <button
-            className="md:hidden text-white focus:outline-none z-50"
+            className="md:hidden text-white focus:outline-none z-50 relative"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           >
@@ -154,61 +160,43 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile menu with solid black background */}
-      <div
-        className={`fixed inset-0 z-50 md:hidden mobile-menu-container ${
-          isMenuOpen ? "block" : "hidden"
-        }`}
-        style={{
-          backgroundColor: "#000000",
-          position: "fixed",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
-          paddingTop: "5rem",
-        }}
-      >
-        {/* Close button with improved visibility and positioning */}
-        <button
-          className="absolute top-5 right-5 text-white bg-black/80 p-2 rounded-full focus:outline-none shadow-neon-orange z-50"
-          onClick={() => setIsMenuOpen(false)}
-          aria-label="Close menu"
-        >
-          <X className="h-8 w-8" strokeWidth={2.5} />
-        </button>
-        
-        <nav className="flex flex-col space-y-7 items-center w-full px-6">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              to={link.path}
-              className={`text-xl font-medium transition-colors duration-300 relative group w-full text-center py-3 ${
-                location.pathname === link.path
-                  ? "text-neon-blue"
-                  : "text-gray-300 hover:text-white"
-              }`}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              {link.name}
-              <span
-                className={`absolute -bottom-1 left-0 w-0 h-[2px] transition-all duration-300 group-hover:w-full ${
-                  location.pathname === link.path
-                    ? "w-full bg-neon-blue"
-                    : "bg-neon-orange"
-                }`}
-              ></span>
-            </Link>
-          ))}
-          <Link
-            to="/contact"
-            className="neon-button-orange w-full text-center px-8 py-3 mt-6"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            <span className="relative z-10">Get Started</span>
-          </Link>
-        </nav>
-      </div>
+      {/* Mobile menu with improved styling */}
+      {isMenuOpen && (
+        <div className="fixed inset-0 z-40 md:hidden bg-black/95 backdrop-blur-md">
+          <div className="flex flex-col items-center justify-center min-h-screen px-6 pt-20 pb-8">
+            <nav className="flex flex-col space-y-8 items-center w-full max-w-sm">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  to={link.path}
+                  className={`text-2xl font-medium transition-colors duration-300 relative group text-center py-2 ${
+                    location.pathname === link.path
+                      ? "text-neon-blue"
+                      : "text-gray-300 hover:text-white"
+                  }`}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {link.name}
+                  <span
+                    className={`absolute -bottom-1 left-0 w-0 h-[2px] transition-all duration-300 group-hover:w-full ${
+                      location.pathname === link.path
+                        ? "w-full bg-neon-blue"
+                        : "bg-neon-orange"
+                    }`}
+                  ></span>
+                </Link>
+              ))}
+              <Link
+                to="/contact"
+                className="neon-button-orange w-full text-center px-8 py-4 mt-8 text-lg"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <span className="relative z-10">Get Started</span>
+              </Link>
+            </nav>
+          </div>
+        </div>
+      )}
     </header>
   );
 };

@@ -1,7 +1,8 @@
 
 import React, { useRef, useState } from 'react';
 import ContactForm from '../components/ContactForm';
-import { Phone, Mail, MapPin, BadgeCheck } from 'lucide-react';
+import PageBadge from '../components/PageBadge';
+import { Phone, Mail, MapPin } from 'lucide-react';
 
 const Contact = () => {
   const infoCardRef = useRef<HTMLDivElement>(null);
@@ -59,12 +60,10 @@ const Contact = () => {
       <div className="absolute top-40 right-20 w-64 h-64 rounded-full bg-neon-blue/5 filter blur-3xl pointer-events-none"></div>
       <div className="absolute bottom-40 left-20 w-80 h-80 rounded-full bg-neon-orange/5 filter blur-3xl pointer-events-none"></div>
       
-      <div className="container mx-auto px-4 py-12 relative z-10">
-        <div className="max-w-4xl mx-auto text-center mb-12 mt-8">
-          <div className="inline-block px-4 py-1.5 bg-white/5 border border-white/10 rounded-full backdrop-blur-sm mb-6 flex items-center">
-            <BadgeCheck className="w-4 h-4 mr-2 text-neon-blue" />
-            <p className="text-sm font-medium text-gray-300">Reach Out To Us</p>
-          </div>
+      <div className="container mx-auto px-4 py-4 relative z-10">
+        <PageBadge text="Reach Out To Us" icon="check" />
+        
+        <div className="max-w-4xl mx-auto text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold mb-6 shimmer-text bg-gradient-to-r from-neon-orange via-neon-blue to-neon-green py-2">
             Contact Us
           </h1>
