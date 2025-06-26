@@ -1,4 +1,3 @@
-
 import React, { useRef, useState } from 'react';
 import ContactForm from '../components/ContactForm';
 import PageBadge from '../components/PageBadge';
@@ -59,13 +58,13 @@ const Contact = () => {
       
       {/* Floating orbs */}
       <div className="absolute top-40 right-20 w-64 h-64 rounded-full bg-orange-500/10 filter blur-3xl pointer-events-none"></div>
-      <div className="absolute bottom-40 left-20 w-80 h-80 rounded-full bg-blue-500/10 filter blur-3xl pointer-events-none"></div>
+      <div className="absolute bottom-40 left-20 w-80 h-80 rounded-full bg-orange-500/10 filter blur-3xl pointer-events-none"></div>
       
       <div className="container mx-auto px-4 py-4 relative z-10">
         <PageBadge text="Reach Out To Us" icon="check" />
         
         <div className="max-w-4xl mx-auto text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-orange-500 via-blue-400 to-orange-400 bg-clip-text text-transparent py-2">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-orange-500 via-orange-400 to-orange-300 bg-clip-text text-transparent py-2">
             Contact Us
           </h1>
         </div>
