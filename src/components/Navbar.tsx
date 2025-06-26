@@ -96,10 +96,10 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16 sm:h-18 md:h-20">
           <Link
             to="/"
-            className="text-xl sm:text-2xl font-bold text-white hover:text-neon-orange transition-colors duration-300"
+            className="text-xl sm:text-2xl font-bold text-white hover:text-orange-400 transition-colors duration-300"
           >
-            <span className="text-neon-orange">Apply</span>
-            <span className="text-neon-blue">Ai</span>
+            <span className="text-orange-400">Apply</span>
+            <span className="text-blue-400">Ai</span>
             <span className="text-white">.today</span>
           </Link>
 
@@ -110,7 +110,7 @@ const Navbar = () => {
                 to={link.path}
                 className={`text-base lg:text-lg font-medium transition-all duration-300 relative group ${
                   location.pathname === link.path
-                    ? "text-neon-blue"
+                    ? "text-blue-400"
                     : "text-gray-300 hover:text-white"
                 }`}
               >
@@ -118,8 +118,8 @@ const Navbar = () => {
                 <span
                   className={`absolute -bottom-1 left-0 w-0 h-[2px] transition-all duration-300 group-hover:w-full ${
                     location.pathname === link.path
-                      ? "w-full bg-neon-blue"
-                      : "bg-neon-orange"
+                      ? "w-full bg-blue-400"
+                      : "bg-orange-400"
                   }`}
                 ></span>
               </Link>
@@ -147,7 +147,7 @@ const Navbar = () => {
           </div>
 
           <button
-            className="md:hidden text-white focus:outline-none z-50 relative"
+            className="md:hidden text-white focus:outline-none z-50 relative mobile-menu-button"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           >
@@ -160,40 +160,42 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile menu with improved styling */}
+      {/* Enhanced mobile menu */}
       {isMenuOpen && (
-        <div className="fixed inset-0 z-40 md:hidden bg-black/95 backdrop-blur-md">
-          <div className="flex flex-col items-center justify-center min-h-screen px-6 pt-20 pb-8">
-            <nav className="flex flex-col space-y-8 items-center w-full max-w-sm">
-              {navLinks.map((link) => (
+        <div className="fixed inset-0 z-40 md:hidden">
+          <div className="absolute inset-0 bg-black/95 backdrop-blur-md mobile-menu">
+            <div className="flex flex-col items-center justify-center min-h-screen px-6 pt-20 pb-8">
+              <nav className="flex flex-col space-y-8 items-center w-full max-w-sm">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.name}
+                    to={link.path}
+                    className={`text-2xl font-medium transition-colors duration-300 relative group text-center py-2 ${
+                      location.pathname === link.path
+                        ? "text-blue-400"
+                        : "text-gray-300 hover:text-white"
+                    }`}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {link.name}
+                    <span
+                      className={`absolute -bottom-1 left-0 w-0 h-[2px] transition-all duration-300 group-hover:w-full ${
+                        location.pathname === link.path
+                          ? "w-full bg-blue-400"
+                          : "bg-orange-400"
+                      }`}
+                    ></span>
+                  </Link>
+                ))}
                 <Link
-                  key={link.name}
-                  to={link.path}
-                  className={`text-2xl font-medium transition-colors duration-300 relative group text-center py-2 ${
-                    location.pathname === link.path
-                      ? "text-neon-blue"
-                      : "text-gray-300 hover:text-white"
-                  }`}
+                  to="/contact"
+                  className="neon-button-orange w-full text-center px-8 py-4 mt-8 text-lg"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  {link.name}
-                  <span
-                    className={`absolute -bottom-1 left-0 w-0 h-[2px] transition-all duration-300 group-hover:w-full ${
-                      location.pathname === link.path
-                        ? "w-full bg-neon-blue"
-                        : "bg-neon-orange"
-                    }`}
-                  ></span>
+                  <span className="relative z-10">Get Started</span>
                 </Link>
-              ))}
-              <Link
-                to="/contact"
-                className="neon-button-orange w-full text-center px-8 py-4 mt-8 text-lg"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                <span className="relative z-10">Get Started</span>
-              </Link>
-            </nav>
+              </nav>
+            </div>
           </div>
         </div>
       )}
