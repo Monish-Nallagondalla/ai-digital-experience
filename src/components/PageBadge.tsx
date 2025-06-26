@@ -8,25 +8,27 @@ type BadgeProps = {
 };
 
 const PageBadge = ({ text, icon = 'sparkles' }: BadgeProps) => {
-  const renderIcon = () => {
+  const getIcon = () => {
+    const iconProps = { className: "w-4 h-4 mr-2" };
+    
     switch (icon) {
       case 'check':
-        return <BadgeCheck className="w-4 h-4 text-blue-400 mr-2" />;
+        return <BadgeCheck {...iconProps} style={{ color: '#60a5fa' }} />;
       case 'sparkles':
-        return <Sparkles className="w-4 h-4 text-orange-400 mr-2" />;
+        return <Sparkles {...iconProps} style={{ color: '#fb923c' }} />;
       case 'book':
-        return <BookOpen className="w-4 h-4 text-green-400 mr-2" />;
+        return <BookOpen {...iconProps} style={{ color: '#4ade80' }} />;
       case 'tag':
-        return <Tag className="w-4 h-4 text-blue-400 mr-2" />;
+        return <Tag {...iconProps} style={{ color: '#60a5fa' }} />;
       default:
-        return <Sparkles className="w-4 h-4 text-orange-400 mr-2" />;
+        return <Sparkles {...iconProps} style={{ color: '#fb923c' }} />;
     }
   };
 
   return (
-    <div className="w-full flex justify-center px-4 py-8 mt-16 md:mt-20">
-      <div className="inline-flex items-center px-6 py-3 bg-black/80 border border-white/10 rounded-full backdrop-blur-sm hover:border-white/20 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1">
-        {renderIcon()}
+    <div className="w-full flex justify-center px-4 py-6 mt-20">
+      <div className="inline-flex items-center px-6 py-3 bg-black/80 border border-white/10 rounded-full backdrop-blur-sm hover:border-white/20 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 max-w-fit">
+        {getIcon()}
         <span className="text-sm font-medium text-gray-300 whitespace-nowrap">{text}</span>
       </div>
     </div>

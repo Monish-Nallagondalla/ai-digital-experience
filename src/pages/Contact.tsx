@@ -19,7 +19,7 @@ const Contact = () => {
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;
     
-    const strength = 15;
+    const strength = 10;
     const magneticX = (x / rect.width) * strength;
     const magneticY = (y / rect.height) * strength;
     
@@ -33,7 +33,7 @@ const Contact = () => {
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;
     
-    const strength = 15;
+    const strength = 10;
     const magneticX = (x / rect.width) * strength;
     const magneticY = (y / rect.height) * strength;
     
@@ -51,20 +51,21 @@ const Contact = () => {
   };
 
   return (
-    <div className="bg-black min-h-screen relative corner-glow">
-      {/* Background elements for consistency with other pages */}
-      <div className="absolute inset-0 bg-grid-pattern bg-[length:30px_30px] opacity-40 pointer-events-none"></div>
-      <div className="absolute inset-0 bg-gradient-radial from-black/70 via-black/90 to-black opacity-95 pointer-events-none"></div>
+    <div className="bg-black min-h-screen relative">
+      {/* Background pattern */}
+      <div className="absolute inset-0 opacity-20 pointer-events-none">
+        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-gray-900/20 to-transparent"></div>
+      </div>
       
-      {/* Floating orbs for visual consistency */}
-      <div className="absolute top-40 right-20 w-64 h-64 rounded-full bg-blue-500/5 filter blur-3xl pointer-events-none"></div>
-      <div className="absolute bottom-40 left-20 w-80 h-80 rounded-full bg-orange-500/5 filter blur-3xl pointer-events-none"></div>
+      {/* Floating orbs */}
+      <div className="absolute top-40 right-20 w-64 h-64 rounded-full bg-orange-500/10 filter blur-3xl pointer-events-none"></div>
+      <div className="absolute bottom-40 left-20 w-80 h-80 rounded-full bg-blue-500/10 filter blur-3xl pointer-events-none"></div>
       
       <div className="container mx-auto px-4 py-4 relative z-10">
         <PageBadge text="Reach Out To Us" icon="check" />
         
         <div className="max-w-4xl mx-auto text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 shimmer-text bg-gradient-to-r from-orange-500 via-blue-400 to-green-400 bg-clip-text text-transparent py-2">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-orange-500 via-blue-400 to-green-400 bg-clip-text text-transparent py-2">
             Contact Us
           </h1>
         </div>
@@ -73,7 +74,7 @@ const Contact = () => {
           <div>
             <div 
               ref={infoCardRef}
-              className="glass-card p-8 rounded-xl contact-card"
+              className="bg-black/40 backdrop-blur-md border border-white/10 p-8 rounded-xl hover:border-white/20 transition-all duration-300"
               style={{ 
                 transform: isInfoCardHovered ? `translate3d(${infoCardPosition.x}px, ${infoCardPosition.y}px, 0)` : 'translate3d(0, 0, 0)',
                 transition: 'transform 0.2s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.3s ease',
@@ -91,7 +92,7 @@ const Contact = () => {
               
               <div className="space-y-6">
                 <div className="flex items-start">
-                  <div className="bg-orange-500/10 p-3 rounded-full mr-4">
+                  <div className="bg-orange-500/20 p-3 rounded-full mr-4">
                     <Phone className="h-6 w-6 text-orange-400" />
                   </div>
                   <div>
@@ -101,7 +102,7 @@ const Contact = () => {
                 </div>
                 
                 <div className="flex items-start">
-                  <div className="bg-blue-500/10 p-3 rounded-full mr-4">
+                  <div className="bg-blue-500/20 p-3 rounded-full mr-4">
                     <Mail className="h-6 w-6 text-blue-400" />
                   </div>
                   <div>
@@ -111,7 +112,7 @@ const Contact = () => {
                 </div>
                 
                 <div className="flex items-start">
-                  <div className="bg-green-500/10 p-3 rounded-full mr-4">
+                  <div className="bg-green-500/20 p-3 rounded-full mr-4">
                     <MapPin className="h-6 w-6 text-green-400" />
                   </div>
                   <div>
@@ -125,7 +126,7 @@ const Contact = () => {
           
           <div 
             ref={formCardRef}
-            className="glass-card rounded-xl overflow-hidden shadow-lg"
+            className="bg-black/40 backdrop-blur-md border border-white/10 rounded-xl overflow-hidden hover:border-white/20 transition-all duration-300"
             style={{ 
               transform: isFormCardHovered ? `translate3d(${formCardPosition.x}px, ${formCardPosition.y}px, 0)` : 'translate3d(0, 0, 0)',
               transition: 'transform 0.2s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.3s ease',

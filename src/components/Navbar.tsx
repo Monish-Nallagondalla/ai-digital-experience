@@ -9,15 +9,10 @@ const Navbar = () => {
   const location = useLocation();
   const [magneticPosition, setMagneticPosition] = useState({ x: 0, y: 0 });
   const buttonRef = useRef<HTMLAnchorElement>(null);
-  const navRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      setScrolled(window.scrollY > 10);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -31,19 +26,13 @@ const Navbar = () => {
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = 'hidden';
-      document.body.style.position = 'fixed';
-      document.body.style.width = '100%';
     } else {
       document.body.style.overflow = '';
-      document.body.style.position = '';
-      document.body.style.width = '';
     }
 
     return () => {
       document.body.style.overflow = '';
-      document.body.style.position = '';
-      document.body.style.width = '';
-    }
+    };
   }, [isMenuOpen]);
 
   const navLinks = [
@@ -55,9 +44,8 @@ const Navbar = () => {
     { name: "Contact", path: "/contact" },
   ];
 
-  // Only enable magnetic effects on non-touch devices
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (window.matchMedia('(hover: hover)').matches && buttonRef.current) {
+    if (buttonRef.current && window.matchMedia('(hover: hover)').matches) {
       const rect = buttonRef.current.getBoundingClientRect();
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
@@ -65,7 +53,7 @@ const Navbar = () => {
       const distanceX = e.clientX - centerX;
       const distanceY = e.clientY - centerY;
       
-      const strength = 15;
+      const strength = 10;
       const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
       const maxDistance = rect.width / 2;
       
@@ -85,7 +73,6 @@ const Navbar = () => {
 
   return (
     <header
-      ref={navRef}
       className={`fixed w-full top-0 z-50 transition-all duration-300 ${
         scrolled || isMenuOpen
           ? "bg-black/90 backdrop-blur-md shadow-md"
@@ -134,15 +121,15 @@ const Navbar = () => {
             <Link
               ref={buttonRef}
               to="/contact"
-              className="neon-button-orange magnetic-button-enhanced px-4 py-2 lg:px-6 lg:py-2.5 text-sm lg:text-base"
+              className="inline-flex items-center justify-center px-4 py-2 lg:px-6 lg:py-2.5 text-sm lg:text-base font-medium text-white bg-orange-500 rounded-full hover:bg-orange-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
               style={{ 
                 transform: window.matchMedia('(hover: hover)').matches ? 
-                  `translate(${magneticPosition.x}px, ${magneticPosition.y}px)` : 
-                  'translate(0px, 0px)',
+                  `translate(${magneticPosition.x}px, ${magneticPosition.y}px) scale(1.05)` : 
+                  'translate(0px, 0px) scale(1)',
                 transition: 'transform 0.2s cubic-bezier(0.23, 1, 0.32, 1)'
               }}
             >
-              <span className="relative z-10 flex items-center justify-center">Get Started</span>
+              Get Started
             </Link>
           </div>
 
@@ -160,10 +147,10 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Enhanced mobile menu */}
+      {/* Mobile menu */}
       {isMenuOpen && (
         <div className="fixed inset-0 z-40 md:hidden">
-          <div className="absolute inset-0 bg-black/95 backdrop-blur-md mobile-menu">
+          <div className="absolute inset-0 bg-black/95 backdrop-blur-md">
             <div className="flex flex-col items-center justify-center min-h-screen px-6 pt-20 pb-8">
               <nav className="flex flex-col space-y-8 items-center w-full max-w-sm">
                 {navLinks.map((link) => (
@@ -189,10 +176,10 @@ const Navbar = () => {
                 ))}
                 <Link
                   to="/contact"
-                  className="neon-button-orange w-full text-center px-8 py-4 mt-8 text-lg"
+                  className="inline-flex items-center justify-center w-full text-center px-8 py-4 mt-8 text-lg font-medium text-white bg-orange-500 rounded-full hover:bg-orange-600 transition-all duration-300"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  <span className="relative z-10">Get Started</span>
+                  Get Started
                 </Link>
               </nav>
             </div>

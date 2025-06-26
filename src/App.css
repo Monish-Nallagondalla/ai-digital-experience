@@ -24,9 +24,11 @@
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
@@ -54,7 +56,7 @@
   color: #888;
 }
 
-/* Add CSS Scroll Snap for tab containers */
+/* Scrollbar utilities */
 .scrollbar-none {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -64,17 +66,16 @@
   display: none;
 }
 
-/* Fixed position content adjustment for mobile */
+/* Mobile adjustments */
 .mobile-adjusted-content {
   padding-top: env(safe-area-inset-top, 16px);
 }
 
-/* Prevent content from being hidden under the navbar */
 main {
   padding-top: 0;
 }
 
-/* Improve tap target size for mobile */
+/* Improve tap targets on mobile */
 @media (max-width: 640px) {
   button, a {
     min-height: 44px;
@@ -82,25 +83,14 @@ main {
   }
 }
 
-/* Fix Safari issues with fixed positioning */
-@supports (-webkit-touch-callout: none) {
-  .fixed {
-    position: sticky;
-    top: 0;
-    z-index: 50;
-  }
-}
-
 /* Mobile menu improvements */
 @media (max-width: 768px) {
-  /* Prevent body scroll when menu is open */
   body.menu-open {
     overflow: hidden !important;
     position: fixed !important;
     width: 100% !important;
   }
   
-  /* Improve mobile menu button accessibility */
   .mobile-menu-button {
     min-height: 48px;
     min-width: 48px;
@@ -110,54 +100,7 @@ main {
   }
 }
 
-/* Page badge styling - consistent across all pages */
-.page-badge-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  padding: 2rem 1rem;
-  margin-top: 4rem;
-}
-
-@media (min-width: 768px) {
-  .page-badge-container {
-    margin-top: 5rem;
-  }
-}
-
-.page-badge {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.75rem 1.5rem;
-  background: rgba(0, 0, 0, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 9999px;
-  backdrop-filter: blur(12px);
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  max-width: fit-content;
-}
-
-.page-badge:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.2);
-}
-
-/* Mobile responsiveness for badges */
-@media (max-width: 768px) {
-  .page-badge-container {
-    padding: 1.5rem 1rem;
-    margin-top: 3rem;
-  }
-  
-  .page-badge {
-    padding: 0.5rem 1rem;
-    font-size: 0.875rem;
-  }
-}
-
-/* Ensure consistent spacing from navbar */
+/* Page content spacing */
 .page-content {
   padding-top: 5rem;
 }
