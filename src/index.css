@@ -1,64 +1,39 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 0 0% 7%;
-    --foreground: 210 40% 98%;
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
 
-    --card: 0 0% 10%;
-    --card-foreground: 210 40% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 0 0% 12%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 26 100% 56%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 142.1 76.2% 36.3%;
+    --primary-foreground: 355.7 100% 97.3%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 214 20% 20%;
-    --muted-foreground: 215.4 16.3% 76.9%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
 
-    --accent: 180 100% 50%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 142.1 76.2% 36.3%;
+    --accent-foreground: 0 0% 98%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 214.3 31.8% 25.4%;
-    --input: 214.3 31.8% 30.4%;
-    --ring: 222.2 84% 30.9%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 142.1 76.2% 36.3%;
 
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 12%;
-    --sidebar-foreground: 240 5.3% 76.1%;
-    --sidebar-primary: 240 5.9% 30%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 20.9%;
-    --sidebar-accent-foreground: 240 5.9% 90%;
-    --sidebar-border: 220 13% 25%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-    
-    --cursor-size: 16px; /* Slightly increased cursor size */
-  }
-
-  /* Touch devices - disable custom cursor */
-  @media (hover: none) {
-    body {
-      cursor: auto !important;
-    }
-    
-    a, button, .interactive, input[type="submit"] {
-      cursor: auto !important;
-    }
-    
-    .custom-cursor {
-      display: none !important;
-    }
+    --radius: 0.75rem;
   }
 
   * {
@@ -68,435 +43,67 @@
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
-    cursor: none !important;
-    overscroll-behavior: none;
-    -webkit-overflow-scrolling: touch;
-  }
-  
-  a, button, .interactive, input[type="submit"] {
-    cursor: none !important;
-  }
-  
-  /* Custom cursor styling */
-  .custom-cursor {
-    position: fixed;
-    pointer-events: none;
-    z-index: 9999;
-    mix-blend-mode: difference;
-    transition: opacity 0.15s ease, transform 0.15s ease-out;
-  }
-  
-  .cursor-dot {
-    width: var(--cursor-size);
-    height: var(--cursor-size);
-    background-color: white;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: transform 0.08s ease-out, background-color 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.75), 0 0 25px rgba(255, 255, 255, 0.25);
-  }
-  
-  .cursor-outline {
-    width: calc(var(--cursor-size) * 3);
-    height: calc(var(--cursor-size) * 3);
-    background-color: transparent;
-    border: 1.5px solid rgba(255, 255, 255, 0.85);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: width 0.2s ease, height 0.2s ease, transform 0.08s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-  }
-  
-  /* Reduce animation complexity on mobile */
-  @media (max-width: 768px) {
-    .magnetic-button, 
-    .magnetic-button-enhanced,
-    .magnetic-client-block,
-    .blog-card,
-    .contact-card,
-    .glass-card {
-      transform: none !important;
-      transition: box-shadow 0.3s ease, border-color 0.3s ease !important;
-    }
-    
-    .magnetic-button::after,
-    .magnetic-button-enhanced::after,
-    .magnetic-client-block::after,
-    .blog-card::after,
-    .contact-card::after,
-    .glass-card::after {
-      display: none !important;
-    }
-  }
-  
-  .shimmer-text {
-    background-size: 300% 100% !important;
-    animation: text-shimmer 6s linear infinite !important;
-    transition: background-position 0.5s ease-in-out !important;
-  }
-  
-  @keyframes text-shimmer {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-  
-  .animate-float {
-    animation: float 10s ease-in-out infinite;
-  }
-  
-  .text-glow {
-    animation: text-glow 3s ease-in-out infinite;
-  }
-  
-  /* Enhanced uniform magnetic effect for all relevant elements */
-  .magnetic-button,
-  .magnetic-button-enhanced,
-  .magnetic-client-block,
-  .blog-card,
-  .contact-card,
-  .glass-card {
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-  }
-  
-  .magnetic-button::after,
-  .magnetic-button-enhanced::after,
-  .magnetic-client-block::after,
-  .blog-card::after,
-  .contact-card::after,
-  .glass-card::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    opacity: 0;
-    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
-    transition: opacity 0.4s ease;
-  }
-  
-  .magnetic-button:hover::after,
-  .magnetic-button-enhanced:hover::after,
-  .magnetic-client-block:hover::after,
-  .blog-card:hover::after,
-  .contact-card:hover::after,
-  .glass-card:hover::after {
-    opacity: 1;
-  }
-  
-  /* Standardized glows for all cards */
-  .cta-glow,
-  .magnetic-client-block,
-  .blog-card:hover,
-  .contact-card:hover {
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 30px rgba(0, 255, 255, 0.15);
-    transition: box-shadow 0.3s ease;
-  }
-  
-  .cta-glow:hover,
-  .magnetic-client-block:hover {
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 40px rgba(0, 255, 255, 0.25);
-  }
-  
-  /* Enhanced corner glow for consistency */
-  .corner-glow::before {
-    content: '';
-    position: absolute;
-    top: -150px;
-    right: -150px;
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    background: radial-gradient(rgba(0, 255, 255, 0.15), transparent 70%);
-    opacity: 0.5;
-    z-index: 0;
-  }
-  
-  .corner-glow::after {
-    content: '';
-    position: absolute;
-    bottom: -150px;
-    left: -150px;
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    background: radial-gradient(rgba(255, 95, 31, 0.15), transparent 70%);
-    opacity: 0.5;
-    z-index: 0;
   }
 }
 
 @layer components {
-  .text-stroke {
-    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
-  }
-
-  .text-glow {
-    text-shadow: 0 0 10px currentColor;
-  }
-
-  .neon-button {
-    @apply relative inline-flex items-center justify-center px-4 py-2 sm:px-6 sm:py-3 overflow-hidden font-medium transition-all border rounded-md;
-  }
-
-  .neon-button-orange {
-    @apply neon-button border-neon-orange text-neon-orange hover:bg-neon-orange hover:text-black;
-  }
-
-  .neon-button-orange::before {
-    @apply content-[''] absolute top-0 left-0 w-full h-full bg-neon-orange scale-x-0 transition-transform duration-300 origin-right;
-  }
-
-  .neon-button-orange:hover::before {
-    @apply scale-x-100 origin-left;
-  }
-
-  .neon-button-blue {
-    @apply neon-button border-neon-blue text-neon-blue hover:bg-neon-blue hover:text-black;
-  }
-
-  .neon-button-blue::before {
-    @apply content-[''] absolute top-0 left-0 w-full h-full bg-neon-blue scale-x-0 transition-transform duration-300 origin-right;
-  }
-
-  .neon-button-blue:hover::before {
-    @apply scale-x-100 origin-left;
-  }
-
-  .neon-button-green {
-    @apply neon-button border-neon-green text-neon-green hover:bg-neon-green hover:text-black;
-  }
-
-  .neon-button-green::before {
-    @apply content-[''] absolute top-0 left-0 w-full h-full bg-neon-green scale-x-0 transition-transform duration-300 origin-right;
-  }
-
-  .neon-button-green:hover::before {
-    @apply scale-x-100 origin-left;
-  }
-
-  .neon-button span {
-    @apply relative z-10;
-  }
-
   .glass-card {
-    @apply backdrop-blur-md bg-white/5 border border-white/20 shadow-glass;
+    @apply backdrop-blur-md bg-background/80 border border-border/50 shadow-xl;
   }
 
-  .shimmer-text {
-    @apply bg-shimmer bg-300% bg-clip-text text-transparent animate-text-shimmer;
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent;
   }
 
-  .grid-bg {
-    @apply bg-grid-pattern bg-[length:30px_30px];
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2;
   }
 
-  .h-screen-minus-nav {
-    height: calc(100vh - 5rem);
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-secondary text-secondary-foreground hover:bg-secondary/80 h-10 px-4 py-2;
   }
-  
-  .shadow-glass {
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+
+  .section-padding {
+    @apply py-16 md:py-24;
   }
-  
-  .shadow-neon-orange {
-    box-shadow: 0 0 15px rgba(255, 95, 31, 0.4), 0 0 30px rgba(255, 95, 31, 0.2);
+
+  .container-padding {
+    @apply px-4 md:px-6 lg:px-8;
   }
-  
-  .shadow-neon-blue {
-    box-shadow: 0 0 15px rgba(0, 255, 255, 0.4), 0 0 30px rgba(0, 255, 255, 0.2);
-  }
-  
-  .shadow-neon-green {
-    box-shadow: 0 0 15px rgba(0, 255, 127, 0.4), 0 0 30px rgba(0, 255, 127, 0.2);
+
+  .text-balance {
+    text-wrap: balance;
   }
 }
 
 @layer utilities {
-  /* Mobile styles */
-  @media (max-width: 768px) {
-    :root {
-      --cursor-size: 14px;
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
     }
-    
-    .neon-button {
-      @apply px-4 py-2 text-sm;
-    }
-    
-    .fixed-nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 50;
-      backdrop-filter: blur(8px);
-      background-color: rgba(0, 0, 0, 0.85);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    
-    .TabsList {
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    
-    .TabsTrigger {
-      flex: 1 1 auto;
-      white-space: nowrap;
-      padding: 0.5rem;
-      font-size: 0.875rem;
-    }
-    
-    .tabs-container {
-      overflow-x: auto;
-      padding-bottom: 1rem;
-      margin-left: -1rem;
-      margin-right: -1rem;
-      padding-left: 1rem;
-      padding-right: 1rem;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-    }
-    
-    .tabs-container::-webkit-scrollbar {
-      display: none;
-    }
-    
-    .tab-button {
-      white-space: nowrap;
-      flex-shrink: 0;
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 
-  /* Small screens */
-  @media (max-width: 640px) {
-    :root {
-      --cursor-size: 12px;
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
     }
-    
-    .container {
-      padding-left: 1rem;
-      padding-right: 1rem;
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
-    
-    /* Mobile-specific optimizations */
-    .glass-card,
-    .shimmer-text,
-    .bg-gradient-radial,
-    .bg-grid-pattern {
-      will-change: transform;
-    }
-    
-    /* Reduce or disable animations on mobile */
-    .animate-float,
-    .text-glow {
-      animation: none !important;
-    }
-  }
-}
-
-/* Scrollbar styling */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  @apply bg-transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  @apply bg-gray-500 rounded-full;
-  border: 1.5px solid rgba(255, 255, 255, 0.05);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  @apply bg-gray-400;
-  border: 1.5px solid rgba(255, 255, 255, 0.1);
-}
-
-/* Page transitions */
-.page-transition-enter {
-  opacity: 0;
-  transform: translate3d(0, 20px, 0);
-}
-
-.page-transition-enter-active {
-  opacity: 1;
-  transform: translate3d(0, 0, 0);
-  transition: opacity 400ms, transform 400ms;
-}
-
-.page-transition-exit {
-  opacity: 1;
-}
-
-.page-transition-exit-active {
-  opacity: 0;
-  transition: opacity 300ms;
-}
-
-/* Background patterns and gradients */
-.bg-grid-pattern {
-  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.2) 1px, transparent 1px), 
-                    linear-gradient(to bottom, rgba(255, 255, 255, 0.2) 1px, transparent 1px);
-  background-size: 30px 30px;
-  opacity: 0.7 !important;
-}
-
-.bg-gradient-to-b {
-  background-blend-mode: overlay;
-  transition: background-color 0.5s ease;
-}
-
-/* Mobile optimizations for smooth scrolling */
-html, body {
-  overscroll-behavior-y: none;
-  -webkit-overflow-scrolling: touch;
-}
-
-/* Safari-specific fixes for mobile */
-@supports (-webkit-touch-callout: none) {
-  .min-h-screen {
-    min-height: -webkit-fill-available;
-  }
-}
-
-/* Improve tap targets for mobile */
-@media (max-width: 640px) {
-  button, 
-  .button-like,
-  .TabsTrigger {
-    min-height: 44px;
-  }
-}
-
-/* Fix scrolling issues within tabs */
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
-
-/* Fix mobile menu positioning */
-@media (max-width: 768px) {
-  .mobile-menu {
-    background-color: rgba(0, 0, 0, 0.95);
-    backdrop-filter: blur(10px);
-  }
-  
-  /* Fix tab navigation on mobile */
-  .tabs-overflow-container {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    padding-bottom: 0.5rem;
-  }
-  
-  .tabs-overflow-container::-webkit-scrollbar {
-    display: none;
   }
 }
