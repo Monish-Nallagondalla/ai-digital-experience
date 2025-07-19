@@ -54,10 +54,10 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16 sm:h-18 md:h-20">
           <Link
             to="/"
-            className="text-xl sm:text-2xl font-bold text-foreground hover:text-primary transition-colors duration-300"
+            className="text-xl sm:text-2xl font-bold hover:scale-105 transition-all duration-300"
           >
             <span className="text-primary">Apply</span>
-            <span className="text-accent">AI</span>
+            <span className="text-secondary">AI</span>
             <span className="text-foreground">.today</span>
           </Link>
 
@@ -87,7 +87,7 @@ const Navbar = () => {
           <div className="hidden md:block">
             <Link
               to="/contact"
-              className="btn-primary hover:scale-105 shadow-lg hover:shadow-xl transition-all duration-300"
+              className="btn-primary px-6 py-2 hover:scale-105 transition-all duration-300"
             >
               Get Started
             </Link>

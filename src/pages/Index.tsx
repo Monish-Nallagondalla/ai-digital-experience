@@ -66,48 +66,48 @@ const Index = () => {
     return () => clearInterval(interval);
   }, [autoplay]);
 
-  const clients = ["Tesla", "Amazon", "Google", "Microsoft", "Airbnb", "Uber"];
+  const clients = ["OpenAI", "NVIDIA", "Microsoft", "Google", "Meta", "Amazon"];
   
   const featuredServices = [
     {
-      title: "AI Strategy & Consulting",
-      description: "Transform your business with tailored AI strategies. We help you identify opportunities, reduce costs, and gain competitive advantages through intelligent implementation.",
+      title: "AI Strategy & Implementation",
+      description: "Develop comprehensive AI roadmaps aligned with your business goals. We identify high-impact use cases and create implementation strategies that deliver measurable ROI.",
       icon: <Target className="h-6 w-6" />,
     },
     {
-      title: "Intelligent Agent Development",
-      description: "Build custom AI agents that revolutionize your operations. From customer service to data analysis, our agents automate complex tasks while continuously learning.",
+      title: "Machine Learning Solutions",
+      description: "Build intelligent systems that learn and adapt. From predictive models to recommendation engines, we create ML solutions that drive decision-making and automation.",
       icon: <Users className="h-6 w-6" />,
     },
     {
-      title: "Predictive Analytics & Insights",
-      description: "Convert data into actionable intelligence. Our predictive models identify trends, forecast outcomes, and detect patterns to enable proactive decision-making.",
+      title: "Data Science & Analytics",
+      description: "Transform raw data into strategic insights. Our data scientists uncover patterns, trends, and opportunities hidden in your data to fuel business growth.",
       icon: <Zap className="h-6 w-6" />,
     },
     {
-      title: "AI-Powered Customer Experience",
-      description: "Revolutionize customer interactions with context-aware AI. Our systems understand intent, resolve issues autonomously, and seamlessly escalate when needed.",
+      title: "AI-Powered Automation",
+      description: "Streamline operations with intelligent automation. We implement AI solutions that reduce manual work, improve accuracy, and scale your business capabilities.",
       icon: <MessageSquare className="h-6 w-6" />,
     }
   ];
 
   const testimonials = [
     {
-      quote: "ApplyAI.today transformed our customer service operations, reducing response times by 60% while boosting satisfaction scores from 3.8 to 4.7. The ROI was evident within our first quarter.",
+      quote: "ApplyAI.today delivered a machine learning solution that increased our sales forecasting accuracy by 85%. Their team understood our complex requirements and delivered results that exceeded expectations.",
       author: "Sarah Chen",
-      position: "CTO, TechFlow Systems",
+      position: "VP of Operations, TechVenture Inc.",
       rating: 5
     },
     {
-      quote: "Their predictive analytics solution gives us market insights with 87% accuracy, providing a significant competitive edge. We've now scaled AI across our entire supply chain.",
+      quote: "The AI-powered automation system reduced our data processing time from 8 hours to 15 minutes. This efficiency gain allowed us to reallocate resources to strategic initiatives and accelerate growth.",
       author: "Michael Rodriguez",
-      position: "CEO, InnovateCore",
+      position: "CTO, DataFlow Solutions",
       rating: 5
     },
     {
-      quote: "Working with ApplyAI.today unlocked our business intelligence potential. They integrated AI into our legacy systems, revealing insights from previously unused data streams.",
+      quote: "Their expertise in AI strategy helped us identify new revenue opportunities worth $2.3M annually. The comprehensive roadmap they created guides our digital transformation journey.",
       author: "Emma Thompson",
-      position: "COO, Global Dynamics",
+      position: "CEO, Innovation Labs",
       rating: 5
     }
   ];
@@ -125,9 +125,9 @@ const Index = () => {
           <div 
             className={`text-center mb-12 transition-all duration-700 ${isVisible.clients ? 'opacity-100 animate-fade-in' : 'opacity-0 translate-y-10'}`}
           >
-            <h2 className="text-2xl md:text-3xl font-semibold text-foreground mb-4">Trusted by Industry Leaders</h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">Trusted by AI-Forward Organizations</h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Empowering innovative companies across sectors with intelligent AI solutions that drive growth and efficiency.
+              Join leading companies leveraging our expertise to build intelligent systems and drive digital transformation.
             </p>
           </div>
           
@@ -158,10 +158,10 @@ const Index = () => {
             className={`max-w-4xl mx-auto text-center mb-16 transition-all duration-700 ${isVisible.services ? 'opacity-100 animate-fade-in' : 'opacity-0 translate-y-10'}`}
           >
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 text-balance">
-              Transformative AI Solutions for Modern Business
+              <span className="gradient-text">AI & Data Science</span> Solutions That Drive Results
             </h2>
             <p className="text-muted-foreground text-lg md:text-xl max-w-3xl mx-auto text-balance">
-              Our comprehensive AI-powered solutions address your specific challenges, drive innovation, and create sustainable competitive advantages in today's digital landscape.
+              From machine learning models to intelligent automation, we create AI solutions that solve complex business challenges and unlock new opportunities for growth.
             </p>
           </div>
           
@@ -217,9 +217,9 @@ const Index = () => {
           <div 
             className={`max-w-4xl mx-auto text-center mb-12 transition-all duration-700 ${isVisible.testimonials ? 'opacity-100 animate-fade-in' : 'opacity-0 translate-y-10'}`}
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 text-balance">Client Success Stories</h2>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 text-balance">Real Impact, <span className="gradient-text">Real Results</span></h2>
             <p className="text-muted-foreground text-lg md:text-xl max-w-3xl mx-auto text-balance">
-              Discover how our AI solutions have transformed operations and delivered measurable results for forward-thinking businesses.
+              See how our AI and data science expertise has transformed businesses across industries, delivering quantifiable ROI and competitive advantages.
             </p>
           </div>
           
@@ -285,9 +285,9 @@ const Index = () => {
             <div className="bg-primary/10 p-4 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-8">
               <Lightbulb className="h-8 w-8 text-primary" />
             </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 text-balance">Ready to Transform Your Business with AI?</h2>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 text-balance">Ready to <span className="gradient-text">Apply AI</span> to Your Business?</h2>
             <p className="text-muted-foreground text-lg md:text-xl mb-10 max-w-3xl mx-auto text-balance">
-              Partner with ApplyAI.today to discover how cutting-edge AI solutions can drive innovation, efficiency, and growth for your organization. Our expert team is ready to guide you through your AI transformation journey.
+              Let's discuss how AI and machine learning can solve your specific challenges. Our team of experts will help you identify opportunities, build solutions, and implement strategies that deliver measurable impact.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
               <Link 
@@ -295,7 +295,7 @@ const Index = () => {
                 className="btn-primary px-8 py-4 hover:scale-105 shadow-lg hover:shadow-xl transition-all duration-300"
               >
                 <span className="flex items-center justify-center">
-                  Schedule a Consultation <ArrowRight className="ml-2 h-4 w-4" />
+                  Book Your AI Consultation <ArrowRight className="ml-2 h-4 w-4" />
                 </span>
               </Link>
               
