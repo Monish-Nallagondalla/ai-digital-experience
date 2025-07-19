@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import PageBadge from '../components/PageBadge';
-import { ArrowRight, Calendar, Tag, Clock, TrendingUp, Users, Zap } from 'lucide-react';
+import { ArrowRight, Calendar, Tag, Clock, TrendingUp, Users, Zap, Mail } from 'lucide-react';
 
 const Blog = () => {
   const [visibleItems, setVisibleItems] = useState<number[]>([]);
